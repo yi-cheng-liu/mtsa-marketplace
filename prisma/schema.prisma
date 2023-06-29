@@ -1,0 +1,86 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+// @id -> primary key to the User model
+// @map("_id") -> in the actual database, the id is called _id
+// @db.ObjectId -> the field is of type ObjectId(12-byte identifier) in the database
+
+model User {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String?
+  email String? @unique
+  emailVerified DateTime?
+  image String?
+  hashedPassword String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  favoriteIds String[] @db.ObjectId
+
+  accounts Account[] // a User can have many accounts, for example, Google, Facebook, etc.
+  reservation Reservation[] // a User can have many reservations of different items
+  item Item[]    // a User can have many items
+}
+
+model Account {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  provider String // Google, Facebook, etc.
+  providerAccountId String
+  type String // OAuth, etc.
+  userId String @db.ObjectId // the same as User:id
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  referesh_token String? @db.String
+  access_token String? @db.String
+  expires_at Int?
+  token_type String?
+  scope String?
+  id_token String?
+  session_state String?
+ 
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Item {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  description String
+  image String
+  image2 String?
+  image3 String?
+  image4 String?
+  image5 String?
+  category String
+  itemCount Int
+  price Float
+  userId String @db.ObjectId // the same as User:id, 
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reservation Reservation[]
+}
+
+model Reservation {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId // the same as User:id
+  itemId String @db.ObjectId // the same as Item:id
+  pickupDate DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  item Item @relation(fields: [itemId], references: [id], onDelete: Cascade)
+}

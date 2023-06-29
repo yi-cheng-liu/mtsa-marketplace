@@ -11,7 +11,7 @@ const Logo = () => {
     <div className='flex flex-row items-center'>
       <Image
         alt='logo'
-        src= '/images/logo.jpg'
+        src= '/images/michigan.png'
         className='hidden md:block cursor-pointer'
         height='50'
         width='50'
