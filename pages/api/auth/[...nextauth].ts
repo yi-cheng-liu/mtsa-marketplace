@@ -22,8 +22,8 @@ export const authOptions: AuthOptions = {
     }),
     // Adding Facebook as a provider for OAuth authentication
     FacebookProvider({
-      clientId: process.env.FACEBOOK_ID as string,
-      clientSecret: process.env.FACEBOOK_SECRET as string,
+      clientId: process.env.FACEBOOK_CLIENT_ID as string,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string,
     }),
     // Adding Google as a provider for OAuth authentication
     GoogleProvider({
@@ -59,7 +59,10 @@ export const authOptions: AuthOptions = {
         }
 
         // Checking if the entered password is correct by comparing it with the hashed password
-        const isCorrectPassword = await bcrypt.compare(credentials.password, user.hashedPassword);
+        const isCorrectPassword = await bcrypt.compare(
+          credentials.password,
+          user.hashedPassword
+        );
 
         // If the password is incorrect, throw an error
         if (!isCorrectPassword) {
@@ -73,12 +76,12 @@ export const authOptions: AuthOptions = {
   ],
   pages: {
     signIn: "/",
-  }, 
+  },
   debug: process.env.NODE_ENV === "development",
   session: {
     strategy: "jwt",
-  }, 
-  secret: process.env.NEXTAUTH_SECRET, 
+  },
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 export default NextAuth(authOptions);
