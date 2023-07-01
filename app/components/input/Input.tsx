@@ -38,7 +38,7 @@ const Input: React.FC<InputProps> = ({
         disabled={disabled}
         placeholder=" "
         {...register(id, { required })}
-        className={`peer w-full p-4 pt-8 font-light bg-white border-2 rounded-md outline-none
+        className={`peer w-full p-4 pt-8 font-light bg-white border-2 rounded-2xl outline-none
                    transition disabled:opacity-50 disabled:cursor-not-allowed 
                    ${formatPrice ? "pl-9" : "pl-4"}
                    ${errors[id] ? "border-rose-500" : "border-neutral-300"}

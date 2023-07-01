@@ -66,7 +66,7 @@ const Modals: React.FC<ModalProps> = ({
             >
               <div
                 className="relative flex flex-col translate 
-                            w-full h-full md:h-auto lg:h-auto border-0 rounded-lg
+                            w-full h-full md:h-auto lg:h-auto border-0 rounded-2xl
                             bg-white outline-none focus:outline-none"
               >
                 {/*header*/}

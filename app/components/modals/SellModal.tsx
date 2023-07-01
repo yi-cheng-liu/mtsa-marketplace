@@ -10,6 +10,7 @@ import { categories } from '../navbar/Categories'
 import CategoryInput from '../input/CategoryInput'
 import Input from '../input/Input'
 import Counter from '../input/Counter'
+import ImageUpload from '../input/ImageUpload'
 import { FieldValues, useForm } from 'react-hook-form'
 import { toast } from "react-hot-toast";
 
@@ -26,14 +27,8 @@ const SellModal = () => {
   const [step, setStep] = useState(SELLMODALSTEPS.CATEGORY);
   const [isLoading, setIsLoading] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    watch,
-    formState: { errors },
-    reset,
-  } = useForm<FieldValues>({
+  const { register, handleSubmit, setValue, watch, formState: { errors }, reset, }
+    = useForm<FieldValues>({
     defaultValues: {
       title: "",
       description: "",
@@ -53,6 +48,11 @@ const SellModal = () => {
   const description = watch("description");
   const itemCount = watch("itemCount");
   const price = watch("price");
+  const image1 = watch("image1");
+  const image2 = watch("image2");
+  const image3 = watch("image3");
+  const image4 = watch("image4");
+  const image5 = watch("image5");
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -68,8 +68,13 @@ const SellModal = () => {
 
   const onNext = () => {
     setStep((value) => value + 1);
+    if (price <= 1 && step === SELLMODALSTEPS.DETAILS) {
+      toast("The price is lower than 1 dollar! ",
+        {icon: "💸", duration: 3500 });
+    }
     if (!title && step === SELLMODALSTEPS.DETAILS) {
-      toast.error("It is better to enter a title");
+      toast("It is better to add a title! ",
+        { icon: "❗", duration: 3700 });
       return;
     }
   };
@@ -89,9 +94,9 @@ const SellModal = () => {
   }, [step]);
 
   let bodyContent = (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4">
       <Heading center title="Pick a Category" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 max-h-[50vh] overflow-y-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 max-h-[50vh] overflow-y-auto">
         {categories.map((item) => (
           <div key={item.label}>
             <CategoryInput
@@ -110,7 +115,7 @@ const SellModal = () => {
 
   if (step == SELLMODALSTEPS.DETAILS) {
     bodyContent = (
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-4">
         <Heading title="Details of the item" center />
         <Input
           id="title"
@@ -149,8 +154,33 @@ const SellModal = () => {
 
   if (step == SELLMODALSTEPS.IMAGES) {
     bodyContent = (
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-4">
         <Heading title="Upload the Images" center />
+        <ImageUpload
+          onChange={(value) => setCustomValue("image1", value)}
+          value={image1}
+          main
+        />
+        <div className="flex flex-row justify-between gap-4">
+          <ImageUpload
+            onChange={(value) => setCustomValue("image2", value)}
+            value={image2}
+          />
+          <ImageUpload
+            onChange={(value) => setCustomValue("image3", value)}
+            value={image3}
+          />
+        </div>
+        <div className="flex flex-row justify-between gap-4">
+          <ImageUpload
+            onChange={(value) => setCustomValue("image4", value)}
+            value={image4}
+          />
+          <ImageUpload
+            onChange={(value) => setCustomValue("image5", value)}
+            value={image5}
+          />
+        </div>
       </div>
     );
   }
