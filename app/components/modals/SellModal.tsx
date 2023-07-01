@@ -11,8 +11,9 @@ import CategoryInput from '../input/CategoryInput'
 import Input from '../input/Input'
 import Counter from '../input/Counter'
 import ImageUpload from '../input/ImageUpload'
-import { FieldValues, useForm } from 'react-hook-form'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from "react-hot-toast";
+import axios from "axios";
 
 enum SELLMODALSTEPS {
   CATEGORY = 0,
@@ -39,7 +40,7 @@ const SellModal = () => {
       image5: "",
       category: "",
       itemCount: 1,
-      price: 1,
+      price: 1.00,
     },
   });
 
@@ -78,6 +79,15 @@ const SellModal = () => {
       return;
     }
   };
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    if(step == SELLMODALSTEPS.IMAGES) {
+      return onNext();
+    }
+    setIsLoading(true);
+
+    axios.post('/api/items', data)
+  }
 
   const actionLabel = useMemo(() => {
     if (step == SELLMODALSTEPS.IMAGES) {
@@ -140,7 +150,7 @@ const SellModal = () => {
         />
         <Input
           id="price"
-          label="Price"
+          label="Price (per item)"
           formatPrice
           type="number"
           disabled={isLoading}

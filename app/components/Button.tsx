@@ -21,7 +21,7 @@ const Button: React.FC<ButtonProps> = ({ label, onClick, disabled, outline, smal
                        ${outline ? "border-[#00274C]" : "border-[#00274C]"}
                        ${outline ? "text-[#00274C]" : "text-[#FFCB05]"}
                        ${small ? "py-1" : "py-3"}
-                       ${small ? "text-sm" : "text-md"}
+                       ${small ? "text-md" : "text-base"}
                        ${small ? "font-light" : "font-semibold"}
                        ${small ? "border-[1px]" : "border-2"}`}
     >

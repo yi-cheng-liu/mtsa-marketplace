@@ -101,7 +101,7 @@ const Categories = () => {
   }
 
   return (
-    <div className="flex flex-row items-center justify-center overflow-x-auto">
+    <div className="flex flex-row items-center justify-between overflow-x-auto">
       {categories.map((item) => (
         <CategoryBox
           key={item.label}
