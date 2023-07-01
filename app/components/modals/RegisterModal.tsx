@@ -6,6 +6,7 @@ import { FcGoogle } from 'react-icons/fc'
 import { PiHandWavingBold } from 'react-icons/pi'
 import { useCallback, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
+import useLoginModal from "../../hooks/useLoginModal";
 import useRegisterModal from '../../hooks/useRegisterModal'
 import Modals from './Modals'
 import Heading from '../Heading'
@@ -14,8 +15,10 @@ import { toast } from 'react-hot-toast'
 import Button from '../Button'
 
 import { signIn } from 'next-auth/react'
+import LoginModal from './LoginModal'
   
 const RegisterModal = () => {
+  const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -26,6 +29,11 @@ const RegisterModal = () => {
   } = useForm<FieldValues>({
     defaultValues: { name: "", email: "", password: "" },
   });
+
+  const toggle = useCallback(() => {
+    loginModal.onOpen();
+    registerModal.onClose();
+  }, [loginModal, registerModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -76,7 +84,7 @@ const RegisterModal = () => {
           Already have an account?  
         </div>
         <div
-          onClick={registerModal.onClose}
+          onClick={toggle}
           className='text-[#00274C] cursor-pointer hover:opacity-50'>
           Login
         </div>

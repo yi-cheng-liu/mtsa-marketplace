@@ -31,6 +31,11 @@ const LoginModal = () => {
     defaultValues: { email: "", password: "" },
   });
 
+  const toggle = useCallback(() => {
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal]);
+
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading
@@ -65,7 +70,17 @@ const LoginModal = () => {
       <hr />
       <Button outline label="Continue with Google" icon={FcGoogle} onClick={() => signIn('google')} />
       <Button outline label="Continue with Facebook" icon={AiFillFacebook} onClick={() => signIn('facebook')} />
-      <Button outline label="Continue with Github" icon={AiFillGithub} onClick={()=> signIn('github')}/>
+      <Button outline label="Continue with Github" icon={AiFillGithub} onClick={() => signIn('github')} />
+      <div className='flex flex-row justify-center items-center gap-2'>
+        <div className='text-[#00274C]'>
+          Don&apos;t have an account?  
+        </div>
+        <div
+          onClick={toggle}
+          className='text-[#00274C] cursor-pointer hover:opacity-50'>
+          Register
+        </div>
+      </div>
     </div>
   );
 

@@ -8,15 +8,17 @@ const Logo = () => {
   const router = useRouter();
 
   return (
-    <div className='flex flex-row items-center'>
+    <div
+      onClick={() => router.push('/')}
+      className='flex flex-row items-center'>
       <Image
         alt='logo'
         src= '/images/michigan.png'
         className='hidden md:block cursor-pointer'
-        height='50'
-        width='50'
+        height='70'
+        width='70'
       />
-      <h1 className='ml-2 text-2xl font-bold'>MTSA marketplace</h1>
+      <h1 className='ml-2 text-3xl font-extrabold cursor-pointer'>MTSA Marketplace</h1>
     </div>
     
     
