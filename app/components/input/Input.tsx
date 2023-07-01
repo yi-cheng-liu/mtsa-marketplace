@@ -29,7 +29,7 @@ const Input: React.FC<InputProps> = ({
       {formatPrice && (
         <BiDollar
           size={24}
-          className="text-netural-700 absolute top-5 left-2"
+          className="text-netural-700 absolute top-8 left-2"
         />
       )}
       <input

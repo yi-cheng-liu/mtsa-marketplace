@@ -8,52 +8,99 @@ import Heading from '../Heading'
 import { useMemo, useState } from 'react'
 import { categories } from '../navbar/Categories'
 import CategoryInput from '../input/CategoryInput'
+import Input from '../input/Input'
+import Counter from '../input/Counter'
+import { FieldValues, useForm } from 'react-hook-form'
+import { toast } from "react-hot-toast";
 
-enum SellModalSteps {
-  CATEGORY = 0, 
+enum SELLMODALSTEPS {
+  CATEGORY = 0,
   DETAILS = 1, // INFO, DESCRIPTION, PRICE
-  IMAGES = 2, 
+  IMAGES = 2,
 }
 
 
 const SellModal = () => {
   const itemModal = useSellModal();
 
-  const [step, setStep] = useState(SellModalSteps.CATEGORY);
+  const [step, setStep] = useState(SELLMODALSTEPS.CATEGORY);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+    reset,
+  } = useForm<FieldValues>({
+    defaultValues: {
+      title: "",
+      description: "",
+      image1: "",
+      image2: "",
+      image3: "",
+      image4: "",
+      image5: "",
+      category: "",
+      itemCount: 1,
+      price: 1,
+    },
+  });
+
+  const category = watch("category");
+  const title = watch("title");
+  const description = watch("description");
+  const itemCount = watch("itemCount");
+  const price = watch("price");
+
+  const setCustomValue = (id: string, value: any) => {
+    setValue(id, value, {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true,
+    });
+  };
 
   const onBack = () => {
     setStep((value) => value - 1);
-  }
+  };
 
   const onNext = () => {
     setStep((value) => value + 1);
-  }
+    if (!title && step === SELLMODALSTEPS.DETAILS) {
+      toast.error("It is better to enter a title");
+      return;
+    }
+  };
 
   const actionLabel = useMemo(() => {
-    if (step == SellModalSteps.IMAGES) {
-      return 'Create';
+    if (step == SELLMODALSTEPS.IMAGES) {
+      return "Create";
     }
-    return 'Continue';
+    return "Continue";
   }, [step]);
 
   const secondaryActionLabel = useMemo(() => {
-    if (step == SellModalSteps.CATEGORY) {
+    if (step == SELLMODALSTEPS.CATEGORY) {
       return undefined;
     }
-    return 'Back';
+    return "Back";
   }, [step]);
 
   let bodyContent = (
     <div className="flex flex-col gap-8">
       <Heading center title="Pick a Category" />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 max-h-[50vh] overflow-y-auto">
-        {categories.map((category) => (
-          <div key={category.label}>
+        {categories.map((item) => (
+          <div key={item.label}>
             <CategoryInput
-              onClick={() => {}}
-              selected={false}
-              label={category.label}
-              icon={category.icon}
+              onClick={(category) => {
+                setCustomValue("category", category);
+              }}
+              selected={category == item.label}
+              label={item.label}
+              icon={item.icon}
             />
           </div>
         ))}
@@ -61,6 +108,52 @@ const SellModal = () => {
     </div>
   );
 
+  if (step == SELLMODALSTEPS.DETAILS) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading title="Details of the item" center />
+        <Input
+          id="title"
+          label="Title"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+        <Input
+          id="description"
+          label="Description"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+        />
+        <Counter
+          title="Quantity"
+          subtitle="How many items do you want to sell?"
+          value={itemCount}
+          onChange={(value) => { setCustomValue('itemCount', value); }}
+        />
+        <Input
+          id="price"
+          label="Price"
+          formatPrice
+          type="number"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+      </div>
+    );
+  }
+
+  if (step == SELLMODALSTEPS.IMAGES) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading title="Upload the Images" center />
+      </div>
+    );
+  }
 
   return (
     <Modals
@@ -68,12 +161,13 @@ const SellModal = () => {
       body={bodyContent}
       isOpen={itemModal.isOpen}
       onClose={itemModal.onClose}
-      onSubmit={itemModal.onClose}
+      onSubmit={onNext}
       actionLabel={actionLabel}
-      secondaryAction={secondaryActionLabel ? onBack : undefined}
+      secondaryAction={step === SELLMODALSTEPS.CATEGORY ? undefined : onBack}
       secondaryActionLabel={secondaryActionLabel}
+      disabled={!category}
     />
-  )
+  );
 }
 
 export default SellModal
