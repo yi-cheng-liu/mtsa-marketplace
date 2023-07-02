@@ -1,4 +1,6 @@
 import getItemById from '@/app/actions/getItemById';
+import ClientOnly from '@/app/components/ClientOnly';
+import EmptyState from '@/app/components/EmptyState';
 
 interface IParams {
   itemId?: string;
@@ -6,12 +8,19 @@ interface IParams {
 
 const ItemPage =  async ({params} : {params : IParams}) => {
   const item = await getItemById(params);
-  
+
+  if (!item) {
+    return (
+      <ClientOnly>
+        <EmptyState />
+      </ClientOnly>
+    )
+  }
   return (
-    <div>
-      <h1>Item Page</h1>
-    </div>
-  )
+    <ClientOnly>
+      <EmptyState />
+    </ClientOnly>
+  );
 }
 
 export default ItemPage;
