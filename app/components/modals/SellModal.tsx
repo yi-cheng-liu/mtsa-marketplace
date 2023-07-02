@@ -122,7 +122,7 @@ const SellModal = () => {
   let bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading center title="Pick a Category" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 max-h-[50vh] overflow-y-auto">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-h-[50vh] overflow-y-auto">
         {categories.map((item) => (
           <div key={item.label}>
             <CategoryInput
