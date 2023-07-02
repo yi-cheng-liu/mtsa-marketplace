@@ -33,12 +33,12 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value, main }) => {
             onClick={() => open?.()}
             className={`flex flex-col relative items-center justify-center w-full
             cursor-pointer hover:opacity-60 transition
-            ${main ? "p-14 " : "p-8"}
+            ${main ? "p-8 md:p-14 lg:p-20" : "p-2 md:p-6 lg:p-8"}
             ${value ? "" : "border-dashed border-[1px] border-[#00274C] rounded-2xl"}`}
           >
             <TbPhotoPlus size={30} />
-            <div className="font-semibold text-lg mt-4">Click to Upload</div>
-            {!main && <div>optional</div>}
+            <div className="font-semibold lg:text-lg md:text-base text-sm mt-4">Click to Upload</div>
+            {!main && <div className="lg:text-lg md:text-base text-sm">optional</div>}
 
             {value && (
               <div className="absolute inset-0 w-full h-full rounded-2xl">

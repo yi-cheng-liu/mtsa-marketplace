@@ -14,6 +14,7 @@ import ImageUpload from '../input/ImageUpload'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 enum SELLMODALSTEPS {
   CATEGORY = 0,
@@ -23,6 +24,7 @@ enum SELLMODALSTEPS {
 
 
 const SellModal = () => {
+  const router = useRouter();
   const itemModal = useSellModal();
 
   const [step, setStep] = useState(SELLMODALSTEPS.CATEGORY);
@@ -33,7 +35,7 @@ const SellModal = () => {
     defaultValues: {
       title: "",
       description: "",
-      image1: "",
+      image: "",
       image2: "",
       image3: "",
       image4: "",
@@ -49,7 +51,7 @@ const SellModal = () => {
   const description = watch("description");
   const itemCount = watch("itemCount");
   const price = watch("price");
-  const image1 = watch("image1");
+  const image = watch("image");
   const image2 = watch("image2");
   const image3 = watch("image3");
   const image4 = watch("image4");
@@ -71,22 +73,31 @@ const SellModal = () => {
     setStep((value) => value + 1);
     if (price <= 1 && step === SELLMODALSTEPS.DETAILS) {
       toast("The price is lower than 1 dollar! ",
-        {icon: "💸", duration: 3500 });
-    }
-    if (!title && step === SELLMODALSTEPS.DETAILS) {
-      toast("It is better to add a title! ",
-        { icon: "❗", duration: 3700 });
+        { icon: "💸", duration: 3500 });
       return;
     }
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    if(step == SELLMODALSTEPS.IMAGES) {
+    if(step != SELLMODALSTEPS.IMAGES) {
       return onNext();
     }
     setIsLoading(true);
 
     axios.post('/api/items', data)
+      .then(() => {
+        toast.success('Item created successfully!', { icon: "🎉" });
+        router.refresh();
+        reset();
+        setStep(SELLMODALSTEPS.CATEGORY);
+        itemModal.onClose();
+      })
+      .catch(() => {
+        toast.error('Something went wrong');
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   const actionLabel = useMemo(() => {
@@ -167,8 +178,8 @@ const SellModal = () => {
       <div className="flex flex-col gap-4">
         <Heading title="Upload the Images" center />
         <ImageUpload
-          onChange={(value) => setCustomValue("image1", value)}
-          value={image1}
+          onChange={(value) => setCustomValue("image", value)}
+          value={image}
           main
         />
         <div className="flex flex-row justify-between gap-4">
@@ -201,7 +212,7 @@ const SellModal = () => {
       body={bodyContent}
       isOpen={itemModal.isOpen}
       onClose={itemModal.onClose}
-      onSubmit={onNext}
+      onSubmit={handleSubmit(onSubmit)}
       actionLabel={actionLabel}
       secondaryAction={step === SELLMODALSTEPS.CATEGORY ? undefined : onBack}
       secondaryActionLabel={secondaryActionLabel}
