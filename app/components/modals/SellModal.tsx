@@ -84,7 +84,7 @@ const SellModal = () => {
       return;
     }
 
-    if (step != SELLMODALSTEPS.IMAGES) {
+    if (step !== SELLMODALSTEPS.IMAGES) {
       return onNext();
     }
     setIsLoading(true);
