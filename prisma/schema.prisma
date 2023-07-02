@@ -73,7 +73,7 @@ model Item {
   updatedAt DateTime @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  reservation Reservation[]
+  reservation Reservation[] // an Item can have many reservations
 }
 
 model Reservation {
