@@ -61,14 +61,16 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUs
         <div className="flex flex-row justify-between items-center">
           <div className="flex mt-1 font-bold text-xl">{data.title}</div>
           <div className="flex">
-            <HeartButton itemId={data.id} currentUser={currentUser} />
+            <HeartButton small itemId={data.id} currentUser={currentUser} />
           </div>
         </div>
+
+        <div className="text-neutral-500">{data.category}</div>
+        <div className="flex flex-row items-center justify-start gap-1">
+          <div className="flex font-bold text-green-600">$</div>
+          <div className="flex text-neutral-500">{data.price}</div>
+        </div>
         
-
-        <div className="font-semibold">{data.category}</div>
-
-        <div className="">${data.price}</div>
       </div>
     </div>
   );

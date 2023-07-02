@@ -20,7 +20,7 @@ const Heading:React.FC<HeadingProps> = ({title, subtitle, center, icon:Icon}) =>
         {Icon && <Icon size={32} className="mr-3" />}
         <div className="text-2xl font-bold">{title}</div>
       </div>
-      <div className="text-lg font-light text-neutral-500">{subtitle}</div>
+      <div className="text-lg text-neutral-500">{subtitle}</div>
     </div>
   );
 }

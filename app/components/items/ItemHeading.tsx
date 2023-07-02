@@ -18,23 +18,23 @@ interface ItemClientProps{
 }
 const ItemHeading: React.FC<ItemClientProps> = ({title, category, image, image2, image3, image4, image5, id, currentUser}) => {
   return (
-    <div className="mt-4">
-      <Heading
-        title={title}
-        subtitle={category}
-      />
-      <div className="w-full h-[60vh] overflow-hidden rounded-2xl relative">
+    <div className="flex flex-col mt-4 gap-4">
+      <div className="flex justify-between items-center">
+        <Heading
+          title={title}
+          subtitle={category}
+        />
+        <HeartButton 
+          itemId={id}
+          currentUser={currentUser}
+        />
+      </div>
+      <div className=" flex w-full h-[40vh] md:h-[55vh] lg:h-[70vh] overflow-hidden rounded-2xl relative">
         <Image
           fill
           src={image}
           alt={title}
           className="object-cover w-full" />
-        {/* <div>
-          <HeartButton 
-            itemId={id}
-            currentUser={currentUser}
-          />
-        </div> */}
       </div>
     </div>
   )
