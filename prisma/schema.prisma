@@ -80,6 +80,7 @@ model Reservation {
   pickupDate DateTime
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  totalPrice Float?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   item Item @relation(fields: [itemId], references: [id], onDelete: Cascade)

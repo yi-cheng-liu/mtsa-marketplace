@@ -4,13 +4,12 @@ import { TbToolsKitchen2 } from "react-icons/tb";
 import { BiBed, BiBath, BiBookBookmark, BiCycling, BiDesktop, BiChair, BiCloset } from "react-icons/bi";
 import { FaRegLightbulb } from "react-icons/fa";
 import { BsBookshelf } from "react-icons/bs";
-import { FaCar, FaFootballBall } from "react-icons/fa";
 import { MdOutlineFastfood, MdOutlineOtherHouses } from "react-icons/md";
 import { TbShoe } from "react-icons/tb"
-import { GiAmericanFootballHelmet } from "react-icons/gi";
-
+import { IoAmericanFootballOutline } from "react-icons/io5";
 import CategoryBox from "../CategoryBox";
 import { useSearchParams, usePathname } from "next/navigation";
+import { PiCarBold } from "react-icons/pi";
 
 export const categories = [
   {
@@ -75,12 +74,12 @@ export const categories = [
   },
   {
     label: "Sports",
-    icon: FaFootballBall,
+    icon: IoAmericanFootballOutline,
     describtion: "",
   },
   {
     label: "Car",
-    icon: FaCar,
+    icon: PiCarBold,
     describtion: "",
   },
   {
@@ -94,20 +93,20 @@ const Categories = () => {
   const params = useSearchParams();
   const category = params?.get('category');
   const pathname = usePathname();
-  const isMainPage = pathname === '/';
+  const isMainPage = pathname == '/';
 
   if (!isMainPage) {
     return null;
   }
 
   return (
-    <div className="flex flex-row items-center justify-between overflow-x-auto">
+    <div className="flex flex-row items-center justify-between gap-1 overflow-x-auto">
       {categories.map((item) => (
         <CategoryBox
           key={item.label}
           label={item.label}
           icon={item.icon}
-          selected={category === item.label}
+          selected={category == item.label}
         />
       ))}
     </div>

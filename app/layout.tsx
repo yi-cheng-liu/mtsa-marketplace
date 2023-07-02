@@ -1,7 +1,6 @@
 import './globals.css'
-import { Nunito } from 'next/font/google'
+import { Nunito_Sans } from 'next/font/google'
 import Navbar from './components/navbar/Navbar'
-import Modals from './components/modals/Modals'
 import ClientOnly from './components/ClientOnly'
 import SellModal from './components/modals/SellModal';
 import LoginModal from './components/modals/LoginModal';
@@ -9,7 +8,7 @@ import RegisterModal from './components/modals/RegisterModal';
 import ToastProvider from './providers/ToastProvider';
 import getCurrentUser from './actions/getCurrentUser';
 
-const font = Nunito({ subsets: ["latin"] });
+const font = Nunito_Sans({ subsets: ["latin"] });
 
 export const metadata = {
   title: 'MTSA marketplace',
@@ -33,7 +32,6 @@ export default async function RootLayout({children,}: {
         <div className='pb-20 pt-24'>
           {children}
         </div>
-        
       </body>
     </html>
   );
