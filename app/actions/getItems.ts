@@ -7,7 +7,12 @@ export default async function getItems() {
         createdAt: "desc"
       }
     });
-    return items;
+
+    const safeItems = items.map((item) => ({
+      ...item,
+      createdAt: item.createdAt.toISOString()
+    }));
+    return safeItems;
   }
   catch (error: any) {
     throw new Error(error);

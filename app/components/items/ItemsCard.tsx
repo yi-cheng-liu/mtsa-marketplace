@@ -1,6 +1,6 @@
 'use client'
 
-import { SafeUser } from "@/app/types";
+import { SafeUser, SafeItem } from "@/app/types";
 import { Item, Reservation } from "@prisma/client";
 import Image from "next/image";
 import HeartButton from "../HeartButton";
@@ -11,7 +11,7 @@ import { format } from "date-fns";
 
 interface ItemsCardProps {
   key: string;
-  data: Item;
+  data: SafeItem;
   reservation?: Reservation;
   currentUser?: SafeUser | null;
   disabled?: boolean;
@@ -61,7 +61,7 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUs
         <div className="flex flex-row justify-between items-center">
           <div className="flex mt-1 font-bold text-xl">{data.title}</div>
           <div className="flex">
-            <HeartButton itemId={ data.id } currentUser={currentUser}/>
+            <HeartButton itemId={data.id} currentUser={currentUser} />
           </div>
         </div>
         
