@@ -71,7 +71,7 @@ const SellModal = () => {
 
   const onNext = () => {
     setStep((value) => value + 1);
-    if (price <= 1 && step === SELLMODALSTEPS.DETAILS) {
+    if (price <= 1 && step == SELLMODALSTEPS.DETAILS) {
       toast("The price is lower than 1 dollar! ",
         { icon: "💸", duration: 3500 });
       return;
@@ -79,7 +79,12 @@ const SellModal = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    if(step != SELLMODALSTEPS.IMAGES) {
+    if (step == SELLMODALSTEPS.IMAGES && !image) {
+      toast.error("Please upload at least one image");
+      return;
+    }
+
+    if (step != SELLMODALSTEPS.IMAGES) {
       return onNext();
     }
     setIsLoading(true);
