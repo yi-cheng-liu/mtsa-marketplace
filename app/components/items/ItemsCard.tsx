@@ -29,13 +29,6 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUs
     onAction?.(actionId);
   }, [onAction, actionId, disabled]);
 
-  const price = useMemo(() => {
-    if (reservation) {
-      return reservation.totalPrice;
-    }
-    return data.price;
-  }, [reservation, data.price]);
-
   const reservationDate = useMemo(() => {
     if(!reservation)
       return null;
