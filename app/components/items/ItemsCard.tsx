@@ -68,9 +68,10 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUs
         <div className="text-neutral-500">{data.category}</div>
         <div className="flex flex-row items-center justify-start gap-1">
           <div className="flex font-bold text-green-600">$</div>
-          <div className="flex text-neutral-500">{data.price}</div>
+          <div className="flex text-neutral-500">
+            {data.price === 0 ? "FREE" : data.price}
+          </div>
         </div>
-        
       </div>
     </div>
   );
