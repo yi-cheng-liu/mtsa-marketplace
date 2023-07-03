@@ -21,7 +21,7 @@ export async function POST(request: Request) {
     data: {
       userId: currentUser.id,
       itemId: itemId,
-      pickupDate: new Date(),
+      pickupDate: new Date(pickupDate),
     },
   });
 
