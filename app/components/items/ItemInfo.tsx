@@ -29,7 +29,7 @@ interface ItemInfoProps {
 
 const ItemInfo: React.FC<ItemInfoProps> = ({ user, description, category }) => {
   return (
-    <div className="col-span-7 flex flex-col gap-10">
+    <div className="col-span-7 flex flex-col gap-6">
       <div className="flex flex-col gap-6">
         {/* Name and Avatar */}
         <div className="text-xl font-semibold flex flex-row items-end gap-2">
@@ -70,7 +70,7 @@ const ItemInfo: React.FC<ItemInfoProps> = ({ user, description, category }) => {
           )}
         </div>
       </div>
-      
+
       {/* Category */}
       <hr className="border-[1px]" />
       {category && (

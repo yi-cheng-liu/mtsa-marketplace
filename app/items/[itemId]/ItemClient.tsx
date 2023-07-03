@@ -9,10 +9,15 @@ import ItemHeading from "@/app/components/items/ItemHeading";
 import ItemInfo from "@/app/components/items/ItemInfo";
 import ItemAdditionalPhoto from "@/app/components/items/ItemAdditionalPhoto";
 
-import { TextField } from "@mui/material";
+import useLoginModal from "@/app/hooks/useLoginModal";
+import { useState, useCallback } from "react"
+import { useRouter } from "next/navigation";
+import axios from "axios";
+
 import { LocalizationProvider, DateTimePicker, StaticDateTimePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
+import { toast } from "react-hot-toast";
 import Button from "@/app/components/Button";
 
 
@@ -23,10 +28,40 @@ interface ItemClientProps {
   };
   currentUser?: SafeUser | null;
 }
+
 const ItemClient: React.FC<ItemClientProps> = ({ item, currentUser }) => {
-    const category = useMemo(() => {
-      return categories.find((items) => items.label === item.category);
-    }, [item.category]);
+  const loginModal = useLoginModal();
+  const router = useRouter();
+  const category = useMemo(() => {
+    return categories.find((items) => items.label === item.category);
+  }, [item.category]);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<dayjs.Dayjs | null>(
+    dayjs()
+  );
+
+  const onCreateReservation = useCallback(() => {
+    if (!currentUser) {
+      return loginModal.onOpen();
+    }
+    setIsLoading(true);
+    axios
+      .post("/api/reservations", {
+        itemId: item?.id,
+        pickupDate: selectedDate?.toISOString(),
+      })
+      .then(() => {
+        toast.success("Listing reserved!");
+        router.push("/");
+      })
+      .catch(() => {
+        toast.error("Something went wrong.");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [item?.id, selectedDate, router, currentUser, loginModal]);
 
   return (
     <Container>
@@ -45,12 +80,14 @@ const ItemClient: React.FC<ItemClientProps> = ({ item, currentUser }) => {
               description={item.description}
               category={category}
             />
-            <div className="col-span-5 flex flex-col gap-10 p-4">
+            <div className="col-span-5 flex flex-col justify-between gap-6 p-4">
               <div className="flex flex-col gap-4">
                 <div className="text-lg font-semibold">Price</div>
-                <div className="flex flex-row justify-between">
-                  <div className="flex flex-row justify-start gap-1 text-netural-500">
-                    <div>{item.itemCount} {item.itemCount > 1 ? "items" : "item"}</div>
+                <div className="flex flex-row justify-between text-neutral-500">
+                  <div className="flex flex-row justify-start gap-1">
+                    <div>
+                      {item.itemCount} {item.itemCount > 1 ? "items" : "item"}
+                    </div>
                     <div className="mx-2">*</div>
                     <div className="font-bold text-green-600">$</div>
                     <div>{item.price.toFixed(2)}</div>
@@ -63,19 +100,31 @@ const ItemClient: React.FC<ItemClientProps> = ({ item, currentUser }) => {
               </div>
 
               <hr className="border-[1px]" />
-
               <div className="flex flex-col gap-4">
                 <div className="text-lg font-semibold">Pick Up Date & Time</div>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DateTimePicker defaultValue={dayjs()} />
+                  <DateTimePicker
+                    defaultValue={dayjs()}
+                    onChange={(newDate) => setSelectedDate(newDate)}
+                  />
                 </LocalizationProvider>
               </div>
+
+              {currentUser && currentUser.pickupAddress && (
+                <div>
+                  <hr className="border-[1px]" />
+                  <div>
+                    <div className="text-lg font-semibold">Pick Up Address</div>
+                    <div>{currentUser.pickupAddress}</div>
+                  </div>
+                </div>
+              )}
 
               <div className="flex">
                 <Button
                   disabled={false}
                   label="Reserve & Buy"
-                  onClick={() => {}}
+                  onClick={onCreateReservation}
                 />
               </div>
             </div>
