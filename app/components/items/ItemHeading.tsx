@@ -9,14 +9,10 @@ interface ItemClientProps{
   title: string;
   category: string;
   image: string;
-  image2?: string | null;
-  image3?: string | null;
-  image4?: string | null;
-  image5?: string | null;
   id: string;
   currentUser?: SafeUser | null;
 }
-const ItemHeading: React.FC<ItemClientProps> = ({title, category, image, image2, image3, image4, image5, id, currentUser}) => {
+const ItemHeading: React.FC<ItemClientProps> = ({title, category, image, id, currentUser}) => {
   return (
     <div className="flex flex-col mt-4 gap-4">
       <div className="flex justify-between items-center">

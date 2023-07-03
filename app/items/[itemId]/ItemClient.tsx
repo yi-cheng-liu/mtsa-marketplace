@@ -6,6 +6,8 @@ import { useMemo } from "react";
 import { categories } from "@/app/components/navbar/Categories";
 import Container from "@/app/components/Container";
 import ItemHeading from "@/app/components/items/ItemHeading";
+import ItemInfo from "@/app/components/items/ItemInfo";
+import ItemAdditionalPhoto from "@/app/components/items/ItemAdditionalPhoto";
 
 interface ItemClientProps {
   reservations?: Reservation[];
@@ -27,16 +29,22 @@ const ItemClient: React.FC<ItemClientProps> = ({ item, currentUser }) => {
             title={item.title}
             category={item.category}
             image={item.image}
-            image2={item.image2}
-            image3={item.image3}
-            image4={item.image4}
-            image5={item.image5}
             id={item.id}
-            currentUser={currentUser} />
+            currentUser={currentUser}
+          />
+          <div className="grid grid-cols-1 md:grid-cols-7 md:gap-10 mt-6">
+            <ItemInfo user={item.user} description={item.description} />
+          </div>
+          <div className="grid grid-cols-2 gap-2 md:gap-4 xl:gap-6">
+            <ItemAdditionalPhoto image={item.image2} />
+            <ItemAdditionalPhoto image={item.image3}/>
+            <ItemAdditionalPhoto image={item.image4}/>
+            <ItemAdditionalPhoto image={item.image5}/>
+          </div>
         </div>
       </div>
     </Container>
-  )
+  );
 }
 
 export default ItemClient
