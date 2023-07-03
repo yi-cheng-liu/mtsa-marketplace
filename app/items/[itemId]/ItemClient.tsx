@@ -13,6 +13,7 @@ import { TextField } from "@mui/material";
 import { LocalizationProvider, DateTimePicker, StaticDateTimePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
+import Button from "@/app/components/Button";
 
 
 interface ItemClientProps {
@@ -44,22 +45,38 @@ const ItemClient: React.FC<ItemClientProps> = ({ item, currentUser }) => {
               description={item.description}
               category={category}
             />
-            <div className="col-span-5 flex flex-col gap-14">
+            <div className="col-span-5 flex flex-col gap-10 p-4">
               <div className="flex flex-col gap-4">
                 <div className="text-lg font-semibold">Price</div>
                 <div className="flex flex-row justify-between">
-                  <div className="text-netural-500">
-                    {item.itemCount} * {item.price.toFixed(2)}
+                  <div className="flex flex-row justify-start gap-1 text-netural-500">
+                    <div>{item.itemCount} {item.itemCount > 1 ? "items" : "item"}</div>
+                    <div className="mx-2">*</div>
+                    <div className="font-bold text-green-600">$</div>
+                    <div>{item.price.toFixed(2)}</div>
                   </div>
-                  <div>{(item.itemCount * item.price).toFixed(2)}</div>
+                  <div className="flex flex-row justify-start gap-1">
+                    <div className="font-bold text-green-600">$</div>
+                    <div>{(item.itemCount * item.price).toFixed(2)}</div>
+                  </div>
                 </div>
               </div>
+
+              <hr className="border-[1px]" />
 
               <div className="flex flex-col gap-4">
                 <div className="text-lg font-semibold">Pick Up Date & Time</div>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DateTimePicker defaultValue={dayjs()} />
                 </LocalizationProvider>
+              </div>
+
+              <div className="flex">
+                <Button
+                  disabled={false}
+                  label="Reserve & Buy"
+                  onClick={() => {}}
+                />
               </div>
             </div>
           </div>

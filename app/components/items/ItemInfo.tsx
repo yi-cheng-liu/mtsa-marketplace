@@ -70,6 +70,8 @@ const ItemInfo: React.FC<ItemInfoProps> = ({ user, description, category }) => {
           )}
         </div>
       </div>
+      
+      {/* Category */}
       <hr className="border-[1px]" />
       {category && (
         <ItemCategory
@@ -78,6 +80,8 @@ const ItemInfo: React.FC<ItemInfoProps> = ({ user, description, category }) => {
           description={category.description}
         />
       )}
+
+      {/* Description */}
       <hr className="border-[1px]" />
       <div className="text-lg font-semibold">Description</div>
       {description && (
