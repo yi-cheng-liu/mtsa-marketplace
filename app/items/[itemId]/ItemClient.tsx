@@ -9,6 +9,7 @@ import ItemHeading from "@/app/components/items/ItemHeading";
 import ItemInfo from "@/app/components/items/ItemInfo";
 import ItemAdditionalPhoto from "@/app/components/items/ItemAdditionalPhoto";
 
+import { TextField } from "@mui/material";
 import { LocalizationProvider, DateTimePicker, StaticDateTimePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
@@ -37,21 +38,36 @@ const ItemClient: React.FC<ItemClientProps> = ({ item, currentUser }) => {
             id={item.id}
             currentUser={currentUser}
           />
-          <div className="grid grid-cols-1 md:grid-cols-7 md:gap-10 mt-6">
+          <div className="grid grid-cols-1 md:grid-cols-12 md:gap-10 mt-6">
             <ItemInfo
               user={item.user}
               description={item.description}
               category={category}
             />
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <StaticDateTimePicker defaultValue={dayjs()} />
-            </LocalizationProvider>
+            <div className="col-span-5 flex flex-col gap-14">
+              <div className="flex flex-col gap-4">
+                <div className="text-lg font-semibold">Price</div>
+                <div className="flex flex-row justify-between">
+                  <div className="text-netural-500">
+                    {item.itemCount} * {item.price.toFixed(2)}
+                  </div>
+                  <div>{(item.itemCount * item.price).toFixed(2)}</div>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <div className="text-lg font-semibold">Pick Up Date & Time</div>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DateTimePicker defaultValue={dayjs()} />
+                </LocalizationProvider>
+              </div>
+            </div>
           </div>
 
           {item.image2 || item.image3 || item.image4 || item.image5 ? (
             <>
               <hr className=" border-b-[1px]" />
-              <div className="text-bold text-xl">More Photo</div>
+              <div className="text-lg font-semibold">More Photo</div>
               <div className="grid grid-cols-2 gap-2 md:gap-4 xl:gap-6">
                 <ItemAdditionalPhoto image={item.image2} />
                 <ItemAdditionalPhoto image={item.image3} />
