@@ -9,6 +9,11 @@ import ItemHeading from "@/app/components/items/ItemHeading";
 import ItemInfo from "@/app/components/items/ItemInfo";
 import ItemAdditionalPhoto from "@/app/components/items/ItemAdditionalPhoto";
 
+import { LocalizationProvider, DateTimePicker, StaticDateTimePicker } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs from "dayjs";
+
+
 interface ItemClientProps {
   reservations?: Reservation[];
   item: SafeItem & {
@@ -24,7 +29,7 @@ const ItemClient: React.FC<ItemClientProps> = ({ item, currentUser }) => {
   return (
     <Container>
       <div className="max-w-screen-lg mx-auto">
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-8">
           <ItemHeading
             title={item.title}
             category={item.category}
@@ -38,11 +43,15 @@ const ItemClient: React.FC<ItemClientProps> = ({ item, currentUser }) => {
               description={item.description}
               category={category}
             />
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <StaticDateTimePicker defaultValue={dayjs()} />
+            </LocalizationProvider>
           </div>
 
-          {(item.image2 || item.image3 || item.image4 || item.image5) ? (
+          {item.image2 || item.image3 || item.image4 || item.image5 ? (
             <>
               <hr className=" border-b-[1px]" />
+              <div className="text-bold text-xl">More Photo</div>
               <div className="grid grid-cols-2 gap-2 md:gap-4 xl:gap-6">
                 <ItemAdditionalPhoto image={item.image2} />
                 <ItemAdditionalPhoto image={item.image3} />
@@ -53,7 +62,6 @@ const ItemClient: React.FC<ItemClientProps> = ({ item, currentUser }) => {
           ) : (
             <></>
           )}
-          
         </div>
       </div>
     </Container>

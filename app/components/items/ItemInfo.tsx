@@ -29,8 +29,8 @@ interface ItemInfoProps {
 
 const ItemInfo: React.FC<ItemInfoProps> = ({ user, description, category }) => {
   return (
-    <div className="col-span-4 flex flex-col gap-6">
-      <div className="flex flex-col gap-2">
+    <div className="col-span-4 flex flex-col gap-10">
+      <div className="flex flex-col gap-6">
         {/* Name and Avatar */}
         <div className="text-xl font-semibold flex flex-row items-end gap-2">
           <Avatar src={user?.image} />
@@ -38,7 +38,7 @@ const ItemInfo: React.FC<ItemInfoProps> = ({ user, description, category }) => {
         </div>
 
         {/* Contact Information */}
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2">
             <MdOutlinePhone size={24} />
             <div>{user?.phone}734-800-6477</div>
@@ -72,14 +72,15 @@ const ItemInfo: React.FC<ItemInfoProps> = ({ user, description, category }) => {
           description={category.description}
         />
       )}
+      <hr className="border-[1px]" />
+      <div className="text-bold text-xl">Description</div>
       {description && (
         <>
-          <hr className="border-[1px]" />
-          <div className="text-lg font-light text-neutral-500">{description}</div>
+          <div className="text-lg font-light text-neutral-500 whitespace-normal overflow-wrap break-words">
+            {description}
+          </div>
         </>
-        
       )}
-      
     </div>
   );
 };
