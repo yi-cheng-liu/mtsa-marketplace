@@ -15,79 +15,80 @@ export const categories = [
   {
     label: "Bedding",
     icon: BiBed,
-    describtion: "",
+    description: "Bed sheets, pillows, comforters, mattress pads",
   },
   {
     label: "Bath",
     icon: BiBath,
-    describtion: "",
+    description: "Towels, bathrobes, bath mats, shower curtains",
   },
   {
     label: "Clothes",
     icon: BiCloset,
-    describtion: "",
+    description: "Shirts, pants, dresses, jackets, sweaters",
   },
   {
     label: "Desk/Chair",
     icon: BiChair,
-    describtion: "",
+    description: "Office chairs, study desks, desk lamps, stationery",
   },
   {
     label: "Shelf",
     icon: BsBookshelf,
-    describtion: "",
+    description: "Bookshelves, storage racks, display shelves",
   },
   {
     label: "Shoes",
     icon: TbShoe,
-    describtion: "",
+    description: "Sneakers, boots, sandals, high heels",
   },
   {
     label: "Lighting",
     icon: FaRegLightbulb,
-    describtion: "",
+    description: "Desk lamps, floor lamps, wall lamps, ceiling lights",
   },
   {
     label: "Electronics",
     icon: BiDesktop,
-    describtion: "",
+    description: "Computers, smartphones, TVs, headphones",
   },
   {
     label: "Books",
     icon: BiBookBookmark,
-    describtion: "",
+    description: "Novels, textbooks, cookbooks, comic books",
   },
   {
     label: "Kitchenware",
     icon: TbToolsKitchen2,
-    describtion: "This is kitchenware",
+    description: "Pots, pans, cutlery, plates, glassware",
   },
   {
     label: "Food",
     icon: MdOutlineFastfood,
-    describtion: "",
+    description: "Canned food, spices, snacks, drinks",
   },
   {
     label: "Bicycle",
     icon: BiCycling,
-    describtion: "",
+    description: "Mountain bikes, road bikes, hybrid bikes, cycling gear",
   },
   {
     label: "Sports",
     icon: IoAmericanFootballOutline,
-    describtion: "",
+    description: "Footballs, baseball bats, tennis rackets, workout equipment",
   },
   {
     label: "Car",
     icon: PiCarBold,
-    describtion: "",
+    description: "Cars, car parts, car accessories, car cleaning supplies",
   },
   {
     label: "Others",
     icon: MdOutlineOtherHouses,
-    describtion: "",
+    description: "Items that don't fit into the other categories",
   },
 ];
+
 
 const Categories = () => {
   const params = useSearchParams();
