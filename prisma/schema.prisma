@@ -21,7 +21,7 @@ model User {
   emailVerified DateTime?
   phone String?
   pickupAddress String?
-  finalPickupDate DateTime?
+  finalPickupDate DateTime? 
   image String?
   hashedPassword String?
   createdAt DateTime @default(now())

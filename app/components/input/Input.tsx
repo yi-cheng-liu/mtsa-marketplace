@@ -10,6 +10,7 @@ interface InputProps {
   disabled?: boolean;
   formatPrice?: boolean;
   required?: boolean;
+  multiline?: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
 }
@@ -21,6 +22,7 @@ const Input: React.FC<InputProps> = ({
   disabled,
   formatPrice,
   required,
+  multiline,
   register,
   errors,
 }) => {
@@ -32,19 +34,43 @@ const Input: React.FC<InputProps> = ({
           className="text-netural-700 absolute top-8 left-2"
         />
       )}
-      <input
-        id={id}
-        type={type}
-        disabled={disabled}
-        placeholder=" "
-        {...register(id, { required })}
-        className={`peer w-full p-4 pt-8 font-light bg-white border-2 rounded-2xl outline-none
-                   transition disabled:opacity-50 disabled:cursor-not-allowed 
-                   ${formatPrice ? "pl-9" : "pl-4"}
-                   ${errors[id] ? "border-rose-500" : "border-neutral-300"}
-                   ${errors[id] ? "focus:border-rose-500" : "focus:border-[#00274C]"
-                   }`}
-      />
+      {multiline ? (
+        <textarea
+          id={id}
+          disabled={disabled}
+          placeholder=" "
+          {...register(id, { required })}
+          className={`peer w-full p-4 pt-8 font-light bg-white border-2 rounded-2xl outline-none overflow-auto
+                        transition disabled:opacity-50 disabled:cursor-not-allowed 
+                        ${formatPrice ? "pl-9" : "pl-4"}
+                        ${errors[id] ? "border-rose-500" : "border-neutral-300"}
+                        ${
+                          errors[id]
+                            ? "focus:border-rose-500"
+                            : "focus:border-[#00274C]"
+                        }`}
+        />
+      ) : (
+        <>
+          <input
+            id={id}
+            type={type}
+            disabled={disabled}
+            placeholder=" "
+            {...register(id, { required })}
+            className={`peer w-full p-4 pt-8 font-light bg-white border-2 rounded-2xl outline-none
+                        transition disabled:opacity-50 disabled:cursor-not-allowed 
+                        ${formatPrice ? "pl-9" : "pl-4"}
+                        ${errors[id] ? "border-rose-500" : "border-neutral-300"}
+                        ${
+                          errors[id]
+                            ? "focus:border-rose-500"
+                            : "focus:border-[#00274C]"
+                        }`}
+          />
+        </>
+      )}
+
       <label
         className={`absolute text-md font-bold duration-150 transform -translate-y-3 top-6 z-10 origin-[0]
                        ${formatPrice ? "left-9" : "left-4"}

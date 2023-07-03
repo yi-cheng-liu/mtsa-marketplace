@@ -39,29 +39,35 @@ const ItemInfo: React.FC<ItemInfoProps> = ({ user, description, category }) => {
 
         {/* Contact Information */}
         <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-2">
-            <MdOutlinePhone size={24} />
-            <div>{user?.phone}734-800-6477</div>
-          </div>
+          {user.phone && (
+            <div className="flex items-center gap-2">
+              <MdOutlinePhone size={24} />
+              <div>{user?.phone}734-800-6477</div>
+            </div>
+          )}
           <div className="flex items-center gap-2">
             <MdOutlineMailOutline size={24} />
             <div>{user.email}</div>
           </div>
-          <div className="flex items-center gap-2">
-            <MdOutlineHouse size={24} />
-            <div>
-              {user.pickupAddress}Apt 808b, 2200 Fuller Ct., Ann Arbor, MI
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <MdOutlineCalendarToday size={24} />
-            <div className="flex flex-row justify-start items-center gap-2">
-              <div className="">Pick up before</div>
-              <div className="font-extrabold text-rose-500">
-                {user.pickupAddress}2023-2-4
+          {user.pickupAddress && (
+            <div className="flex items-center gap-2">
+              <MdOutlineHouse size={24} />
+              <div>
+                {user.pickupAddress}Apt 808b, 2200 Fuller Ct., Ann Arbor, MI
               </div>
             </div>
-          </div>
+          )}
+          {user.finalPickupDate && (
+            <div className="flex items-center gap-2">
+              <MdOutlineCalendarToday size={24} />
+              <div className="flex flex-row justify-start items-center gap-2">
+                <div className="">Pick up before</div>
+                <div className="font-extrabold text-rose-500">
+                  {user.finalPickupDate.toString()}2023-2-4
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <hr className="border-[1px]" />
@@ -77,7 +83,12 @@ const ItemInfo: React.FC<ItemInfoProps> = ({ user, description, category }) => {
       {description && (
         <>
           <div className="text-lg font-light text-neutral-500 whitespace-normal overflow-wrap break-words">
-            {description}
+            {description.split("\n").map((line, index) => (
+              <span key={index}>
+                {line}
+                <br />
+              </span>
+            ))}
           </div>
         </>
       )}

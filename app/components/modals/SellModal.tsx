@@ -152,6 +152,7 @@ const SellModal = () => {
           required
         />
         <Input
+          multiline
           id="description"
           label="Description"
           disabled={isLoading}
