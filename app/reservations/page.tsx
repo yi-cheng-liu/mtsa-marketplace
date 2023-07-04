@@ -5,8 +5,9 @@ import getCurrentUser from "@/app/actions/getCurrentUser";
 import getReservations from "@/app/actions/getReservations";
 import getItems from "../actions/getItems";
 
-import ReservationsClient from "./ReservationsClient";
+import ItemOwner from "@/app/components/items/ItemOwner";
 import PropertiesClient from "@/app/properties/PropertiesClient";
+import ReservationsClient from "./ReservationsClient";
 
 const ReservationsPage = async () => {
   const currentUser = await getCurrentUser();
@@ -20,20 +21,25 @@ const ReservationsPage = async () => {
   }
 
   const reservations = await getReservations({ authorId: currentUser.id });
-  const items = await getItems();
+  const items = await getItems({ userId: currentUser.id });
 
-  if (reservations.length === 0) {
+  if (reservations.length === 0 && items.length === 0) {
     return (
       <ClientOnly>
-        <EmptyState title="You don't have any reserved items" />
+        <ItemOwner user={currentUser} />
+        <EmptyState title="No items" />
       </ClientOnly>
     );
   }
 
   return (
     <ClientOnly>
+      <ItemOwner user={currentUser} heading="Profile" />
       <PropertiesClient items={items} currentUser={currentUser} />
-      <ReservationsClient reservations={reservations} currentUser={currentUser} />
+      <ReservationsClient
+        reservations={reservations}
+        currentUser={currentUser}
+      />
     </ClientOnly>
   );
 };

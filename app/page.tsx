@@ -7,7 +7,7 @@ import ItemsCard from "./components/items/ItemsCard";
 
 
 export default async function Home() {
-  const items = await getItems();
+  const items = await getItems({});
   const currentUser = await getCurrentUser();
 
   if (items.length == 0) {
