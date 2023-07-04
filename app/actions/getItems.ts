@@ -2,21 +2,17 @@ import prisma from "@/app/libs/prismadb";
 
 export interface IItemsParams {
   userId?: string;
-  pickupDate?: string;
   category?: string;
 }
 
 export default async function getItems(params: IItemsParams) {
   try {
-    const { userId, pickupDate, category } = params;
+    const { userId, category } = params;
 
     let query: any = {};
 
     if (userId) {
       query.userId = userId;
-    }
-    if (pickupDate) {
-      query.pickupDate = pickupDate;
     }
 
     if (category) {

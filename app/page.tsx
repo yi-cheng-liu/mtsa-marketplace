@@ -11,7 +11,7 @@ interface HomeProps {
 
 export default async function Home({ searchParams }: HomeProps) {
   let items =[]
-  if (searchParams.userId) {
+  if (searchParams.category) {
     items = await getItems(searchParams);
   }
   else {
