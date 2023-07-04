@@ -4,34 +4,36 @@ import ClientOnly from "@/app/components/ClientOnly";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import getReservations from "@/app/actions/getReservations";
 
-import ReservationsClient from "./ReservationsClient";
+import OrdersClient from "./OrdersClient";
 
-const ReservationsPage = async () => {
+const TripsPage = async () => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
     return (
       <ClientOnly>
-        <EmptyState title="Unauthorized!! Please login" />
+        <EmptyState title="Unauthorized ! " />
       </ClientOnly>
     );
   }
 
-  const reservations = await getReservations({ authorId: currentUser.id });
+  const reservations = await getReservations({ userId: currentUser.id });
 
   if (reservations.length === 0) {
     return (
       <ClientOnly>
-        <EmptyState title="You don't have any reserved items" />
+        <EmptyState
+          title="No orders found"
+        />
       </ClientOnly>
     );
   }
 
   return (
     <ClientOnly>
-      <ReservationsClient reservations={reservations} currentUser={currentUser} />
+      <OrdersClient reservations={reservations} currentUser={currentUser} />
     </ClientOnly>
   );
 };
 
-export default ReservationsPage;
+export default TripsPage;

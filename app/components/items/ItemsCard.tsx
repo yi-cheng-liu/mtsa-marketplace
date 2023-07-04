@@ -7,6 +7,7 @@ import HeartButton from "../HeartButton";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
 import { format } from "date-fns";
+import Button from "../Button"
 
 
 interface ItemsCardProps {
@@ -65,6 +66,14 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUs
             {data.price === 0 ? "FREE" : data.price}
           </div>
         </div>
+        {onAction && actionLabel && (
+          <Button
+            disabled={disabled}
+            small
+            label={actionLabel}
+            onClick={handleCancel}
+          />
+        )}
       </div>
     </div>
   );

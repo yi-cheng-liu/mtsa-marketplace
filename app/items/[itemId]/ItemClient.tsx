@@ -52,7 +52,7 @@ const ItemClient: React.FC<ItemClientProps> = ({ item, currentUser }) => {
         pickupDate: selectedDate?.toISOString(),
       })
       .then(() => {
-        toast.success("Listing reserved!");
+        toast.success("Item reserved!");
         router.push("/");
       })
       .catch(() => {
