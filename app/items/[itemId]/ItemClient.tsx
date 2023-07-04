@@ -80,7 +80,8 @@ const ItemClient: React.FC<ItemClientProps> = ({ item, currentUser }) => {
               description={item.description}
               category={category}
             />
-            <div className="col-span-5 flex flex-col justify-between gap-6 p-4">
+            <div className="col-span-5 flex flex-col justify-between gap-6 py-4">
+              <hr className="border-[1px] sm:hidden" />
               <div className="flex flex-col gap-4">
                 <div className="text-lg font-semibold">Price</div>
                 <div className="flex flex-row justify-between text-neutral-500">
