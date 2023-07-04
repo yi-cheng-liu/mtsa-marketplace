@@ -1,5 +1,6 @@
 import EmptyState from "@/app/components/EmptyState";
 import ClientOnly from "@/app/components/ClientOnly";
+import Container from "../components/Container";
 
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import getReservations from "@/app/actions/getReservations";
@@ -34,7 +35,9 @@ const ReservationsPage = async () => {
 
   return (
     <ClientOnly>
-      <ItemOwner user={currentUser} heading="Profile" />
+      <Container>
+        <ItemOwner user={currentUser} heading="Profile" />
+      </Container>
       <PropertiesClient items={items} currentUser={currentUser} />
       <ReservationsClient
         reservations={reservations}
