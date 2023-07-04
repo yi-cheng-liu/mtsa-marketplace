@@ -11,6 +11,7 @@ import LoginModal from '../modals/LoginModal'
 import { User } from '@prisma/client'
 import { SafeUser } from '@/app/types'
 import { signOut } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;
@@ -21,6 +22,8 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const [isOpen, setIsOpen] = useState(false);
+
+  const router = useRouter();
 
   const toggleOpen = useCallback(() => { 
     setIsOpen((value) => !value)
@@ -74,7 +77,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 <MenuItem onClick={sellModal.onOpen} label="Add an item" />
                 <MenuItem onClick={() => {}} label="My orders" />
                 <MenuItem onClick={() => {}} label="My items" />
-                <MenuItem onClick={() => {}} label="Profile" />
+                <MenuItem
+                  onClick={() => router.push("/reservations")}
+                  label="Profile"
+                />
                 <MenuItem onClick={() => signOut()} label="Logout" />
               </>
             ) : (
