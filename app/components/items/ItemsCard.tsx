@@ -66,7 +66,12 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUs
             {data.price === 0 ? "FREE" : data.price}
           </div>
         </div>
-        <div>Pickup Date: {reservationDate}</div>
+        {reservationDate && (
+          <div className="flex flex-row justify-start gap-1">
+            <div>Pickup Date: </div>
+            <div className="text-red-500 font-semibold">{reservationDate}</div>
+          </div>
+        )}
         {onAction && actionLabel && (
           <Button
             disabled={disabled}
