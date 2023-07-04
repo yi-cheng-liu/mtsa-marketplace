@@ -10,7 +10,7 @@ import ItemOwner from "@/app/components/items/ItemOwner";
 import PropertiesClient from "@/app/properties/PropertiesClient";
 import ReservationsClient from "./ReservationsClient";
 
-const ReservationsPage = async () => {
+const ProfilePage = async () => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
@@ -47,4 +47,4 @@ const ReservationsPage = async () => {
   );
 };
 
-export default ReservationsPage;
+export default ProfilePage;

@@ -31,12 +31,18 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUs
   }, [onAction, actionId, disabled]);
 
   const reservationDate = useMemo(() => {
-    if(!reservation)
-      return null;
+    if(!reservation) return null;
     const pickup = new Date(reservation.pickupDate);
 
     return `${format(pickup, 'PP')}`
   }, [reservation])
+
+  const reservationTime = useMemo(() => {
+    if (!reservation) return null;
+    const pickup = new Date(reservation.pickupDate);
+
+    return `${format(pickup, "p")}`;
+  }, [reservation]);
 
   return (
     <div
@@ -67,9 +73,20 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUs
           </div>
         </div>
         {reservationDate && (
-          <div className="flex flex-row justify-start gap-1">
-            <div>Pickup Date: </div>
-            <div className="text-red-500 font-semibold">{reservationDate}</div>
+          <div className="flex flex-col justify-start">
+            <div>Pickup Info</div>
+            <div className="flex flex-row justify-between gap-4">
+              <div>Date: </div>
+              <div className="text-red-500 font-semibold">
+                {reservationDate}
+              </div>
+            </div>
+            <div className="flex flex-row justify-between gap-4">
+              <div>Time: </div>
+              <div className="text-red-500 font-semibold">
+                {reservationTime}
+              </div>
+            </div>
           </div>
         )}
         {onAction && actionLabel && (
