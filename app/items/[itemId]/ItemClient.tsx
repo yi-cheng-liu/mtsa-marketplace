@@ -56,7 +56,7 @@ const ItemClient: React.FC<ItemClientProps> = ({ item, currentUser }) => {
         router.push("/");
       })
       .catch(() => {
-        toast.error("Something went wrong.");
+        toast.error("Reserving item went wrong.");
       })
       .finally(() => {
         setIsLoading(false);

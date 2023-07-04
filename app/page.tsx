@@ -1,13 +1,16 @@
-import getItems from "./actions/getItems";
+import getItems, { IItemsParams } from "./actions/getItems";
 import getCurrentUser from "./actions/getCurrentUser";
 import ClientOnly from "./components/ClientOnly";
 import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
 import ItemsCard from "./components/items/ItemsCard";
 
+interface HomeProps {
+  searchParams: IItemsParams;
+};
 
-export default async function Home() {
-  const items = await getItems({});
+export default async function Home({ searchParams }: HomeProps) {
+  const items = await getItems(searchParams);
   const currentUser = await getCurrentUser();
 
   if (items.length == 0) {

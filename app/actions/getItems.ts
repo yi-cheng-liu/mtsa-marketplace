@@ -1,14 +1,14 @@
 import prisma from "@/app/libs/prismadb";
 
-export interface IListingsParams {
+export interface IItemsParams {
   userId?: string;
   pickupDate?: string;
   category?: string;
 }
 
-export default async function getItems(params: IListingsParams) {
+export default async function getItems(params: IItemsParams) {
   try {
-    const {userId, pickupDate, category} = params;
+    const { userId, pickupDate, category } = params;
 
     let query: any = {};
 

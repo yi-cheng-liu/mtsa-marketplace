@@ -33,7 +33,7 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
           router.refresh();
         })
         .catch(() => {
-          toast.error("Something went wrong.");
+          toast.error("Cancelling went wrong.");
         })
         .finally(() => {
           setDeletingId("");
@@ -46,7 +46,7 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
     <Container>
       <div className="py-6">
         <Heading title="All Items"/>
-        <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-2 md:gap-4 xl:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-2 md:gap-4 xl:gap-6">
           {items &&
             items.map((item: any) => (
               <ItemsCard

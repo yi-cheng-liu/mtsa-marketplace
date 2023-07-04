@@ -45,7 +45,7 @@ const useFavorite = ({ itemId, currentUser }: IUseFavorite) => {
       }
     }
     catch (error: any) {
-      toast.error("Something went wrong");
+      toast.error("Saving item went wrong");
     }
   }, [haveFavorited, itemId, currentUser, loginModal, router]);
 
