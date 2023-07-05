@@ -50,10 +50,21 @@ const Modals: React.FC<ModalProps> = ({
     secondaryAction();
   }, [disabled, secondaryAction]);
 
+  // when clicking outside of the modal, it will close the modal
+  const handleOverlayClick = useCallback(
+    (event: React.MouseEvent<HTMLDivElement>) => {
+      if (event.target === event.currentTarget) {
+        handleClose();
+      }
+    },
+    [handleClose]
+  );
+
   return (
     <>
       {showModal && (
         <div
+          onMouseDown={handleOverlayClick}
           className="flex justify-center items-center overflow-x-hidden overflow-y-auto
                   fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/70"
         >

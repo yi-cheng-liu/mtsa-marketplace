@@ -222,7 +222,7 @@ const SellModal = () => {
       actionLabel={actionLabel}
       secondaryAction={step === SELLMODALSTEPS.CATEGORY ? undefined : onBack}
       secondaryActionLabel={secondaryActionLabel}
-      disabled={!category}
+      disabled={isLoading}
     />
   );
 }

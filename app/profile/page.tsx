@@ -1,6 +1,7 @@
 import EmptyState from "@/app/components/EmptyState";
 import ClientOnly from "@/app/components/ClientOnly";
 import Container from "../components/Container";
+import Heading from "../components/Heading";
 
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import getReservations from "@/app/actions/getReservations";
@@ -27,8 +28,26 @@ const ProfilePage = async () => {
   if (reservations.length === 0 && items.length === 0) {
     return (
       <ClientOnly>
-        <ItemOwner user={currentUser} />
-        <EmptyState title="No items" />
+        <Container>
+          <ItemOwner user={currentUser} heading="Profile" />
+          <Heading title="All Items" />
+          <EmptyState profile title="No Items" />
+        </Container>
+      </ClientOnly>
+    );
+  }
+  
+  else if (reservations.length === 0) {
+    return (
+      <ClientOnly>
+        <Container>
+          <ItemOwner user={currentUser} heading="Profile" />
+        </Container>
+        <PropertiesClient items={items} currentUser={currentUser} />
+        <Container>
+          <Heading title="Reserved Items" />
+          <EmptyState profile title="No Reserved Items" />
+        </Container>
       </ClientOnly>
     );
   }
@@ -38,7 +57,9 @@ const ProfilePage = async () => {
       <Container>
         <ItemOwner user={currentUser} heading="Profile" />
       </Container>
-      <PropertiesClient items={items} currentUser={currentUser} />
+      <PropertiesClient
+        items={items}
+        currentUser={currentUser} />
       <ReservationsClient
         reservations={reservations}
         currentUser={currentUser}
