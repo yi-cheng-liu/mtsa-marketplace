@@ -5,10 +5,8 @@ import Avatar from '../Avatar'
 import MenuItem from '../navbar/MenuItem'
 import { useCallback, useState } from 'react'
 import useSellModal from '@/app/hooks/useSellModal'
-import useLoginModal from '../../hooks/useLoginModal'
-import useRegisterModal from '../../hooks/useRegisterModal'
-import LoginModal from '../modals/LoginModal'
-import { User } from '@prisma/client'
+import useLoginModal from "@/app/hooks/useLoginModal";
+import useRegisterModal from "@/app/hooks/useRegisterModal";
 import { SafeUser } from '@/app/types'
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'

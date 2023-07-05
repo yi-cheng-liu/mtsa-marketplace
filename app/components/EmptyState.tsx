@@ -19,7 +19,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({
   return (
     <>
       {profile ? (
-        <div className="h-[20vh] flex flex-col gap-2">
+        <div className="h-[20vh] flex flex-col gap-2 justify-center items-center">
           <Heading center title={title} icon={TbMoodSadDizzy} />
         </div>
       ) : (

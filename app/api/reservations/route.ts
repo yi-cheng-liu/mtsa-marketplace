@@ -25,5 +25,19 @@ export async function POST(request: Request) {
     },
   });
 
+  // updating user with the reservationId
+  await prisma.user.update({
+    where: {
+      id: currentUser.id,
+    },
+    data: {
+      reservation: {
+        connect: {
+          id: itemAndReservation.id,
+        },
+      },
+    },
+  });
+
   return NextResponse.json(itemAndReservation);
 }

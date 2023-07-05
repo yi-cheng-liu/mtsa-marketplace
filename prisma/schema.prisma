@@ -78,7 +78,7 @@ model Item {
 
 model Reservation {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @db.ObjectId // the same as User:id
+  userId String @db.ObjectId // the buyer not the seller
   itemId String @db.ObjectId @unique// the same as Item:id
   pickupDate DateTime
   createdAt DateTime @default(now())
