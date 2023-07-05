@@ -29,8 +29,8 @@ const ProfilePage = async () => {
   if (reservations.length === 0 && items.length === 0) {
     return (
       <ClientOnly>
+        <ProfileClient currentUser={currentUser} />
         <Container>
-          <ItemOwner user={currentUser} heading="Profile" />
           <Heading title="All Items" />
           <EmptyState profile title="No Items" />
         </Container>
@@ -41,9 +41,7 @@ const ProfilePage = async () => {
   else if (reservations.length === 0) {
     return (
       <ClientOnly>
-        <Container>
-          <ItemOwner user={currentUser} heading="Profile" />
-        </Container>
+        <ProfileClient currentUser={currentUser} />
         <PropertiesClient items={items} currentUser={currentUser} />
         <Container>
           <Heading title="Reserved Items" />

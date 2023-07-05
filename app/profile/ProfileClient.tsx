@@ -1,6 +1,6 @@
 "use client"
 
-import { SafeItem, SafeUser } from "@/app/types";
+import { SafeUser } from "@/app/types";
 
 import Container from "../components/Container";
 import ItemOwner from "../components/items/ItemOwner";
