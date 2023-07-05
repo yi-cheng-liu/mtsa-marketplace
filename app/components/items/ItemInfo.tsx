@@ -23,7 +23,7 @@ const ItemInfo: React.FC<ItemInfoProps> = ({ user, description, category }) => {
   return (
     <div className="col-span-7 flex flex-col gap-6">
       {/* Owner of the Item */}
-      <ItemOwner user={user} />
+      <ItemOwner user={user} onUpdateUser={() => {}} />
 
       {/* Category */}
       <hr className="border-[1px]" />
