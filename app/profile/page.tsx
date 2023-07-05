@@ -10,6 +10,7 @@ import getItems from "../actions/getItems";
 import ItemOwner from "@/app/components/items/ItemOwner";
 import PropertiesClient from "@/app/profile/PropertiesClient";
 import ReservationsClient from "./ReservationsClient";
+import ProfileClient from "./ProfileClient";
 
 const ProfilePage = async () => {
   const currentUser = await getCurrentUser();
@@ -54,9 +55,7 @@ const ProfilePage = async () => {
 
   return (
     <ClientOnly>
-      <Container>
-        <ItemOwner user={currentUser} heading="Profile" />
-      </Container>
+      <ProfileClient currentUser={currentUser} />
       <PropertiesClient
         items={items}
         currentUser={currentUser} />

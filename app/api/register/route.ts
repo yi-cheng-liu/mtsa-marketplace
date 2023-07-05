@@ -11,7 +11,7 @@ export async function POST(request: Request) {
   const body = await request.json();
 
   // Destructuring email, name, and password from the request body
-  const { email, name, password } = body;
+  const { name, email, password } = body;
 
   // Hashing the password with a salt of 20
   const hashedPassword = await bcrypt.hash(password, 20);
