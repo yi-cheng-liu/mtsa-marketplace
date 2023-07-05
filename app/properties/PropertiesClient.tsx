@@ -30,6 +30,7 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
         .delete(`/api/items/${id}`)
         .then(() => {
           toast.success("Item deleted");
+          router.push('/profile');
           router.refresh();
         })
         .catch((error) => {
