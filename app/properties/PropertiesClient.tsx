@@ -22,18 +22,18 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
   const router = useRouter();
   const [deletingId, setDeletingId] = useState("");
 
-  const onCancel = useCallback(
+  const onDelete = useCallback(
     (id: string) => {
       setDeletingId(id);
 
       axios
-        .delete(`/api/reservations/${id}`)
+        .delete(`/api/items/${id}`)
         .then(() => {
-          toast.success("Reservation cancelled");
+          toast.success("Item deleted");
           router.refresh();
         })
-        .catch(() => {
-          toast.error("Cancelling went wrong.");
+        .catch((error) => {
+          toast.error(error?.response?.data?.error);
         })
         .finally(() => {
           setDeletingId("");
@@ -45,7 +45,7 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
   return (
     <Container>
       <div className="py-6">
-        <Heading title="All Items"/>
+        <Heading title="All Items" />
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-2 md:gap-4 xl:gap-6">
           {items &&
             items.map((item: any) => (
@@ -53,7 +53,7 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
                 key={item.id}
                 data={item}
                 actionId={item.id}
-                onAction={onCancel}
+                onAction={onDelete}
                 disabled={deletingId === item.id}
                 actionLabel="delete"
                 currentUser={currentUser}
