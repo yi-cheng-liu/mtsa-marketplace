@@ -23,7 +23,6 @@ interface ItemsCardProps {
 }
 
 const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUser, disabled, actionLabel, actionId="", onAction }) => {
-  const router = useRouter();
 
   const handleCancel = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     if (disabled)

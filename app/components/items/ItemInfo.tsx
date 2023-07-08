@@ -42,7 +42,7 @@ const ItemInfo: React.FC<ItemInfoProps> = ({ user, currentUser, description, cat
       {/* Description */}
       <hr className="border-[1px]" />
       <div className="text-lg font-semibold">Description</div>
-      {description && (
+      {description ? (
         <>
           <div className="text-lg font-light text-neutral-500 whitespace-normal overflow-wrap break-words">
             {description.split("\n").map((line, index) => (
@@ -53,6 +53,8 @@ const ItemInfo: React.FC<ItemInfoProps> = ({ user, currentUser, description, cat
             ))}
           </div>
         </>
+      ) : (
+          <div>No Description</div>
       )}
     </div>
   );

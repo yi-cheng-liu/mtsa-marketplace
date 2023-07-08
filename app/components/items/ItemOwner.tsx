@@ -75,19 +75,19 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({ user, currentUser, heading, profi
 
             {/* Pickup Address */}
             {user.pickupAddress && (
-              <div className="flex items-center gap-2">
-                <MdOutlineHouse size={24} />
+              <div className="flex flex-wrap items-center gap-2">
+                <MdOutlineHouse size={26} />
                 {(currentUser && currentUser.id === user.id) || profile ? (
                   <div>
                     <input
                       type="text"
                       value={pickupAddress}
                       onChange={(e) => setPickupAddress(e.target.value)}
-                      className="w-[500px]"
+                      className="sm:w-[500px] w-[300px]"
                     />
                   </div>
                 ) : (
-                  <div className="w-[500px]">{pickupAddress}</div>
+                  <div className="flex flex-wrap sm:w-[500px] w-[300px]">{pickupAddress}</div>
                 )}
               </div>
             )}
@@ -119,9 +119,10 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({ user, currentUser, heading, profi
                 <button
                   onClick={handleSubmit}
                   className="text-netural-500 rounded-2xl px-4 border-2 border-netural-500"
-                >Update</button>
+                >
+                  Update
+                </button>
               </div>
-              
             ) : (
               <></>
             )}
