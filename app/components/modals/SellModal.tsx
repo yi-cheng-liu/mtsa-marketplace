@@ -78,6 +78,10 @@ const SellModal = () => {
     }
   };
 
+  const handleRemove = (imageKey: string) => {
+    setCustomValue(imageKey, null);
+  };
+
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (step == SELLMODALSTEPS.IMAGES && !image) {
       toast.error("Please upload at least one image");
