@@ -13,13 +13,14 @@ interface ModalProps {
   body?: React.ReactElement;
   footer?: React.ReactElement;
   actionLabel: string; // label name of the action button
+  actionDisabled?: boolean; // whether the action button is disabled
   disabled?: boolean; // whether the action button is disabled
   secondaryAction?: () => void;
   secondaryActionLabel?: string;
 }
 
 const Modals: React.FC<ModalProps> = ({
-  isOpen, onClose, onSubmit, title, body, footer, actionLabel, disabled, secondaryAction, secondaryActionLabel
+  isOpen, onClose, onSubmit, title, body, footer, actionLabel, actionDisabled, disabled, secondaryAction, secondaryActionLabel
 }) => {
   const [showModal, setShowModal] = useState(isOpen);
 
@@ -109,7 +110,7 @@ const Modals: React.FC<ModalProps> = ({
                     )}
                     <Button
                       label={actionLabel}
-                      disabled={disabled}
+                      disabled={actionDisabled}
                       onClick={handleSubmit}
                     />
                   </div>
