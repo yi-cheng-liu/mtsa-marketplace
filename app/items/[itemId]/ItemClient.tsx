@@ -67,6 +67,7 @@ const ItemClient: React.FC<ItemClientProps> = ({ item, currentUser }) => {
     <Container>
       <div className="max-w-screen-lg mx-auto">
         <div className="flex flex-col gap-8">
+          {/* Heading and Image */}
           <ItemHeading
             title={item.title}
             category={item.category}
@@ -75,8 +76,10 @@ const ItemClient: React.FC<ItemClientProps> = ({ item, currentUser }) => {
             currentUser={currentUser}
           />
           <div className="grid grid-cols-1 md:grid-cols-12 md:gap-10 mt-6">
+            {/* ItemInfo = ItemOwner + ItemCategory + Description */}
             <ItemInfo
               user={item.user}
+              currentUser={currentUser}
               description={item.description}
               category={category}
             />
@@ -111,14 +114,16 @@ const ItemClient: React.FC<ItemClientProps> = ({ item, currentUser }) => {
                 </LocalizationProvider>
               </div>
 
-              {currentUser && currentUser.pickupAddress && (
-                <div>
+              {item.user && item.user.pickupAddress && (
+                <>
                   <hr className="border-[1px]" />
-                  <div>
-                    <div className="text-lg font-semibold">Pick Up Address</div>
-                    <div>{currentUser.pickupAddress}</div>
+                  <div className="flex flex-col gap-4">
+                    <div>
+                      <div className="text-lg font-semibold">Pick Up Address</div>
+                      <div>{item.user.pickupAddress}</div>
+                    </div>
                   </div>
-                </div>
+                </>
               )}
 
               <div className="flex">

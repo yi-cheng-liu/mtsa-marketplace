@@ -27,6 +27,7 @@ const ProfileClient: React.FC<ProfileClientProps> = ({ currentUser }) => {
   return (
     <Container>
       <ItemOwner
+        profile
         user={currentUser}
         heading="Profile"
         onUpdateUser={handleUpdateUser}

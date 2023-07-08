@@ -46,8 +46,8 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUs
   }, [reservation]);
 
   return (
-    <div
-      onClick={() => router.push(`/items/${data.id}`)}
+    <a
+      href={`/items/${data.id}`}
       className="col-span-1 cursor-pointer group h-full">
       <div className="flex flex-col justify-between h-full">
         <div className="flex flex-col gap-1 w-full">
@@ -107,7 +107,7 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUs
           )}
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 

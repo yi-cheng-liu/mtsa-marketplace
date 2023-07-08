@@ -9,6 +9,7 @@ import ItemOwner from "./ItemOwner";
 
 interface ItemInfoProps {
   user: SafeUser;
+  currentUser?: SafeUser | null;
   description: string;
   category:
     | {
@@ -19,11 +20,14 @@ interface ItemInfoProps {
     | undefined;
 }
 
-const ItemInfo: React.FC<ItemInfoProps> = ({ user, description, category }) => {
+const ItemInfo: React.FC<ItemInfoProps> = ({ user, currentUser, description, category }) => {
   return (
     <div className="col-span-7 flex flex-col gap-6">
       {/* Owner of the Item */}
-      <ItemOwner user={user} onUpdateUser={() => {}} />
+      <ItemOwner
+        user={user}
+        currentUser={currentUser}
+        onUpdateUser={() => { }} />
 
       {/* Category */}
       <hr className="border-[1px]" />
