@@ -3,7 +3,7 @@
 import { SafeUser } from "@/app/types";
 import Heading from "../Heading";
 import Image from "next/image";
-import HeartButton from "../HeartButton";
+import SaveButton from "../SaveButton";
 
 interface ItemClientProps{
   title: string;
@@ -16,24 +16,14 @@ const ItemHeading: React.FC<ItemClientProps> = ({title, category, image, id, cur
   return (
     <div className="flex flex-col mt-4 gap-4">
       <div className="flex justify-between items-center">
-        <Heading
-          title={title}
-          subtitle={category}
-        />
-        <HeartButton 
-          itemId={id}
-          currentUser={currentUser}
-        />
+        <Heading title={title} subtitle={category} />
+        <SaveButton itemId={id} currentUser={currentUser} />
       </div>
       <div className=" flex w-full h-[40vh] md:h-[55vh] lg:h-[70vh] overflow-hidden rounded-2xl relative">
-        <Image
-          fill
-          src={image}
-          alt={title}
-          className="object-cover w-full" />
+        <Image fill src={image} alt={title} className="object-cover w-full" />
       </div>
     </div>
-  )
+  );
 }
 
 export default ItemHeading

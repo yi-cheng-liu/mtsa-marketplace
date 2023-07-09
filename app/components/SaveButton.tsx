@@ -4,16 +4,20 @@ import { SafeUser } from "../types";
 import { BiBookmark, BiSolidBookmark } from "react-icons/bi";
 import useFavorite from "../hooks/useFavorite";
 
-interface HeartButtonProps {
+interface SaveButtonProps {
   itemId: string;
   currentUser?: SafeUser | null;
   small?: boolean;
 }
 
-const HeartButton: React.FC<HeartButtonProps> = ({ itemId, currentUser, small }) => {
+const SaveButton: React.FC<SaveButtonProps> = ({
+  itemId,
+  currentUser,
+  small,
+}) => {
   const { haveFavorited, toggleFavorite } = useFavorite({
     itemId,
-    currentUser
+    currentUser,
   });
 
   return (
@@ -31,6 +35,6 @@ const HeartButton: React.FC<HeartButtonProps> = ({ itemId, currentUser, small })
       />
     </div>
   );
-}
+};
 
-export default HeartButton
+export default SaveButton

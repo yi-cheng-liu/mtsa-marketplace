@@ -3,7 +3,7 @@
 import { SafeUser, SafeItem } from "@/app/types";
 import { Item, Reservation } from "@prisma/client";
 import Image from "next/image";
-import HeartButton from "../HeartButton";
+import SaveButton from "../SaveButton";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
 import { format } from "date-fns";
@@ -47,7 +47,8 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUs
   return (
     <a
       href={`/items/${data.id}`}
-      className="col-span-1 cursor-pointer group h-full">
+      className="col-span-1 cursor-pointer group h-full"
+    >
       <div className="flex flex-col justify-between h-full">
         <div className="flex flex-col gap-1 w-full">
           <div className="aspect-square w-full relative overflow-hidden rounded-2xl">
@@ -58,12 +59,10 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUs
               className="object-cover h-full w-full group-hover:scale-110 transition"
             />
           </div>
-          <div className="flex flex-row justify-between items-center">
-            <div className="flex mt-1 font-bold text-lg">
-              {data.title}
-            </div>
+          <div className="flex flex-row justify-between items-start  mt-1">
+            <div className="flex font-bold text-lg">{data.title}</div>
             <div className="flex">
-              <HeartButton small itemId={data.id} currentUser={currentUser} />
+              <SaveButton small itemId={data.id} currentUser={currentUser} />
             </div>
           </div>
           <div className="text-neutral-500">{data.category}</div>

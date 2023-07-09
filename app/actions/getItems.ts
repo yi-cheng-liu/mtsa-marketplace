@@ -3,11 +3,13 @@ import prisma from "@/app/libs/prismadb";
 export interface IItemsParams {
   userId?: string;
   category?: string;
+  page?: number; // Add a page parameter
+  pageSize?: number; // Add a pageSize parameter
 }
 
 export default async function getItems(params: IItemsParams) {
   try {
-    const { userId, category } = params;
+    const { userId, category, page = 3, pageSize = 5 } = params;
 
     let query: any = {};
 
@@ -20,6 +22,8 @@ export default async function getItems(params: IItemsParams) {
     }
 
     const items = await prisma.item.findMany({
+      take: pageSize,
+      skip: (page - 1) * pageSize,
       where: query,
       orderBy: {
         createdAt: "desc",
