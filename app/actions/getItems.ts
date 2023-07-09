@@ -9,7 +9,7 @@ export interface IItemsParams {
 
 export default async function getItems(params: IItemsParams) {
   try {
-    const { userId, category, page = 3, pageSize = 5 } = params;
+    const { userId, category, page = 1, pageSize = 15 } = params;
 
     let query: any = {};
 
@@ -28,10 +28,21 @@ export default async function getItems(params: IItemsParams) {
       orderBy: {
         createdAt: "desc",
       },
+      include: {
+        user: true,
+      },
     });
 
     const safeItems = items.map((item) => ({
       ...item,
+      user: {
+        ...item.user,
+        createdAt: item.user.createdAt.toISOString(),
+        updatedAt: item.user.updatedAt.toISOString(),
+        emailVerified: item.user.emailVerified
+          ? item.user.emailVerified.toISOString()
+          : null,
+      },
       createdAt: item.createdAt.toISOString(),
     }));
     return safeItems;

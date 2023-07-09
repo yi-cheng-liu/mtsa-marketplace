@@ -13,7 +13,9 @@ import Avatar from "../Avatar";
 
 interface ItemsCardProps {
   key: string;
-  data: SafeItem;
+  data: SafeItem & {
+    user: SafeUser;
+  };
   reservation?: Reservation;
   currentUser?: SafeUser | null;
   disabled?: boolean;
@@ -73,8 +75,9 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUs
                 {data.price === 0 ? "FREE" : data.price}
               </div>
             </div>
-            {/* <div><Avatar src={currentUser?.image} /> </div> */}
-            {/* <div>{data.userId}</div> */}
+            <div>
+              <Avatar small src={data.user.image} />{" "}
+            </div>
           </div>
           {reservationDate && (
             <div className="flex flex-col justify-start">
