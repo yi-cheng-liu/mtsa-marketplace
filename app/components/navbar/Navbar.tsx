@@ -15,20 +15,21 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   return (
-    <div className='fixed w-full bg-white z-10 shadow-sm'>
-      <div className='pt-4 border-b-2'>
+    <div className="fixed w-full bg-white z-10 shadow-sm">
+      <div className="pt-4 border-b-2">
         <Container>
-          <div className='flex flex-row items-center justify-between md:gap-0 gap-3'>
+          <div className="flex flex-row items-center justify-between md:gap-0 gap-3">
             <Logo />
-            <Searchbar />
-            <UserMenu currentUser={currentUser}/>
+            <div className="hidden lg:block">
+              <Searchbar />
+            </div>
+            <UserMenu currentUser={currentUser} />
           </div>
           <Categories />
         </Container>
       </div>
-      
     </div>
-  )
+  );
 }
 
 export default Navbar

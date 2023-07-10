@@ -10,7 +10,7 @@ export interface IItemsParams {
 
 export default async function getItems(params: IItemsParams) {
   try {
-    const { userId, category, page = 1, pageSize = 15, searchTerm = "" } = params;
+    const { userId, category, page = 1, pageSize = 30, searchTerm = "" } = params;
 
     let query: any = {};
 
@@ -27,6 +27,7 @@ export default async function getItems(params: IItemsParams) {
         ...query,
         OR: [
           { title: { contains: searchTerm, mode: "insensitive" } },
+          { category: { contains: searchTerm, mode: "insensitive" } },
           { description: { contains: searchTerm, mode: "insensitive" } },
         ],
       };
