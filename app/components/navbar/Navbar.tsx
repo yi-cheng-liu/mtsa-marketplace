@@ -7,6 +7,7 @@ import UserMenu from './UserMenu'
 import Categories from './Categories'
 
 import { SafeUser } from '@/app/types/index'
+import Searchbar from './Searchbar'
 
 interface NavbarProps {
   currentUser?: SafeUser | null;
@@ -19,6 +20,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
         <Container>
           <div className='flex flex-row items-center justify-between md:gap-0 gap-3'>
             <Logo />
+            <Searchbar />
             <UserMenu currentUser={currentUser}/>
           </div>
           <Categories />

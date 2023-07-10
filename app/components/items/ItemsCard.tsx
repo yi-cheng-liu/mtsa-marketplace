@@ -76,7 +76,7 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUs
               </div>
             </div>
             <div>
-              <Avatar small src={data.user.image} />{" "}
+              <Avatar small src={data.user?.image} />{" "}
             </div>
           </div>
           {reservationDate && (

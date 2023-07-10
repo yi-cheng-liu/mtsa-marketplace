@@ -50,7 +50,7 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({ user, currentUser, heading, profi
           {/* Contact Information */}
           {/* Phone */}
           <div className="flex flex-col gap-4">
-            {user.phone && (
+            {(user.phone || profile) && (
               <div className="flex items-center gap-2">
                 <MdOutlinePhone size={24} />
                 {(currentUser && currentUser.id === user.id) || profile ? (
@@ -59,6 +59,7 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({ user, currentUser, heading, profi
                       type="text"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
+                      className="sm:w-[400px] w-[300px] border-2 rounded-lg"
                     />
                   </div>
                 ) : (
@@ -74,7 +75,7 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({ user, currentUser, heading, profi
             </div>
 
             {/* Pickup Address */}
-            {user.pickupAddress && (
+            {(user.pickupAddress || profile) && (
               <div className="flex flex-wrap items-center gap-2">
                 <MdOutlineHouse size={26} />
                 {(currentUser && currentUser.id === user.id) || profile ? (
@@ -83,27 +84,31 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({ user, currentUser, heading, profi
                       type="text"
                       value={pickupAddress}
                       onChange={(e) => setPickupAddress(e.target.value)}
-                      className="sm:w-[500px] w-[300px]"
+                      className="sm:w-[400px] w-[300px] border-2 rounded-lg"
                     />
                   </div>
                 ) : (
-                  <div className="flex flex-wrap sm:w-[500px] w-[300px]">{pickupAddress}</div>
+                  <div className="flex flex-wrap sm:w-[400px] w-[300px]">
+                    {pickupAddress}
+                  </div>
                 )}
               </div>
             )}
 
             {/* Final Pickup Date */}
-            {user.finalPickupDate && (
+            {(user.finalPickupDate || profile) && (
               <div className="flex items-center gap-2">
                 <MdOutlineCalendarToday size={24} />
                 <div className="flex flex-row justify-start items-center gap-2">
-                  <div className="">Pick up before</div>
+                  <div className="font-bold">Final Pick up Date: </div>
+                  <div>Pick up before</div>
                   <div className="font-extrabold text-rose-500">
-                    {(currentUser && currentUser.id === user.id) || profile ? (
+                    {profile ? (
                       <input
                         type="date"
                         value={finalPickupDate}
                         onChange={(e) => setFinalPickupDate(e.target.value)}
+                        className="border-2 rounded-lg"
                       />
                     ) : (
                       <div>{finalPickupDate}</div>
@@ -114,7 +119,7 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({ user, currentUser, heading, profi
             )}
 
             {/* Update Button */}
-            {(currentUser && currentUser.id === user.id) || profile ? (
+            {profile ? (
               <div className="justify-start">
                 <button
                   onClick={handleSubmit}

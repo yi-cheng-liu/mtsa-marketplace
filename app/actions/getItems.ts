@@ -3,13 +3,14 @@ import prisma from "@/app/libs/prismadb";
 export interface IItemsParams {
   userId?: string;
   category?: string;
+  searchTerm?: string;
   page?: number; // Add a page parameter
   pageSize?: number; // Add a pageSize parameter
 }
 
 export default async function getItems(params: IItemsParams) {
   try {
-    const { userId, category, page = 1, pageSize = 15 } = params;
+    const { userId, category, page = 1, pageSize = 15, searchTerm = "" } = params;
 
     let query: any = {};
 
@@ -20,6 +21,18 @@ export default async function getItems(params: IItemsParams) {
     if (category) {
       query.category = category;
     }
+
+    if (searchTerm) {
+      query = {
+        ...query,
+        OR: [
+          { title: { contains: searchTerm, mode: "insensitive" } },
+          { description: { contains: searchTerm, mode: "insensitive" } },
+        ],
+      };
+    }
+
+    query.reservation = null;
 
     const items = await prisma.item.findMany({
       take: pageSize,
