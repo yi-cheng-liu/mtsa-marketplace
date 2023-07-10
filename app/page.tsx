@@ -4,6 +4,7 @@ import ClientOnly from "./components/ClientOnly";
 import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
 import ItemsCard from "./components/items/ItemsCard";
+import CustomPagination from "./components/CustomPagination";
 
 interface HomeProps {
   searchParams: IItemsParams;
@@ -39,6 +40,7 @@ export default async function Home({ searchParams }: HomeProps) {
             );
           })}
         </div>
+        {/* <CustomPagination /> */}
       </Container>
     </ClientOnly>
   );

@@ -7,7 +7,8 @@ import LoginModal from './components/modals/LoginModal';
 import RegisterModal from './components/modals/RegisterModal';
 import ToastProvider from './providers/ToastProvider';
 import getCurrentUser from './actions/getCurrentUser';
-import { Pagination } from '@mui/material';
+import CustomPagination from "./components/CustomPagination";
+
 
 const font = Nunito_Sans({ subsets: ["latin"] });
 

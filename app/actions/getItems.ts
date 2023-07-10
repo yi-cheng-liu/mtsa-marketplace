@@ -4,8 +4,8 @@ export interface IItemsParams {
   userId?: string;
   category?: string;
   searchTerm?: string;
-  page?: number; // Add a page parameter
-  pageSize?: number; // Add a pageSize parameter
+  page?: number;
+  pageSize?: number;
 }
 
 export default async function getItems(params: IItemsParams) {

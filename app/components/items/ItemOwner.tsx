@@ -53,7 +53,7 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({ user, currentUser, heading, profi
             {(user.phone || profile) && (
               <div className="flex items-center gap-2">
                 <MdOutlinePhone size={24} />
-                {(currentUser && currentUser.id === user.id) || profile ? (
+                {profile ? (
                   <div>
                     <input
                       type="text"
@@ -78,7 +78,7 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({ user, currentUser, heading, profi
             {(user.pickupAddress || profile) && (
               <div className="flex flex-wrap items-center gap-2">
                 <MdOutlineHouse size={26} />
-                {(currentUser && currentUser.id === user.id) || profile ? (
+                {profile ? (
                   <div>
                     <input
                       type="text"
