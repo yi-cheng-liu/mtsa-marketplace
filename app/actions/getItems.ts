@@ -10,7 +10,7 @@ export interface IItemsParams {
 
 export default async function getItems(params: IItemsParams) {
   try {
-    const { userId, category, page = 1, pageSize = 30, searchTerm = "" } = params;
+    const { userId, category, searchTerm = "" } = params;
 
     let query: any = {};
 
@@ -36,8 +36,6 @@ export default async function getItems(params: IItemsParams) {
     query.reservation = null;
 
     const items = await prisma.item.findMany({
-      take: pageSize,
-      skip: (page - 1) * pageSize,
       where: query,
       orderBy: {
         createdAt: "desc",

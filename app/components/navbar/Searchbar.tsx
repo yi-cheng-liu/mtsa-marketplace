@@ -45,7 +45,7 @@ const Searchbar = () => {
       >
         <input
           type="search"
-          placeholder="Search..."
+          placeholder="Search"
           value={searchTerm}
           onChange={handleSearchChange}
           className="p-2 rounded-l-2xl w-44 xl:w-60 2xl:w-80 focus:outline-none"
