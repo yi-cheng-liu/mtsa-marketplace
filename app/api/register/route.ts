@@ -13,6 +13,15 @@ export async function POST(request: Request) {
   // Destructuring email, name, and password from the request body
   const { name, email, password } = body;
 
+  const existingUser = await prisma.user.findUnique({ where: { email } });
+
+  // If the user exists, return an error response
+  if (existingUser) {
+    return NextResponse.json({
+      error: "Email has already been registered. Please login.",
+    });
+  }
+
   // Hashing the password with a salt of 20
   const hashedPassword = await bcrypt.hash(password, 20);
 

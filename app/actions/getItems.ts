@@ -3,14 +3,14 @@ import prisma from "@/app/libs/prismadb";
 export interface IItemsParams {
   userId?: string;
   category?: string;
-  searchTerm?: string;
+  search?: string;
   page?: number;
   pageSize?: number;
 }
 
 export default async function getItems(params: IItemsParams) {
   try {
-    const { userId, category, searchTerm = "" } = params;
+    const { userId, category, search = "" } = params;
 
     let query: any = {};
 
@@ -22,13 +22,13 @@ export default async function getItems(params: IItemsParams) {
       query.category = category;
     }
 
-    if (searchTerm) {
+    if (search) {
       query = {
         ...query,
         OR: [
-          { title: { contains: searchTerm, mode: "insensitive" } },
-          { category: { contains: searchTerm, mode: "insensitive" } },
-          { description: { contains: searchTerm, mode: "insensitive" } },
+          { title: { contains: search, mode: "insensitive" } },
+          { category: { contains: search, mode: "insensitive" } },
+          { description: { contains: search, mode: "insensitive" } },
         ],
       };
     }

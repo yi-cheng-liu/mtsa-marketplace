@@ -4,11 +4,11 @@ import qs from "query-string";
 import { AiOutlineSearch } from "react-icons/ai";
 
 const Searchbar = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [search, setsearch] = useState("");
   const router = useRouter();
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
+    setsearch(event.target.value);
   };
 
   const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -18,11 +18,11 @@ const Searchbar = () => {
 
     const updatedQuery: any = {
       ...currentQuery,
-      searchTerm: searchTerm,
+      search: search,
     };
 
-    if (currentQuery.searchTerm === searchTerm) {
-      delete updatedQuery.searchTerm;
+    if (currentQuery.search === search) {
+      delete updatedQuery.search;
     }
 
     const url = qs.stringifyUrl(
@@ -34,7 +34,7 @@ const Searchbar = () => {
     );
 
     router.push(url);
-    setSearchTerm(searchTerm);
+    setsearch(search);
   };
 
   return (
@@ -46,7 +46,7 @@ const Searchbar = () => {
         <input
           type="search"
           placeholder="Search"
-          value={searchTerm}
+          value={search}
           onChange={handleSearchChange}
           className="p-2 rounded-l-2xl w-44 xl:w-60 2xl:w-80 focus:outline-none"
         />

@@ -12,7 +12,7 @@ interface HomeProps {
 export default async function Home({ searchParams }: HomeProps) {
 
   let items = [];
-  if (searchParams.category || searchParams.searchTerm) {
+  if (searchParams.category || searchParams.search) {
     items = await getItems(searchParams);
   } else {
     items = await getItems({});
