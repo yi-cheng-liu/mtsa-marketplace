@@ -26,6 +26,15 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({ user, currentUser, heading, profi
     user?.finalPickupDate?.toISOString() || ""
   );
 
+  function formatDate(isoString: string) {
+    const date = new Date(isoString);
+    const day = String(date.getUTCDate()).padStart(2, "0");
+    const month = String(date.getUTCMonth() + 1).padStart(2, "0"); // +1 since getMonth() returns 0-11
+    const year = date.getUTCFullYear();
+
+    return `${month}/${day}/${year}`;
+  }
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const data = {
@@ -48,8 +57,8 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({ user, currentUser, heading, profi
 
         <form onSubmit={handleSubmit}>
           {/* Contact Information */}
-          {/* Phone */}
           <div className="flex flex-col gap-4">
+            {/* Phone */}
             {(user.phone || profile) && (
               <div className="flex items-center gap-2">
                 <MdOutlinePhone size={24} />
@@ -59,7 +68,7 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({ user, currentUser, heading, profi
                       type="text"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="sm:w-[400px] w-[300px] border-2 rounded-lg"
+                      className="p-1 sm:w-[400px] w-[300px] border-2 rounded-lg"
                     />
                   </div>
                 ) : (
@@ -84,7 +93,7 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({ user, currentUser, heading, profi
                       type="text"
                       value={pickupAddress}
                       onChange={(e) => setPickupAddress(e.target.value)}
-                      className="sm:w-[400px] w-[300px] border-2 rounded-lg"
+                      className="p-1 sm:w-[400px] w-[300px] border-2 rounded-lg"
                     />
                   </div>
                 ) : (
@@ -103,20 +112,23 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({ user, currentUser, heading, profi
                   <div className="font-bold">Final Pick up Date: </div>
                   <div>Pick up before</div>
                   <div className="font-extrabold text-rose-500">
-                    {profile ? (
-                      <input
-                        type="date"
-                        value={finalPickupDate}
-                        onChange={(e) => setFinalPickupDate(e.target.value)}
-                        className="border-2 rounded-lg"
-                      />
-                    ) : (
-                      <div>{finalPickupDate}</div>
-                    )}
+                    <div>{formatDate(finalPickupDate)}</div>
                   </div>
                 </div>
               </div>
             )}
+            {profile &&
+              <div className="flex items-center gap-2">
+                <div>Change final pick up date to:</div>
+                <input
+                  type="date"
+                  value={finalPickupDate}
+                  onChange={(e) => setFinalPickupDate(e.target.value)}
+                  className="p-1 border-2 rounded-lg"
+                />
+              </div>
+            }
+            
 
             {/* Update Button */}
             {profile ? (
