@@ -13,6 +13,7 @@ import Heading from '../Heading'
 import Input from '../input/Input'
 import { toast } from 'react-hot-toast'
 import Button from '../Button'
+import Link from 'next/link'
 
 import { signIn } from 'next-auth/react'
 import LoginModal from './LoginModal'
@@ -74,23 +75,40 @@ const RegisterModal = () => {
   );
 
   const footerContent = (
-    <div className='flex flex-col gap-4 mt-3'>
+    <div className="flex flex-col gap-4 mt-3">
       <hr />
-      <Button outline label="Continue with Google" icon={FcGoogle} onClick={() => signIn('google')} />
-      <Button outline label="Continue with Facebook" icon={AiFillFacebook} onClick={() => signIn('facebook')} />
-      <Button outline label="Continue with Github" icon={AiFillGithub} onClick={()=> signIn('github') }/>
-      <div className='flex flex-row justify-center items-center gap-2'>
-        <div className='text-[#00274C]'>
-          Already have an account?  
-        </div>
+      <Button
+        outline
+        label="Continue with Google"
+        icon={FcGoogle}
+        onClick={() => signIn('google')}
+      />
+      <Button
+        outline
+        label="Continue with Facebook"
+        icon={AiFillFacebook}
+        onClick={() => signIn('facebook')}
+      />
+      <Button
+        outline
+        label="Continue with Github"
+        icon={AiFillGithub}
+        onClick={() => signIn('github')}
+      />
+      <div className="flex flex-row justify-center items-center gap-2">
+        <div className="text-[#00274C]">Already have an account?</div>
         <div
           onClick={toggle}
-          className='text-[#00274C] cursor-pointer hover:opacity-50'>
+          className="text-[#00274C] font-bold cursor-pointer hover:opacity-50"
+        >
           Login
         </div>
       </div>
+      <div className="flex justify-center text-sm">
+        <Link href="/about/privacy-policy">View our Privacy Policy</Link>
+      </div>
     </div>
-  );
+  )
 
   
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
