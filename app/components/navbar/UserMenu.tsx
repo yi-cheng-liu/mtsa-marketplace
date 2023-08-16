@@ -11,6 +11,7 @@ import { SafeUser } from '@/app/types'
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
+
 interface UserMenuProps {
   currentUser?: SafeUser | null;
 }

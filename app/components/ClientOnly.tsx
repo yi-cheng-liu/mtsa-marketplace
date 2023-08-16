@@ -7,15 +7,16 @@ interface ClientOnlyProps {
 }
 
 const ClientOnly: React.FC<ClientOnlyProps> = ({ children }) => {
-  const [hasMounted, setHasMounted] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false)
 
+  // This effect runs only once, thanks to the empty dependency array
   useEffect(() => {
-    setHasMounted(true);
-  }, []);
+    setHasMounted(true)
+  }, [])
 
-  if (!hasMounted) return null;
+  if (!hasMounted) return null
 
-  return <>{children}</>;
+  return <>{children}</>
 };
 
 export default ClientOnly;

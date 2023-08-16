@@ -16,7 +16,7 @@ export const metadata = {
   description: 'mtsa buy and sell',
 }
 
-export default async function RootLayout({children,}: {
+export default async function RootLayout({children}: {
   children: React.ReactNode
 }) {
   const currentUser = await getCurrentUser();
@@ -30,7 +30,7 @@ export default async function RootLayout({children,}: {
           <RegisterModal />
           <Navbar currentUser={currentUser} />
         </ClientOnly>
-        <div className='pb-20 pt-24'>
+        <div className='pb-20 pt-48'>
           {children}
         </div>
       </body>

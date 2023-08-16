@@ -10,7 +10,7 @@ export interface IItemsParams {
 
 export default async function getItems(params: IItemsParams) {
   try {
-    const { userId, category, search = "" } = params;
+    const { userId, category, search = "", page = 1, pageSize = 7 } = params;
 
     let query: any = {};
 
@@ -36,6 +36,8 @@ export default async function getItems(params: IItemsParams) {
     query.reservation = null;
 
     const items = await prisma.item.findMany({
+      skip: page ? (page - 1) * pageSize : 0,
+      take: pageSize,
       where: query,
       orderBy: {
         createdAt: "desc",
@@ -44,6 +46,16 @@ export default async function getItems(params: IItemsParams) {
         user: true,
       },
     });
+
+    const totalItems = await prisma.item.findMany({
+      where: query,
+      orderBy: {
+        createdAt: 'desc'
+      },
+      include: {
+        user: true
+      }
+    })
 
     const safeItems = items.map((item) => ({
       ...item,
@@ -57,7 +69,7 @@ export default async function getItems(params: IItemsParams) {
       },
       createdAt: item.createdAt.toISOString(),
     }));
-    return safeItems;
+    return { items: safeItems, totalItems };
   } catch (error: any) {
     throw new Error(error);
   }

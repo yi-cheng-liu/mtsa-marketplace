@@ -24,7 +24,7 @@ const ProfilePage = async () => {
   }
 
   const reservations = await getReservations({ authorId: currentUser.id });
-  const items = await getItems({ userId: currentUser.id });
+  const {items} = await getItems({ userId: currentUser.id });
 
   if (reservations.length === 0 && items.length === 0) {
     return (

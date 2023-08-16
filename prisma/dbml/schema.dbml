@@ -1,0 +1,81 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table User {
+  id String [pk]
+  name String
+  email String [unique]
+  emailVerified DateTime
+  phone String
+  pickupAddress String
+  finalPickupDate DateTime
+  image String
+  hashedPassword String
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  favoriteIds String[] [not null]
+  accounts Account [not null]
+  reservation Reservation [not null]
+  item Item [not null]
+}
+
+Table Account {
+  id String [pk]
+  provider String [not null]
+  providerAccountId String [not null]
+  type String [not null]
+  userId String [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  referesh_token String
+  access_token String
+  expires_at Int
+  token_type String
+  scope String
+  id_token String
+  session_state String
+  user User [not null]
+
+  indexes {
+    (provider, providerAccountId) [unique]
+  }
+}
+
+Table Item {
+  id String [pk]
+  title String [not null]
+  description String [not null]
+  image String [not null]
+  image2 String
+  image3 String
+  image4 String
+  image5 String
+  category String [not null]
+  itemCount Int [not null]
+  price Float [not null]
+  userId String [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  user User [not null]
+  reservation Reservation
+}
+
+Table Reservation {
+  id String [pk]
+  userId String [not null]
+  itemId String [unique, not null]
+  pickupDate DateTime [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  user User [not null]
+  item Item [not null]
+}
+
+Ref: Account.userId > User.id [delete: Cascade]
+
+Ref: Item.userId > User.id [delete: Cascade]
+
+Ref: Reservation.userId > User.id [delete: Cascade]
+
+Ref: Reservation.itemId - Item.id [delete: Cascade]
