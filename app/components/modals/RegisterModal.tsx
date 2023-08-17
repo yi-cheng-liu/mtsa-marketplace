@@ -115,20 +115,22 @@ const RegisterModal = () => {
     // turn on the loading indicator
     setIsLoading(true);
     axios
-      .post("/api/register", data)
-      // print error message if there is any error
+      .post('/api/register', data)
+      .then((response) => {
+        // Check if there's an error in the response data
+        if (response.data.error) {
+          toast.error(response.data.error)
+        } else {
+          registerModal.onClose()
+          toast.success('Successfully registered!')
+        }
+      })
       .catch((error) => {
-        toast.error("Something went wrong")
+        toast.error('Something went wrong')
       })
-      // close the modal after successfully registering
-      .then(() => {
-        registerModal.onClose();
-        toast.success("Successfully registered!");
-      })
-      // turn off the loading indicator
       .finally(() => {
-        setIsLoading(false);
-      });
+        setIsLoading(false)
+      })
   }
 
   return (
