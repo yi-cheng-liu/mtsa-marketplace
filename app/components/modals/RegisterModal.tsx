@@ -79,15 +79,15 @@ const RegisterModal = () => {
       <hr />
       <Button
         outline
-        label="Continue with Google"
-        icon={FcGoogle}
-        onClick={() => signIn('google')}
-      />
-      <Button
-        outline
         label="Continue with Facebook"
         icon={AiFillFacebook}
         onClick={() => signIn('facebook')}
+      />
+      <Button
+        outline
+        label="Continue with Google"
+        icon={FcGoogle}
+        onClick={() => signIn('google')}
       />
       <Button
         outline
