@@ -24,6 +24,16 @@ interface ItemsCardProps {
   onAction?: (id: string) => void;
 }
 
+function optimizeCloudinaryURL(url: string) {
+  const baseURL = 'https://res.cloudinary.com/dcjfp13rl/image/upload/'
+  const params = 'q_auto,f_auto/'
+  const imagePath = url.split(
+    'https://res.cloudinary.com/dcjfp13rl/image/upload/'
+  )[1]
+
+  return `${baseURL}${params}${imagePath}`
+}
+
 const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUser, disabled, actionLabel, actionId="", onAction }) => {
 
   const handleCancel = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
@@ -57,7 +67,7 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUs
             <Image
               fill
               alt="item image"
-              src={data.image}
+              src={optimizeCloudinaryURL(data.image)}
               className="object-cover h-full w-full group-hover:scale-110 transition"
             />
           </div>
@@ -72,11 +82,11 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUs
             <div className="flex flex-row justify-start gap-1">
               <div className="flex font-bold text-green-600">$</div>
               <div className="flex text-neutral-500">
-                {data.price === 0 ? "FREE" : data.price}
+                {data.price === 0 ? 'FREE' : data.price}
               </div>
             </div>
             <div className="pb-2">
-              <Avatar small src={data.user?.image} />{" "}
+              <Avatar small src={data.user?.image} />{' '}
             </div>
           </div>
           {reservationDate && (
@@ -109,7 +119,7 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUs
         </div>
       </div>
     </a>
-  );
+  )
 };
 
 export default ItemsCard
