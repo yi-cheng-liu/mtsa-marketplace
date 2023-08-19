@@ -50,7 +50,6 @@ const CustomPagination: React.FC<PaginationParams> = ({
 
   return (
     <div className="flex items-center justify-center p-6">
-      {page} of {maxPage}
       {maxPage != 1 &&
         <Pagination
         count={maxPage}
