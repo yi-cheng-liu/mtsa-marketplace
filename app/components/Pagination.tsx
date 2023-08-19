@@ -9,11 +9,14 @@ import { SafeItem } from '../types'
 export const ITEMS_PER_PAGE = 7
 
 export interface PaginationParams {
-  totalItems: number
   items: SafeItem[]
+  totalItemsCount: number
 }
 
-const CustomPagination: React.FC<PaginationParams> = ({ totalItems, items }) => {
+const CustomPagination: React.FC<PaginationParams> = ({
+  items, 
+  totalItemsCount
+}) => {
   const router = useRouter()
   const params = useSearchParams()
 
@@ -43,14 +46,12 @@ const CustomPagination: React.FC<PaginationParams> = ({ totalItems, items }) => 
     router.push(url)
   }
 
-  
-
-  let count = Math.ceil(totalItems / ITEMS_PER_PAGE)
+  let count = Math.ceil(totalItemsCount / ITEMS_PER_PAGE)
 
   return (
     <div className="flex items-center justify-center p-6">
-      {page} of
-      {totalItems}
+      {totalItemsCount}
+      {page} of {count}
       <Pagination
         count={count}
         boundaryCount={3}

@@ -47,15 +47,10 @@ export default async function getItems(params: IItemsParams) {
       },
     });
 
-    const totalItems = await prisma.item.findMany({
-      where: query,
-      orderBy: {
-        createdAt: 'desc'
-      },
-      include: {
-        user: true
-      }
+    const totalItemsCount = await prisma.item.count({
+      where: query
     })
+
 
     const safeItems = items.map((item) => ({
       ...item,
@@ -69,7 +64,7 @@ export default async function getItems(params: IItemsParams) {
       },
       createdAt: item.createdAt.toISOString(),
     }));
-    return { items: safeItems, totalItems };
+    return { items: safeItems, totalItemsCount }
   } catch (error: any) {
     throw new Error(error);
   }

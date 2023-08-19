@@ -14,14 +14,14 @@ interface HomeProps {
 
 export default async function Home({ searchParams }: HomeProps) {
   let items = [];
-  const { totalItems } = await getItems({})
+  const { totalItemsCount } = await getItems({})
   if (searchParams.category || searchParams.search || searchParams.page) {
     items = (await getItems(searchParams)).items;
   } else {
     items = (await getItems({})).items;
   }
 
-  let totalCount = totalItems.length;
+  let totalCount = totalItemsCount;
   
   const currentUser = await getCurrentUser();
 
@@ -43,7 +43,7 @@ export default async function Home({ searchParams }: HomeProps) {
             )
           })}
         </div>
-        <CustomPagination totalItems={totalCount} items={items} />
+        <CustomPagination totalItemsCount={totalCount} items={items} />
       </Container>
     </ClientOnly>
   )

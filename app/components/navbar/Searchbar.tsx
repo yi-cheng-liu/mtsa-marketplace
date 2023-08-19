@@ -12,29 +12,28 @@ const Searchbar = () => {
   };
 
   const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
 
-    let currentQuery = qs.parse(window.location.search);
+    let currentQuery = qs.parse(window.location.search)
 
     const updatedQuery: any = {
       ...currentQuery,
-      search: search,
-    };
-
-    if (currentQuery.search === search) {
-      delete updatedQuery.search;
+      search: search
     }
+
+    // Remove the 'page' query parameter
+    delete updatedQuery.page
 
     const url = qs.stringifyUrl(
       {
-        url: "/",
-        query: updatedQuery,
+        url: '/',
+        query: updatedQuery
       },
       { skipNull: true, skipEmptyString: true }
-    );
+    )
 
-    router.push(url);
-    setsearch(search);
+    router.push(url)
+    setsearch(search)
   };
 
   return (
