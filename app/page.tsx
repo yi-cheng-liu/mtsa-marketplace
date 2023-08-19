@@ -5,6 +5,7 @@ import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
 import ItemsCard from "./components/items/ItemsCard";
 import CustomPagination from './components/Pagination'
+import { getPage } from "./actions/getPage";
 
 
 interface HomeProps {
@@ -14,14 +15,15 @@ interface HomeProps {
 
 export default async function Home({ searchParams }: HomeProps) {
   let items = [];
-  const { totalItemsCount } = await getItems({})
   if (searchParams.category || searchParams.search || searchParams.page) {
     items = (await getItems(searchParams)).items;
   } else {
     items = (await getItems({})).items;
   }
 
-  let totalCount = totalItemsCount;
+  const data = await getPage(searchParams);
+  const allItems = data.items;
+  
   
   const currentUser = await getCurrentUser();
 
@@ -37,13 +39,13 @@ export default async function Home({ searchParams }: HomeProps) {
     <ClientOnly>
       <Container>
         <div className="pt-28 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-2 md:gap-4 xl:gap-6">
-          {items.map((item) => {
+          {allItems.map((item) => {
             return (
               <ItemsCard key={item.id} data={item} currentUser={currentUser} />
             )
           })}
         </div>
-        <CustomPagination totalItemsCount={totalCount} items={items} />
+        <CustomPagination totalItemsCount={items.length} items={items} />
       </Container>
     </ClientOnly>
   )

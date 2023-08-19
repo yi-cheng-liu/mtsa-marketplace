@@ -6,7 +6,7 @@ import { useState, useCallback } from 'react'
 import qs from 'query-string'
 import { SafeItem } from '../types'
 
-export const ITEMS_PER_PAGE = 7
+export const ITEMS_PER_PAGE = 21
 
 export interface PaginationParams {
   items: SafeItem[]
@@ -46,18 +46,19 @@ const CustomPagination: React.FC<PaginationParams> = ({
     router.push(url)
   }
 
-  let count = Math.ceil(totalItemsCount / ITEMS_PER_PAGE)
+  let maxPage = Math.ceil(totalItemsCount / ITEMS_PER_PAGE)
 
   return (
     <div className="flex items-center justify-center p-6">
-      {totalItemsCount}
-      {page} of {count}
-      <Pagination
-        count={count}
+      {page} of {maxPage}
+      {maxPage != 1 &&
+        <Pagination
+        count={maxPage}
         boundaryCount={3}
         page={page}
         onChange={handleChange}
-      />
+      />}
+      
     </div>
   )
 }
