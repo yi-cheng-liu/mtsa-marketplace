@@ -1,49 +1,55 @@
-import { SafeUser } from "@/app/types";
-import Avatar from "../Avatar";
+import { SafeUser } from '@/app/types'
+import Avatar from '../Avatar'
 import {
   MdOutlinePhone,
   MdOutlineMailOutline,
   MdOutlineHouse,
-  MdOutlineCalendarToday,
-} from "react-icons/md";
-import Container from "../Container";
-import Heading from "../Heading";
-import { useState } from "react";
-import Button from "../Button";
+  MdOutlineCalendarToday
+} from 'react-icons/md'
+import Container from '../Container'
+import Heading from '../Heading'
+import { useState } from 'react'
+import Button from '../Button'
 
 interface ItemOwnerProps {
-  user: SafeUser;
-  currentUser?: SafeUser | null;
-  heading?: string;
-  profile?: boolean;
-  onUpdateUser: (data: any) => void;
+  user: SafeUser
+  currentUser?: SafeUser | null
+  heading?: string
+  profile?: boolean
+  onUpdateUser: (data: any) => void
 }
 
-const ItemOwner: React.FC<ItemOwnerProps> = ({ user, currentUser, heading, profile, onUpdateUser }) => {
-  const [phone, setPhone] = useState(user?.phone || "");
-  const [pickupAddress, setPickupAddress] = useState(user?.pickupAddress || "");
+const ItemOwner: React.FC<ItemOwnerProps> = ({
+  user,
+  currentUser,
+  heading,
+  profile,
+  onUpdateUser
+}) => {
+  const [phone, setPhone] = useState(user?.phone || '')
+  const [pickupAddress, setPickupAddress] = useState(user?.pickupAddress || '')
   const [finalPickupDate, setFinalPickupDate] = useState(
-    user?.finalPickupDate?.toISOString() || ""
-  );
+    user?.finalPickupDate?.toISOString() || ''
+  )
 
   function formatDate(isoString: string) {
-    const date = new Date(isoString);
-    const day = String(date.getUTCDate()).padStart(2, "0");
-    const month = String(date.getUTCMonth() + 1).padStart(2, "0"); // +1 since getMonth() returns 0-11
-    const year = date.getUTCFullYear();
+    const date = new Date(isoString)
+    const day = String(date.getUTCDate()).padStart(2, '0')
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0') // +1 since getMonth() returns 0-11
+    const year = date.getUTCFullYear()
 
-    return `${month}/${day}/${year}`;
+    return `${month}/${day}/${year}`
   }
 
   const handleSubmit = (e: any) => {
-    e.preventDefault();
+    e.preventDefault()
     const data = {
       phone,
       pickupAddress,
-      finalPickupDate,
-    };
-    onUpdateUser(data);
-  };
+      finalPickupDate
+    }
+    onUpdateUser(data)
+  }
 
   return (
     <div className="py-6">
@@ -117,7 +123,7 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({ user, currentUser, heading, profi
                 </div>
               </div>
             )}
-            {profile &&
+            {profile && (
               <div className="flex items-center gap-2">
                 <div>Change final pick up date to:</div>
                 <input
@@ -127,8 +133,7 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({ user, currentUser, heading, profi
                   className="p-1 border-2 rounded-lg"
                 />
               </div>
-            }
-            
+            )}
 
             {/* Update Button */}
             {profile ? (
@@ -147,7 +152,7 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({ user, currentUser, heading, profi
         </form>
       </div>
     </div>
-  );
+  )
 }
 
 export default ItemOwner

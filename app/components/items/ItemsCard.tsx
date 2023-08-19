@@ -75,7 +75,7 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUs
                 {data.price === 0 ? "FREE" : data.price}
               </div>
             </div>
-            <div>
+            <div className="pb-2">
               <Avatar small src={data.user?.image} />{" "}
             </div>
           </div>

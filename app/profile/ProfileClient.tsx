@@ -29,7 +29,7 @@ const ProfileClient: React.FC<ProfileClientProps> = ({ currentUser }) => {
       <ItemOwner
         profile
         user={currentUser}
-        heading="Profile"
+        heading="PROFILE"
         onUpdateUser={handleUpdateUser}
       />
     </Container>
