@@ -49,12 +49,12 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUs
   }, [reservation]);
 
   return (
-    <a
-      href={`/items/${data.id}`}
-      className="col-span-1 cursor-pointer group h-full"
-    >
-      <div className="flex flex-col justify-between h-full">
-        <div className="flex flex-col gap-1 w-full">
+    <div className="flex flex-col justify-between h-full">
+      <div className="flex flex-col gap-1 w-full">
+        <a
+          href={`/items/${data.id}`}
+          className="col-span-1 cursor-pointer group h-full"
+        >
           <div className="aspect-square w-full relative overflow-hidden rounded-2xl">
             <Image
               fill
@@ -63,55 +63,61 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUs
               className="object-cover h-full w-full group-hover:scale-110 transition"
             />
           </div>
-          <div className="flex flex-row justify-between items-start  mt-1">
+        </a>
+        <div className="relative">
+          <a
+            href={`/items/${data.id}`}
+            className="col-span-1 cursor-pointer group h-full"
+          >
             <div className="flex font-bold text-lg">{data.title}</div>
-            <div className="flex">
-              <SaveButton small itemId={data.id} currentUser={currentUser} />
-            </div>
-          </div>
-          <div className="text-neutral-500">{data.category}</div>
-          <div className="flex flex-row items-center justify-between">
-            <div className="flex flex-row justify-start gap-1">
-              <div className="flex font-bold text-green-600">$</div>
-              <div className="flex text-neutral-500">
-                {data.price === 0 ? "FREE" : data.price}
-              </div>
-            </div>
-            <div className="pb-2">
-              <Avatar small src={data.user?.image} />{" "}
-            </div>
-          </div>
-          {reservationDate && (
-            <div className="flex flex-col justify-start">
-              <div>Pickup Info</div>
-              <div className="flex flex-row justify-between gap-4">
-                <div>Date: </div>
-                <div className="text-red-500 font-semibold">
-                  {reservationDate}
+            <div className="text-neutral-500">{data.category}</div>
+            <div className="flex flex-row items-center justify-between">
+              <div className="flex flex-row justify-start gap-1">
+                <div className="flex font-bold text-green-600">$</div>
+                <div className="flex text-neutral-500">
+                  {data.price === 0 ? 'FREE' : data.price}
                 </div>
               </div>
-              <div className="flex flex-row justify-between gap-4">
-                <div>Time: </div>
-                <div className="text-red-500 font-semibold">
-                  {reservationTime}
-                </div>
+              <div className="pb-2">
+                <Avatar small src={data.user?.image} />{' '}
               </div>
             </div>
-          )}
+          </a>
+          <div className="absolute top-1 right-1">
+            <SaveButton small itemId={data.id} currentUser={currentUser} />
+          </div>
         </div>
-        <div className="flex mt-auto">
-          {onAction && actionLabel && (
-            <Button
-              disabled={disabled}
-              small
-              label={actionLabel}
-              onClick={handleCancel}
-            />
-          )}
-        </div>
+
+        {reservationDate && (
+          <div className="flex flex-col justify-start">
+            <div>Pickup Info</div>
+            <div className="flex flex-row justify-between gap-4">
+              <div>Date: </div>
+              <div className="text-red-500 font-semibold">
+                {reservationDate}
+              </div>
+            </div>
+            <div className="flex flex-row justify-between gap-4">
+              <div>Time: </div>
+              <div className="text-red-500 font-semibold">
+                {reservationTime}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-    </a>
-  );
+      <div className="flex mt-auto">
+        {onAction && actionLabel && (
+          <Button
+            disabled={disabled}
+            small
+            label={actionLabel}
+            onClick={handleCancel}
+          />
+        )}
+      </div>
+    </div>
+  )
 };
 
 export default ItemsCard
