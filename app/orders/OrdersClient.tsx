@@ -23,40 +23,40 @@ const OrdersClient: React.FC<OrdersClientProps> = ({
   const router = useRouter();
   const [deletingId, setDeletingId] = useState("");
 
-  const onCancel = useCallback(
-    (id: string) => {
-      setDeletingId(id);
+  // const onCancel = useCallback(
+  //   (id: string) => {
+  //     setDeletingId(id);
 
-      axios
-        .delete(`/api/reservations/${id}`)
-        .then(() => {
-          toast.success("Reservation cancelled");
-          router.refresh();
-        })
-        .catch((error) => {
-          toast.error(error?.response?.data?.error);
-        })
-        .finally(() => {
-          setDeletingId("");
-        });
-    },
-    [router]
-  );
+  //     axios
+  //       .delete(`/api/reservations/${id}`)
+  //       .then(() => {
+  //         toast.success("Reservation cancelled");
+  //         router.refresh();
+  //       })
+  //       .catch((error) => {
+  //         toast.error(error?.response?.data?.error);
+  //       })
+  //       .finally(() => {
+  //         setDeletingId("");
+  //       });
+  //   },
+  //   [router]
+  // );
 
   return (
     <Container>
       <div className="py-6">
-        <Heading title="My orders" />
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-2 md:gap-4 xl:gap-6">
+        <Heading title="MY ORDERS" />
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 md:gap-4 xl:gap-6">
           {reservations.map((reservation: any) => (
             <ItemsCard
               key={reservation.id}
               data={reservation.item}
               reservation={reservation}
               actionId={reservation.id}
-              onAction={onCancel}
+              // onAction={onCancel}
               disabled={deletingId === reservation.id}
-              actionLabel="cancel"
+              // actionLabel="cancel"
               currentUser={currentUser}
             />
           ))}

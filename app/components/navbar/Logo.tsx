@@ -18,7 +18,7 @@ const Logo = () => {
         height='70'
         width='70'
       />
-      <h1 className='ml-2 text-3xl font-extrabold cursor-pointer'>MTSA Marketplace</h1>
+      <h1 className='ml-2 text-3xl text-[#00274C] font-extrabold cursor-pointer'>MTSA Marketplace</h1>
     </a>
   )
 }

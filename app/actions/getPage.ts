@@ -7,7 +7,7 @@ export interface IPageParams {
 }
 
 export async function getPage(params: IPageParams) {
-  const { page = 1, pageSize = 21 } = params
+  const { page = 1, pageSize = 60 } = params
 
   const { query } = await getItems(params)
 

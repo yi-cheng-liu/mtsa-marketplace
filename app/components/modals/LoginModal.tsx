@@ -109,17 +109,21 @@ const LoginModal = () => {
     setIsLoading(true);
     signIn('credentials', { ...data, redirect: false })
       .then((callback) => {
-        setIsLoading(false);
-      
+        setIsLoading(false)
+
         if (callback?.ok) {
-          toast.success("Login success");
-          router.refresh();
-          loginModal.onClose();
+          toast.success('Login success')
+          router.refresh()
+          loginModal.onClose()
         }
 
-        if(callback?.error) {
-          toast.error(callback.error);
+        if (callback?.error) {
+          toast.error(callback.error)
         }
+      })
+      .catch((error) => {
+        setIsLoading(false)
+        toast.error('An error occurred! Please try again.')
       })
   }
 

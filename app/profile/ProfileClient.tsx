@@ -20,7 +20,7 @@ const ProfileClient: React.FC<ProfileClientProps> = ({ currentUser }) => {
       toast.success("Profile updated successfully");
     } catch (err) {
       // Show an error message
-      toast.error("An error occurred while updating your profile");
+      toast.error('An error occurred. Please try again.')
     }
   };
 

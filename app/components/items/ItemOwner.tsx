@@ -115,8 +115,7 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({
               <div className="flex items-center gap-2">
                 <MdOutlineCalendarToday size={24} />
                 <div className="flex flex-row justify-start items-center gap-2">
-                  <div className="font-bold">Final Pick up Date: </div>
-                  <div>Pick up before</div>
+                  <div className="font-bold">Pick up before: </div>
                   <div className="font-extrabold text-rose-500">
                     <div>{formatDate(finalPickupDate)}</div>
                   </div>

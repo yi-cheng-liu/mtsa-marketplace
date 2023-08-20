@@ -31,7 +31,7 @@ const ProfilePage = async () => {
       <ClientOnly>
         <ProfileClient currentUser={currentUser} />
         <Container>
-          <Heading title="All Items" />
+          <Heading title="ALL ITEMS" />
           <EmptyState profile title="No Items" />
         </Container>
       </ClientOnly>

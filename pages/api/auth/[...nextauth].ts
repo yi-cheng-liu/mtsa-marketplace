@@ -32,7 +32,7 @@ export const authOptions: AuthOptions = {
     }),
     // Adding Credentials Provider for authentication using email and password
     CredentialsProvider({
-      name: "Credentials",
+      name: "credentials",
       credentials: {
         email: { label: "email", type: "text" },
         password: { label: "password", type: "password" },

@@ -2,11 +2,11 @@
 
 import Pagination from '@mui/material/Pagination'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useState, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import qs from 'query-string'
 import { SafeItem } from '../types'
 
-export const ITEMS_PER_PAGE = 21
+export const ITEMS_PER_PAGE = 60
 
 export interface PaginationParams {
   items: SafeItem[]
@@ -20,7 +20,14 @@ const CustomPagination: React.FC<PaginationParams> = ({
   const router = useRouter()
   const params = useSearchParams()
 
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(Number(params?.get('page') || 1))
+
+  useEffect(() => {
+    // Update the page state when the URL changes
+    const updatedPage = Number(params?.get('page') || 1);
+    setPage(updatedPage);
+  }, [params]);
+
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)
 

@@ -75,17 +75,20 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
               <>
                 <MenuItem onClick={sellModal.onOpen} label="Add an item" />
                 <MenuItem
-                  onClick={() => router.push("/orders")}
+                  onClick={() => router.push('/orders')}
                   label="My orders"
                 />
+                <MenuItem onClick={() => router.push('/saved')} label="Saved" />
                 <MenuItem
-                  onClick={() => router.push("/saved")}
-                  label="Saved" />
-                <MenuItem
-                  onClick={() => router.push("/profile")}
+                  onClick={() => router.push('/profile')}
                   label="Profile"
                 />
-                <MenuItem onClick={() => signOut()} label="Logout" />
+                <MenuItem
+                  onClick={() =>
+                    signOut({ callbackUrl: `${window.location.origin}/` })
+                  }
+                  label="Logout"
+                />
               </>
             ) : (
               <>
@@ -97,7 +100,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         </div>
       )}
     </div>
-  );
+  )
 }
 
 export default UserMenu
