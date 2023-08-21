@@ -39,7 +39,9 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({
   const [finalPickupDate, setFinalPickupDate] = useState(
     user?.finalPickupDate?.toISOString() || getOneYearFromNowISO()
   )
-  const [facebookProfileLink, setFacebookProfileLink] = useState(user?.facebookProfileLink || '')
+  const [facebookProfileLink, setFacebookProfileLink] = useState(
+    user?.facebookProfileLink || undefined
+  )
 
   function formatDate(isoString: string) {
     const date = new Date(isoString)
@@ -71,9 +73,7 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({
             <Avatar src={user?.image} />
             <div className="flex text-lg font-semibold">{user?.name}</div>
           </div>
-          {profile ? (
-            <></>
-          ) : (
+          {(!profile && facebookProfileLink) ? (
             <a
               href={facebookProfileLink}
               target="_blank"
@@ -81,6 +81,8 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({
             >
               <MdOutlineFacebook size={35} />
             </a>
+          ) : (
+            <></>
           )}
         </div>
 
