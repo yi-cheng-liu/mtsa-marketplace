@@ -4,7 +4,7 @@ import axios from 'axios'
 import { AiFillGithub, AiFillFacebook } from 'react-icons/ai'
 import { FcGoogle } from 'react-icons/fc'
 import { PiHandWavingBold } from 'react-icons/pi'
-import { useCallback, useState, useEffect } from 'react'
+import { useCallback, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import useLoginModal from "../../hooks/useLoginModal";
 import useRegisterModal from '../../hooks/useRegisterModal'
@@ -14,28 +14,9 @@ import Input from '../input/Input'
 import { toast } from 'react-hot-toast'
 import Button from '../Button'
 import Link from 'next/link'
+
 import { signIn } from 'next-auth/react'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
-
-// Define validation schema for form using yup
-const validationSchema = yup.object().shape({
-  name: yup.string().required(),
-  email: yup.string()
-    .email()
-    .required(),
-  password: yup.string()
-    .required()
-    .matches(
-      /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)
-});
   
-interface FormValues {
-  name: string
-  email: string
-  password: string
-}
-
 const RegisterModal = () => {
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
@@ -44,11 +25,10 @@ const RegisterModal = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
-  } = useForm<FormValues>({
-    defaultValues: { name: '', email: '', password: '' },
-    resolver: yupResolver(validationSchema)
-  })
+    formState: { errors },
+  } = useForm<FieldValues>({
+    defaultValues: { name: "", email: "", password: "" },
+  });
 
   const toggle = useCallback(() => {
     loginModal.onOpen();
@@ -93,15 +73,6 @@ const RegisterModal = () => {
     </div>
   );
 
-  useEffect(() => {
-    if (errors.password) {
-      toast.error(
-        'Password must be at least 8 characters with both LETTERS and NUMBERS',
-        { duration: 6000 }
-      )
-    }
-  }, [errors.password])
-
   const footerContent = (
     <div className="flex flex-col gap-4 mt-3">
       <hr />
@@ -139,9 +110,9 @@ const RegisterModal = () => {
   )
 
   
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
     // turn on the loading indicator
-    setIsLoading(true)
+    setIsLoading(true);
     axios
       .post('/api/register', data)
       .then((response) => {
