@@ -31,7 +31,7 @@ const SaveButton: React.FC<SaveButtonProps> = ({
       />
       <BiSolidBookmark
         size={`${small ? "22" : "32"}`}
-        className={`${haveFavorited ? "fill-rose-500" : "opacity-0"}`}
+        className={`${haveFavorited ? "fill-rose-400" : "opacity-0"}`}
       />
     </div>
   );

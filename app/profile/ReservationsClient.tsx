@@ -45,7 +45,7 @@ const ReservationsClient: React.FC<ReservationsClientProps> = ({
   return (
     <Container>
       <div className="py-6">
-        <Heading title="RESERVED ITEMS" />
+        <Heading title="RESERVED & SOLD ITEMS" />
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6  gap-2 md:gap-4 xl:gap-6">
           {reservations &&
             reservations.map((reservation: any) => (
@@ -57,20 +57,6 @@ const ReservationsClient: React.FC<ReservationsClientProps> = ({
                 onAction={onCancel}
                 disabled={deletingId === reservation.id}
                 actionLabel="cancel"
-                currentUser={currentUser}
-              />
-            ))}
-        </div>
-        <Heading title="SOLD ITEMS" />
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 md:gap-4 xl:gap-6">
-          {reservations &&
-            reservations.map((reservation: any) => (
-              <ItemsCard
-                key={reservation.id}
-                data={reservation.item}
-                reservation={reservation}
-                actionId={reservation.id}
-                disabled={deletingId === reservation.id}
                 currentUser={currentUser}
               />
             ))}
