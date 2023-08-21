@@ -2,6 +2,7 @@
 
 import { TbToolsKitchen2 } from "react-icons/tb";
 import { BiBed, BiBath, BiBookBookmark, BiCycling, BiDesktop, BiChair, BiCloset } from "react-icons/bi";
+import { MdFace3 } from "react-icons/md";
 import { FaRegLightbulb } from "react-icons/fa";
 import { BsBookshelf } from "react-icons/bs";
 import { MdOutlineFastfood, MdOutlineOtherHouses } from "react-icons/md";
@@ -13,81 +14,81 @@ import { PiCarBold } from "react-icons/pi";
 
 export const categories = [
   {
-    label: "Bedding",
+    label: 'Bedding',
     icon: BiBed,
-    description: "Bed sheets, pillows, comforters, mattress pads",
+    description: 'Bed sheets, pillows, comforters, mattress pads'
   },
   {
-    label: "Bath",
+    label: 'Bath',
     icon: BiBath,
-    description: "Towels, bathrobes, bath mats, shower curtains",
+    description: 'Towels, bathrobes, bath mats, shower curtains'
   },
   {
-    label: "Clothes",
+    label: 'Clothes',
     icon: BiCloset,
-    description: "Shirts, pants, dresses, jackets, sweaters",
+    description: 'Shirts, pants, dresses, jackets, sweaters'
   },
   {
-    label: "Desk/Chair",
+    label: 'Desk/Chair',
     icon: BiChair,
-    description: "Office chairs, study desks, desk lamps, stationery",
+    description: 'Office chairs, study desks, stationery'
   },
   {
-    label: "Shelf",
+    label: 'Shelf',
     icon: BsBookshelf,
-    description: "Bookshelves, storage racks, display shelves",
+    description: 'Bookshelves, storage racks, display shelves'
   },
   {
-    label: "Shoes",
+    label: 'Shoes',
     icon: TbShoe,
-    description: "Sneakers, boots, sandals, high heels",
+    description: 'Sneakers, boots, sandals, high heels'
   },
   {
-    label: "Lighting",
+    label: 'Lighting',
     icon: FaRegLightbulb,
-    description: "Desk lamps, floor lamps, wall lamps, ceiling lights",
+    description: 'Desk lamps, floor lamps, wall lamps, ceiling lights'
   },
   {
-    label: "Electronics",
+    label: 'Electronics',
     icon: BiDesktop,
-    description: "Computers, smartphones, TVs, headphones",
+    description: 'Computers, Tablets, TVs, headphones'
   },
   {
-    label: "Books",
+    label: 'Books',
     icon: BiBookBookmark,
-    description: "Novels, textbooks, cookbooks, comic books",
+    description: 'Novels, textbooks, cookbooks, comic books'
   },
   {
-    label: "Kitchenware",
+    label: 'Kitchenware',
     icon: TbToolsKitchen2,
-    description: "Pots, pans, cutlery, plates, glassware",
+    description: 'Pots, pans, cutlery, plates, glassware'
   },
   {
-    label: "Food",
+    label: 'Food',
     icon: MdOutlineFastfood,
-    description: "Canned food, spices, snacks, drinks",
+    description: 'Canned food, spices, snacks, drinks'
   },
   {
-    label: "Bicycle",
-    icon: BiCycling,
-    description: "Mountain bikes, road bikes, hybrid bikes, cycling gear",
+    label: 'Cosmetics',
+    icon: MdFace3,
+    description: 'Makeup products, skincare products'
   },
   {
-    label: "Sports",
+    label: 'Sports',
     icon: IoAmericanFootballOutline,
-    description: "Footballs, baseball bats, tennis rackets, workout equipment",
+    description: 'Football, Basketball, baseball, rackets, workout equipment'
   },
   {
-    label: "Car",
+    label: 'Bike/Car',
     icon: PiCarBold,
-    description: "Cars, car parts, car accessories, car cleaning supplies",
+    description: 'Cars, car accessories, car cleaning supplies'
   },
   {
-    label: "Others",
+    label: 'Others',
     icon: MdOutlineOtherHouses,
-    description: "Items that don't fit into the other categories",
-  },
-];
+    description: "Items that don't fit into the other categories"
+  }
+]
 
 
 const Categories = () => {

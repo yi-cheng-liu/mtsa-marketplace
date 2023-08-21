@@ -29,8 +29,15 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({
 }) => {
   const [phone, setPhone] = useState(user?.phone || '')
   const [pickupAddress, setPickupAddress] = useState(user?.pickupAddress || '')
+
+  function getOneYearFromNowISO() {
+    const currentDate = new Date()
+    currentDate.setFullYear(currentDate.getFullYear() + 1)
+    return currentDate.toISOString()
+  }
+
   const [finalPickupDate, setFinalPickupDate] = useState(
-    user?.finalPickupDate?.toISOString() || ''
+    user?.finalPickupDate?.toISOString() || getOneYearFromNowISO()
   )
   const [facebookProfileLink, setFacebookProfileLink] = useState(user?.facebookProfileLink || '')
 

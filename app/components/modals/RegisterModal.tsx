@@ -49,13 +49,13 @@ const RegisterModal = () => {
         label="Email"
         type="email"
         disabled={isLoading}
-    register={() => register("email", {
-        required: "Email is required",
-        pattern: {
-            value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-            message: "Please enter a valid email"
-        }
-    })}
+        register={() => register("email", {
+            required: "Email is required",
+            pattern: {
+                value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                message: "Please enter a valid email"
+            }
+        })}
         errors={errors}
         required
       />
