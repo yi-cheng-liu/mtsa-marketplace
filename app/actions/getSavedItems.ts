@@ -8,12 +8,15 @@ export default async function getSavedItems() {
       return [];
     }
 
+    let query: any = {
+      reservation: null,
+      id: {
+        in: [...(currentUser.favoriteIds || [])]
+      }
+    }
+
     const savedItems = await prisma.item.findMany({
-      where: {
-        id: {
-          in: [...(currentUser.favoriteIds || [])],
-        },
-      },
+      where: query,
     });
 
     const safeSavedItems = savedItems.map((saved) => ({

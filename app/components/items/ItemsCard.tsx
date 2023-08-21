@@ -69,7 +69,9 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUs
             href={`/items/${data.id}`}
             className="col-span-1 cursor-pointer group h-full"
           >
-            <div className="flex font-bold text-lg">{data.title}</div>
+            <div className="flex items-start">
+              <div className="w-5/6 font-bold text-lg">{data.title}</div>
+            </div>
             <div className="text-neutral-500">{data.category}</div>
             <div className="flex flex-row items-center justify-between">
               <div className="flex flex-row justify-start gap-1">

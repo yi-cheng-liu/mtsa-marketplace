@@ -59,7 +59,7 @@ const ItemClient: React.FC<ItemClientProps> = ({
           {item.image2 || item.image3 || item.image4 || item.image5 ? (
             <>
               <hr className=" border-b-[1px]" />
-              <div className="text-lg font-semibold">More Photo</div>
+              <div className="text-lg font-semibold">More Photos</div>
               <div className="grid grid-cols-2 gap-2 md:gap-4 xl:gap-6">
                 {item.image2 && <ItemAdditionalPhoto image={item.image2} />}
                 {item.image3 && <ItemAdditionalPhoto image={item.image3} />}

@@ -13,19 +13,21 @@ export async function POST(request: Request) {
   }
 
   // Parse the request body
-  const { phone, pickupAddress, finalPickupDate } = await request.json();
+  const { phone, pickupAddress, finalPickupDate, facebookProfileLink } =
+    await request.json()
 
   // Perform the update
   const updatedUser = await prisma.user.update({
     where: {
-      id: currentUser.id,
+      id: currentUser.id
     },
     data: {
       phone,
       pickupAddress,
       finalPickupDate: new Date(finalPickupDate),
-    },
-  });
+      facebookProfileLink
+    }
+  })
 
   // Return the updated user
   return NextResponse.json(updatedUser);

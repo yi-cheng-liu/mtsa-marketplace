@@ -10,6 +10,7 @@ Table User {
   phone String
   pickupAddress String
   finalPickupDate DateTime
+  facebookProfileLink String
   image String
   hashedPassword String
   createdAt DateTime [default: `now()`, not null]

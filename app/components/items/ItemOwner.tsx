@@ -4,7 +4,8 @@ import {
   MdOutlinePhone,
   MdOutlineMailOutline,
   MdOutlineHouse,
-  MdOutlineCalendarToday
+  MdOutlineCalendarToday,
+  MdOutlineFacebook
 } from 'react-icons/md'
 import Container from '../Container'
 import Heading from '../Heading'
@@ -31,6 +32,7 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({
   const [finalPickupDate, setFinalPickupDate] = useState(
     user?.finalPickupDate?.toISOString() || ''
   )
+  const [facebookProfileLink, setFacebookProfileLink] = useState(user?.facebookProfileLink || '')
 
   function formatDate(isoString: string) {
     const date = new Date(isoString)
@@ -46,7 +48,8 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({
     const data = {
       phone,
       pickupAddress,
-      finalPickupDate
+      finalPickupDate,
+      facebookProfileLink
     }
     onUpdateUser(data)
   }
@@ -56,9 +59,22 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({
       {heading && <Heading title={heading} />}
       <div className="flex flex-col gap-6">
         {/* Name and Avatar */}
-        <div className="text-xl font-semibold flex flex-row items-end gap-2">
-          <Avatar src={user?.image} />
-          <div className="flex text-lg font-semibold">{user?.name}</div>
+        <div className="text-xl font-semibold flex flex-row items-center gap-10">
+          <div className='flex items-end gap-2'>
+            <Avatar src={user?.image} />
+            <div className="flex text-lg font-semibold">{user?.name}</div>
+          </div>
+          {profile ? (
+            <></>
+          ) : (
+            <a
+              href={facebookProfileLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MdOutlineFacebook size={35} />
+            </a>
+          )}
         </div>
 
         <form onSubmit={handleSubmit}>
@@ -132,6 +148,29 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({
                   className="p-1 border-2 rounded-lg"
                 />
               </div>
+            )}
+
+            {/* Facebook Profile Link */}
+            {profile ? (
+              <div className="flex flex-wrap items-center gap-2">
+                <MdOutlineFacebook size={26} />
+                {profile ? (
+                  <div>
+                    <input
+                      type="text"
+                      value={facebookProfileLink}
+                      onChange={(e) => setFacebookProfileLink(e.target.value)}
+                      className="p-1 sm:w-[400px] w-[300px] border-2 rounded-lg"
+                    />
+                  </div>
+                ) : (
+                  <div className="flex flex-wrap sm:w-[400px] w-[300px]">
+                    {facebookProfileLink}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <></>
             )}
 
             {/* Update Button */}
