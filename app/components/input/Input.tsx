@@ -4,15 +4,15 @@ import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { BiDollar } from "react-icons/bi";
 
 interface InputProps {
-  id: string;
-  label: string; // label of the input box
-  type?: string;
-  disabled?: boolean;
-  formatPrice?: boolean;
-  required?: boolean;
-  multiline?: boolean;
-  register: UseFormRegister<FieldValues>;
-  errors: FieldErrors;
+  id: string
+  label: string // label of the input box
+  type?: string
+  disabled?: boolean
+  formatPrice?: boolean
+  required?: boolean
+  multiline?: boolean
+  register: (...args: any) => any // Adjust this to the correct type signature from react-hook-form.
+  errors: FieldErrors
 }
 
 const Input: React.FC<InputProps> = ({

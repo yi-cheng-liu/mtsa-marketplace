@@ -51,7 +51,7 @@ const Modals: React.FC<ModalProps> = ({
     secondaryAction();
   }, [disabled, secondaryAction]);
 
-  // when clicking outside of the modal, it will close the modal
+  // Clicking outside of the modal, it will close the modal
   const handleOverlayClick = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
       if (event.target === event.currentTarget) {
@@ -61,11 +61,25 @@ const Modals: React.FC<ModalProps> = ({
     [handleClose]
   );
 
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      // Close the Modal by pressing the ESC key
+      if(event.key === 'Escape') {
+        handleClose();
+      }
+      // Submit the Modal by pressing the Enter key
+      if (event.key === 'Enter') {
+        handleSubmit();
+      }
+    }, [handleClose, handleSubmit, disabled]
+  );
+
   return (
     <>
       {showModal && (
         <div
           onMouseDown={handleOverlayClick}
+          onKeyDown={handleKeyDown}
           className="flex justify-center items-center overflow-x-hidden overflow-y-auto
                   fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/70"
         >

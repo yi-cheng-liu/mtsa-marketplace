@@ -25,10 +25,11 @@ const RegisterModal = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<FieldValues>({
-    defaultValues: { name: "", email: "", password: "" },
-  });
+    defaultValues: { name: '', email: '', password: '' },
+    mode: 'onBlur' // or 'onChange' based on when you want validation to trigger
+  })
 
   const toggle = useCallback(() => {
     loginModal.onOpen();
@@ -48,7 +49,13 @@ const RegisterModal = () => {
         label="Email"
         type="email"
         disabled={isLoading}
-        register={register}
+    register={() => register("email", {
+        required: "Email is required",
+        pattern: {
+            value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+            message: "Please enter a valid email"
+        }
+    })}
         errors={errors}
         required
       />
@@ -71,17 +78,17 @@ const RegisterModal = () => {
         required
       />
     </div>
-  );
+  )
 
   const footerContent = (
     <div className="flex flex-col gap-4 mt-3">
       <hr />
-      <Button
+      {/* <Button
         outline
         label="Continue with Facebook"
         icon={AiFillFacebook}
         onClick={() => signIn('facebook')}
-      />
+      /> */}
       <Button
         outline
         label="Continue with Google"
