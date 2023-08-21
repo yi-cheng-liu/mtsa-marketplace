@@ -16,7 +16,6 @@ import Button from '../Button'
 import Link from 'next/link'
 
 import { signIn } from 'next-auth/react'
-import LoginModal from './LoginModal'
   
 const RegisterModal = () => {
   const loginModal = useLoginModal();

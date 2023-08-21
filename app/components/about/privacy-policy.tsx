@@ -1,50 +1,87 @@
-import React from 'react'
+'use client'
 
 const PrivacyPolicy: React.FC = () => {
   return (
-    <div>
-      <h1>Privacy Policy</h1>
-
-      <h3>EN</h3>
-      <p>
-        Our website may, with your consent, publish certain information from our
-        website to your social media activity page through Facebook or similar
-        social networking services. If you disagree with such postings, please
-        do not click the agree button. Alternatively, you can later remove such
-        information or decline further postings from our website through the
-        membership mechanisms of the respective social networking services.
+    <div className="px-6 py-4">
+      <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
+      <p className="mb-2">
+        <strong className="font-semibold">Last updated:</strong> Aug 20, 2023
       </p>
-      <p>
-        If you have any questions, you can still contact our website, and we
-        will assist you in verifying and addressing related issues.
-      </p>
-      <p>
-        If the delivery address, contact person, and contact method you provided
-        are not your personal information, you agree that you have obtained the
-        consent of the respective parties to provide it to our website and have
-        informed them of the legal notification on behalf of our website.
-      </p>
-      <p>
-        Except as required by law to provide to the judiciary, investigative
-        agencies, relevant authorities, or to collaborate with our partners for
-        necessary activities, our website will not arbitrarily provide your
-        personal data to third parties.
+      <p className="mb-4">
+        This document outlines the privacy practices for mtsa-marketplace,
+        inspired by OfferUp, Inc.
       </p>
 
-      <h3>CN</h3>
-      <>
-        本網站可能透過 Facebook
-        或類似社群服務系統，於取得您的同意後，將部分本網站的資訊發布於您的社群活動資訊頁面。若您不同意該等訊息之發布，請您勿點選同意鍵，或於事後透過各該社群服務之會員機制移除該等資訊或拒絕本網站繼續發布相關訊息。
-      </>
-      <p>若有任何問題，仍可與本網站聯絡，本網站將協助您確認、處理相關問題。</p>
-      <p>
-        若您所填寫之送貨地址、聯絡人、聯絡方式等非您本人之個人資料，您同意已取得各該當事人之同意提供予本網站，並已代本網站就前開法定告知事項予以告知。
+      <h2 className="text-xl font-semibold mb-2">Updates:</h2>
+      <p className="mb-4">
+        Changes to this policy will be announced via our main webpage.
       </p>
-      <p>
-        除依法應提供予司法、檢調機關、相關主管機關，或與本網站協力廠商為執行相關活動必要範圍之利用外，本網站將不會任意將您的個人資料提供予第三人。
+
+      <h2 className="text-xl font-semibold mb-2">1. Data Collection:</h2>
+      <div className="pl-5 mb-4">
+        <p className="mb-1">
+          <strong className="font-semibold">a.</strong> Directly from you:
+          Registration, listing items, and other interactions.
+        </p>
+        <p className="mb-1">
+          <strong className="font-semibold">b.</strong> From third parties: Data
+          can be integrated from social media to enhance our services.
+        </p>
+      </div>
+
+      <h2 className="text-xl font-semibold mb-2">2. Usage of Information:</h2>
+      <p className="mb-4">
+        Purpose includes verification, connection, maintaining a safe
+        environment, service improvement, research, promotions, etc.
+      </p>
+
+      <h2 className="text-xl font-semibold mb-2">3. Data Sharing:</h2>
+      <p className="mb-4">
+        Data is shared under various circumstances including public posts,
+        third-party service providers, etc. De-identified data may also be
+        shared.
+      </p>
+
+      <h2 className="text-xl font-semibold mb-2">4. Data Security:</h2>
+      <p className="mb-4">
+        Measures are taken to protect your information. No data is shared with
+        third parties.
+      </p>
+
+      <h2 className="text-xl font-semibold mb-2">5. Your Choices:</h2>
+      <div className="pl-5 mb-4">
+        <p className="mb-1">
+          <strong className="font-semibold">a.</strong> Account: You can modify
+          your account. Some data may be retained as required.
+        </p>
+        <p className="mb-1">
+          <strong className="font-semibold">b.</strong> Cookies: You can set
+          your browser to refuse cookies, though this may affect some site
+          functionalities.
+        </p>
+      </div>
+
+      <p className="mb-4">
+        This policy was drafted with reference to OfferUp, Inc. For inquiries,
+        email
+        <a
+          href="mailto:liuyiche@umich.edu"
+          className="text-blue-500 underline ml-1"
+        >
+          liuyiche@umich.edu
+        </a>{' '}
+        or
+        <a
+          href="mailto:whsjerryliu@gmail.com"
+          className="text-blue-500 underline ml-1"
+        >
+          whsjerryliu@gmail.com
+        </a>
+        .
       </p>
     </div>
   )
 }
 
 export default PrivacyPolicy
+
