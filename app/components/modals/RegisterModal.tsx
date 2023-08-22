@@ -117,7 +117,7 @@ const RegisterModal = () => {
   )
 
   
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onRegister: SubmitHandler<FieldValues> = (data) => {
     // turn on the loading indicator
     setIsLoading(true);
     axios
@@ -142,17 +142,17 @@ const RegisterModal = () => {
   return (
     <div>
       <Modals
-        disabled={isLoading}
-        isOpen={registerModal.isOpen}
         title="Register"
         body={bodyContent}
         footer={footerContent}
-        actionLabel="Register"
+        disabled={isLoading}
+        isOpen={registerModal.isOpen}
         onClose={registerModal.onClose}
-        onSubmit={handleSubmit(onSubmit)}
-         />
+        onSubmit={handleSubmit(onRegister)}
+        actionLabel="Register"
+      />
     </div>
-  );
+  )
 }
 
 export default RegisterModal

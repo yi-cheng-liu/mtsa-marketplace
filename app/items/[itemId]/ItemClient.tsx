@@ -41,7 +41,7 @@ const ItemClient: React.FC<ItemClientProps> = ({
             id={item.id}
             currentUser={currentUser}
           />
-          <div className="grid grid-cols-1 md:grid-cols-12 md:gap-10 mt-6">
+          <div className="grid grid-cols-1 md:grid-cols-12 md:gap-10">
             {/* ItemInfo = ItemOwner + ItemCategory + Description */}
             <ItemInfo
               user={item.user}
@@ -50,7 +50,6 @@ const ItemClient: React.FC<ItemClientProps> = ({
               category={category}
             />
             <ItemReservation
-              reservations={reservations}
               item={item}
               currentUser={currentUser}
             />

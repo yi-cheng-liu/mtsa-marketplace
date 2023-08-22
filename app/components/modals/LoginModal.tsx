@@ -104,9 +104,9 @@ const LoginModal = () => {
   )
 
   
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onLogin: SubmitHandler<FieldValues> = (data) => {
     // turn on the loading indicator
-    setIsLoading(true);
+    setIsLoading(true)
     signIn('credentials', { ...data, redirect: false })
       .then((callback) => {
         setIsLoading(false)
@@ -130,14 +130,14 @@ const LoginModal = () => {
   return (
     <div>
       <Modals
-        disabled={isLoading}
-        isOpen={loginModal.isOpen}
         title="Login"
         body={bodyContent}
         footer={footerContent}
-        actionLabel="Login"
+        disabled={isLoading}
+        isOpen={loginModal.isOpen}
         onClose={loginModal.onClose}
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(onLogin)}
+        actionLabel="Login"
          />
     </div>
   );

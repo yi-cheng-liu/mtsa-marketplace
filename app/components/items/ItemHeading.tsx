@@ -14,7 +14,7 @@ interface ItemClientProps{
 }
 const ItemHeading: React.FC<ItemClientProps> = ({title, category, image, id, currentUser}) => {
   return (
-    <div className="flex flex-col mt-4 gap-4">
+    <div className="flex flex-col mt-6 gap-4">
       <div className="flex justify-between items-center">
         <Heading title={title} subtitle={category} />
         <SaveButton itemId={id} currentUser={currentUser} />

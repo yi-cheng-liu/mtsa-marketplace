@@ -6,17 +6,17 @@ import Button from '../Button';
 
 interface ModalProps {
   // ?: optional : required
-  isOpen?: boolean; // whether the modal is open
-  onClose: () => void; // function to close the modal
-  onSubmit: () => void; // function to submit the modal
   title?: string;
   body?: React.ReactElement;
   footer?: React.ReactElement;
-  actionLabel: string; // label name of the action button
-  actionDisabled?: boolean; // whether the action button is disabled
+  isOpen?: boolean; // whether the modal is open
+  onClose: () => void; // function to close the modal
   disabled?: boolean; // whether the action button is disabled
-  secondaryAction?: () => void;
+  actionDisabled?: boolean; // whether the action button is disabled
+  actionLabel: string; // label name of the action button
+  onSubmit: () => void; // function to submit the modal
   secondaryActionLabel?: string;
+  secondaryAction?: () => void;
 }
 
 const Modals: React.FC<ModalProps> = ({
