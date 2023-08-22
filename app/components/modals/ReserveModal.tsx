@@ -84,8 +84,8 @@ const ReserveModal: React.FC<ReserveModalProps> = ({
         </div>
       </div>
       <div>
-        If the owner's Facebook profile page is available, you can change the
-        pick-up time by messaging them directly on Facebook Messanger.
+        If the owner&apos;s Facebook profile page is available, you can change
+        the pick-up time by messaging them directly on Facebook Messanger.
       </div>
       <div>
         However, remember that only the <strong>owner</strong> can cancel the
