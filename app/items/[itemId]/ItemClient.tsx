@@ -2,15 +2,21 @@
 
 import { SafeItem, SafeUser } from "@/app/types";
 import { Reservation } from "@prisma/client";
-import { useMemo } from "react";
+import { useMemo, useCallback } from "react";
 import { categories } from "@/app/components/navbar/Categories";
 import Container from "@/app/components/Container";
+import Button from '@/app/components/Button'
+import UpdateButton from '@/app/components/UpdateButton'
 import ItemHeading from "@/app/components/items/ItemHeading";
 import ItemInfo from "@/app/components/items/ItemInfo";
 import ItemAdditionalPhoto from "@/app/components/items/ItemAdditionalPhoto";
 
 import ItemReservation from "@/app/components/items/ItemReservation";
-
+import useLoginModal from "@/app/hooks/useLoginModal";
+import useEditSellModal from "@/app/hooks/useEditSellModal";
+import EditSellModal from "@/app/components/modals/EditSellModal";
+import useSellModal from "@/app/hooks/useSellModal";
+import useReserveModal from "@/app/hooks/useReserveModal";
 
 interface ItemClientProps {
   reservations?: Reservation[];
@@ -25,9 +31,29 @@ const ItemClient: React.FC<ItemClientProps> = ({
   item,
   currentUser,
 }) => {
+
+  const loginModal = useLoginModal();
+  const sellModal = useSellModal();
+  const editSellModal = useEditSellModal();
+  const reserveModal = useReserveModal();
+
+  const onEdit = useCallback(() => {
+    console.log('onEdit is called') // Add this
+
+    if (!currentUser) {
+      return loginModal.onOpen()
+    }
+
+    // open the reserve confirm modal
+    editSellModal.onOpen()
+
+  }, [currentUser, loginModal, editSellModal])
+
+
   const category = useMemo(() => {
     return categories.find((items) => items.label === item.category);
   }, [item.category]);
+
 
   return (
     <Container>
@@ -49,10 +75,7 @@ const ItemClient: React.FC<ItemClientProps> = ({
               description={item.description}
               category={category}
             />
-            <ItemReservation
-              item={item}
-              currentUser={currentUser}
-            />
+            <ItemReservation item={item} currentUser={currentUser} />
           </div>
 
           {item.image2 || item.image3 || item.image4 || item.image5 ? (
@@ -69,10 +92,18 @@ const ItemClient: React.FC<ItemClientProps> = ({
           ) : (
             <></>
           )}
+          {(item.userId == currentUser?.id) ? (
+            <div className="flex justify-center">
+              <EditSellModal item={item} />
+              <UpdateButton label="Edit" onClick={onEdit} center/>
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </Container>
-  );
+  )
 };
 
 export default ItemClient

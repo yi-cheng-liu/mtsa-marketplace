@@ -1,19 +1,21 @@
 "use client";
 
-import { toast } from "react-hot-toast";
-import axios from "axios";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { SafeReservation, SafeUser } from "@/app/types";
+import { SafeItem, SafeReservation, SafeUser } from "@/app/types";
 
 import Heading from "@/app/components/Heading";
 import Container from "@/app/components/Container";
 import ItemsCard from "@/app/components/items/ItemsCard";
 
 interface OrdersClientProps {
-  reservations: SafeReservation[];
-  currentUser?: SafeUser | null;
+  reservations: SafeReservation[] & {
+    item: SafeItem & {
+      user: SafeUser
+    }
+  }
+  currentUser?: SafeUser | null
 }
 
 const OrdersClient: React.FC<OrdersClientProps> = ({
@@ -54,9 +56,9 @@ const OrdersClient: React.FC<OrdersClientProps> = ({
               data={reservation.item}
               reservation={reservation}
               actionId={reservation.id}
-              // onAction={onCancel}
               disabled={deletingId === reservation.id}
               // actionLabel="cancel"
+              // onAction={onCancel}
               currentUser={currentUser}
             />
           ))}

@@ -27,6 +27,7 @@ const SellModal = () => {
   const router = useRouter();
   const itemModal = useSellModal();
 
+  // Keep track of the steps
   const [step, setStep] = useState(SELLMODALSTEPS.CATEGORY);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -47,8 +48,6 @@ const SellModal = () => {
   });
 
   const category = watch("category");
-  const title = watch("title");
-  const description = watch("description");
   const itemCount = watch("itemCount");
   const price = watch("price");
   const image = watch("image");
@@ -76,10 +75,6 @@ const SellModal = () => {
         { icon: "💸", duration: 3500 });
       return;
     }
-  };
-
-  const handleRemove = (imageKey: string) => {
-    setCustomValue(imageKey, null);
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -110,6 +105,7 @@ const SellModal = () => {
   }
 
   const actionLabel = useMemo(() => {
+    // Only the third page will have a create button 
     if (step == SELLMODALSTEPS.IMAGES) {
       return "Create";
     }
@@ -117,12 +113,14 @@ const SellModal = () => {
   }, [step]);
 
   const secondaryActionLabel = useMemo(() => {
+    // Only the first page will not have a back button
     if (step == SELLMODALSTEPS.CATEGORY) {
       return undefined;
     }
     return "Back";
   }, [step]);
 
+  // 1. First Page
   let bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading center title="Pick a Category" />
@@ -143,6 +141,7 @@ const SellModal = () => {
     </div>
   );
 
+  // 2. Second Page
   if (step == SELLMODALSTEPS.DETAILS) {
     bodyContent = (
       <div className="flex flex-col gap-4">
@@ -183,6 +182,7 @@ const SellModal = () => {
     );
   }
 
+  // 3. Third Page
   if (step == SELLMODALSTEPS.IMAGES) {
     bodyContent = (
       <div className="flex flex-col gap-4">

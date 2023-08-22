@@ -7,10 +7,9 @@ import {
   MdOutlineCalendarToday,
   MdOutlineFacebook
 } from 'react-icons/md'
-import Container from '../Container'
 import Heading from '../Heading'
 import { useState } from 'react'
-import Button from '../Button'
+import UpdateButton from '../UpdateButton'
 
 interface ItemOwnerProps {
   user: SafeUser
@@ -183,15 +182,9 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({
             )}
 
             {/* Update Button */}
+            
             {profile ? (
-              <div className="justify-start">
-                <button
-                  onClick={handleSubmit}
-                  className="text-netural-500 rounded-2xl px-4 border-2 border-netural-500"
-                >
-                  Update
-                </button>
-              </div>
+              <UpdateButton label='Update' onClick={handleSubmit} />
             ) : (
               <></>
             )}
