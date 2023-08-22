@@ -3,18 +3,14 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { SafeItem, SafeReservation, SafeUser } from "@/app/types";
+import { SafeReservation, SafeUser } from "@/app/types";
 
 import Heading from "@/app/components/Heading";
 import Container from "@/app/components/Container";
 import ItemsCard from "@/app/components/items/ItemsCard";
 
 interface OrdersClientProps {
-  reservations: SafeReservation[] & {
-    item: SafeItem & {
-      user: SafeUser
-    }
-  }
+  reservations: SafeReservation[]
   currentUser?: SafeUser | null
 }
 
