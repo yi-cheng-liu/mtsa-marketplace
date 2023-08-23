@@ -7,7 +7,6 @@ import getCurrentUser from "@/app/actions/getCurrentUser";
 import getReservations from "@/app/actions/getReservations";
 import getItems from "../actions/getItems";
 
-import ItemOwner from "@/app/components/items/ItemOwner";
 import PropertiesClient from "@/app/profile/PropertiesClient";
 import ReservationsClient from "./ReservationsClient";
 import ProfileClient from "./ProfileClient";

@@ -12,7 +12,6 @@ import Avatar from "../Avatar";
 
 
 interface ItemsCardProps {
-  key: string;
   data: SafeItem & {
     user: SafeUser;
   };
@@ -25,7 +24,7 @@ interface ItemsCardProps {
 }
 
 
-const ItemsCard: React.FC<ItemsCardProps> = ({ key, data, reservation, currentUser, disabled, actionLabel, actionId="", onAction }) => {
+const ItemsCard: React.FC<ItemsCardProps> = ({ data, reservation, currentUser, disabled, actionLabel, actionId="", onAction }) => {
 
   const handleCancel = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();

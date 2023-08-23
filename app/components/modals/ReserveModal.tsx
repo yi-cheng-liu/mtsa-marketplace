@@ -73,15 +73,17 @@ const ReserveModal: React.FC<ReserveModalProps> = ({
         </div>
 
         {/* Pickup Address */}
-        <div className="flex items-center gap-2">
-          <MdOutlineHouse size={24} />
-          <div className="flex flex-row justify-start items-center gap-2">
-            <div className="font-bold">Address: </div>
-            <div className="text-neutral-500">
-              {item.user.pickupAddress ? <>{item.user.pickupAddress}</> : <></>}
+        {item.user.pickupAddress &&
+          <div className="flex items-center gap-2">
+            <MdOutlineHouse size={24} />
+            <div className="flex flex-row justify-start items-center gap-2">
+              <div className="font-bold">Address: </div>
+              <div className="text-neutral-500">
+                {item.user.pickupAddress ? <>{item.user.pickupAddress}</> : <></>}
+              </div>
             </div>
           </div>
-        </div>
+        }
       </div>
       <div>
         If the owner&apos;s Facebook profile page is available, you can change

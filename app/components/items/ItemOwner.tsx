@@ -10,6 +10,8 @@ import {
 import Heading from '../Heading'
 import { useState } from 'react'
 import UpdateButton from '../UpdateButton'
+import { toast } from 'react-hot-toast'
+
 
 interface ItemOwnerProps {
   user: SafeUser
@@ -51,8 +53,20 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({
     return `${month}/${day}/${year}`
   }
 
+  function isValidFacebookLink(url: string) {
+    const pattern = /^(https?:\/\/)?((www\.)?)facebook\.com\/[a-zA-Z0-9]+.*/i
+    return pattern.test(url)
+  }
+
   const handleSubmit = (e: any) => {
     e.preventDefault()
+
+    // Validate Facebook Link
+    if (facebookProfileLink && !isValidFacebookLink(facebookProfileLink)) {
+      toast.error('Updating error: The provided Facebook link is not valid.')
+      return
+    }
+
     const data = {
       phone,
       pickupAddress,
@@ -68,11 +82,11 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({
       <div className="flex flex-col gap-6">
         {/* Name and Avatar */}
         <div className="text-xl font-semibold flex flex-row items-center gap-10">
-          <div className='flex items-end gap-2'>
+          <div className="flex items-end gap-2">
             <Avatar src={user?.image} />
             <div className="flex text-lg font-semibold">{user?.name}</div>
           </div>
-          {(!profile && facebookProfileLink) ? (
+          {!profile && facebookProfileLink ? (
             <a
               href={facebookProfileLink}
               target="_blank"
@@ -167,7 +181,7 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({
                     <input
                       type="text"
                       value={facebookProfileLink}
-                      onChange={(e) => setFacebookProfileLink(e.target.value)}
+                      onChange={(e)=>setFacebookProfileLink(e.target.value)}
                       className="p-1 sm:w-[400px] w-[300px] border-2 rounded-lg"
                     />
                   </div>
@@ -182,9 +196,9 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({
             )}
 
             {/* Update Button */}
-            
+
             {profile ? (
-              <UpdateButton label='Update' onClick={handleSubmit} />
+              <UpdateButton label="Update" onClick={handleSubmit} />
             ) : (
               <></>
             )}

@@ -21,8 +21,8 @@ const SavedItemsClient: React.FC<SavedItemsClientProps> = ({
           {items.map(
             (item: any) =>
               <ItemsCard
-                currentUser={currentUser}
                 key={item.id}
+                currentUser={currentUser}
                 data={item}
               />
           )}

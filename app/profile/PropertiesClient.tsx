@@ -9,6 +9,8 @@ import { SafeItem, SafeReservation, SafeUser } from "@/app/types";
 import Heading from "@/app/components/Heading";
 import Container from "@/app/components/Container";
 import ItemsCard from "@/app/components/items/ItemsCard";
+import EmptyState from '@/app/components/EmptyState'
+
 
 interface PropertiesClientProps {
   items?: SafeItem[];
@@ -47,23 +49,27 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
     <Container>
       <div className="py-6">
         <Heading title="ALL ITEMS" />
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 md:gap-4 xl:gap-6">
-          {items &&
-            items.map((item: any) => (
-              <ItemsCard
-                key={item.id}
-                data={item}
-                actionId={item.id}
-                onAction={onDelete}
-                disabled={deletingId === item.id}
-                actionLabel="delete"
-                currentUser={currentUser}
-              />
-            ))}
-        </div>
+        {items && items.length > 0 ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 md:gap-4 xl:gap-6">
+            {items &&
+              items.map((item: any) => (
+                <ItemsCard
+                  key={item.id}
+                  data={item}
+                  actionId={item.id}
+                  onAction={onDelete}
+                  disabled={deletingId === item.id}
+                  actionLabel="delete"
+                  currentUser={currentUser}
+                />
+              ))}
+          </div>
+        ) : (
+          <EmptyState profile title="No Items" />
+        )}
       </div>
     </Container>
-  );
+  )
 };
 
 export default PropertiesClient;
