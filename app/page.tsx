@@ -32,6 +32,7 @@ export default async function Home({ searchParams }: HomeProps) {
     return (
       <ClientOnly>
         <EmptyState />
+        <Footer />
       </ClientOnly>
     );
   }
@@ -48,7 +49,6 @@ export default async function Home({ searchParams }: HomeProps) {
         </div>
         <CustomPagination totalItemsCount={items.length} items={items} />
       </Container>
-      <Footer />
     </ClientOnly>
   )
 }

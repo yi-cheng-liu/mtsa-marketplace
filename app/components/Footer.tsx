@@ -1,31 +1,37 @@
-'use client';
+'use client'
 
-import Container from "@/app/components/Container";
-import Link from "next/link";
-import Heading from "./Heading";
+import Container from '@/app/components/Container'
+import Link from 'next/link'
+import Heading from './Heading'
 
 const Footer = () => {
+  const columns = [
+    {
+      title: 'About',
+      links: [
+        { path: '/about/privacy-policy', label: 'Privacy Policy' },
+        { path: '/about/terms-of-use', label: 'Terms of Use' }
+      ]
+    },
+  ]
+
   return (
     <>
-      <Container>
-        <div className="py-10">
-          <hr className="border-[1px]" />
-          <div className="grid grid-cols-1 md:grid-cols-4 md:gap-10 py-6 px-10">
-            <div className="col-span-1 flex flex-col">
-              <Heading title="About" />
-              <Link href="/about/privacy-policy">Privacy Policy</Link>
-              <Link href="/about/terms-of-use">Terms of Use</Link>
+      <div className="lg:py-10">
+        <hr className="border-[1px]" />
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 py-6 xl:px-20 md:px-10 sm:px-4 px-2">
+          {columns.map((column, idx) => (
+            <div key={idx} className="col-span-1 flex flex-col">
+              <Heading title={column.title} />
+              {column.links.map((link, linkIdx) => (
+                <Link key={linkIdx} href={link.path}>
+                  {link.label}
+                </Link>
+              ))}
             </div>
-            <div className="col-span-1 flex flex-col">
-            </div>
-            <div className="col-span-1 flex flex-col">
-            </div>
-            <div className="col-span-1 flex flex-col">
-              
-            </div>
-          </div>
+          ))}
         </div>
-      </Container>
+      </div>
     </>
   )
 }

@@ -101,7 +101,6 @@ const ItemClient: React.FC<ItemClientProps> = ({
             <></>
           )}
         </div>
-        <Footer />
       </div>
     </Container>
   )
