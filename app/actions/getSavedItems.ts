@@ -17,12 +17,23 @@ export default async function getSavedItems() {
 
     const savedItems = await prisma.item.findMany({
       where: query,
-    });
+      include: {
+        user: true
+      }
+    })
 
     const safeSavedItems = savedItems.map((saved) => ({
       ...saved,
-      createdAt: saved.createdAt.toISOString(),
-    }));
+      user: {
+        ...saved.user,
+        createdAt: saved.user.createdAt.toISOString(),
+        updatedAt: saved.user.updatedAt.toISOString(),
+        emailVerified: saved.user.emailVerified
+          ? saved.user.emailVerified.toISOString()
+          : null
+      },
+      createdAt: saved.createdAt.toISOString()
+    }))
 
     return safeSavedItems;
   } catch (error: any) {

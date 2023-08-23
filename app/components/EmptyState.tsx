@@ -26,8 +26,8 @@ const EmptyState: React.FC<EmptyStateProps> = ({
       ) : (
         <div
           className={`${
-            home ? 'pt-28' : ''
-          } h-[70vh] flex flex-col gap-2 justify-center items-center`}
+            home ? 'pt-28 h-[70vh]' : 'h-[60vh]'
+          } flex flex-col gap-2 justify-center items-center`}
         >
           <Heading center title={title} icon={TbMoodSadDizzy} />
         </div>

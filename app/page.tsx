@@ -31,7 +31,7 @@ export default async function Home({ searchParams }: HomeProps) {
   if (items.length == 0) {
     return (
       <ClientOnly>
-        <EmptyState />
+        <EmptyState home />
       </ClientOnly>
     );
   }
