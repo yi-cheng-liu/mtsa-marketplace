@@ -1,5 +1,7 @@
 import EmptyState from "@/app/components/EmptyState";
 import ClientOnly from "@/app/components/ClientOnly";
+import Container  from "@/app/components/Container";
+import Heading from "../components/Heading";
 
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import getReservations from "@/app/actions/getReservations";
@@ -22,9 +24,12 @@ const TripsPage = async () => {
   if (reservations.length === 0) {
     return (
       <ClientOnly>
-        <EmptyState
-          title="No orders found"
-        />
+          <Container>
+          <div className="py-6">
+            <Heading title="MY ORDERS" />
+            <EmptyState title="No orders found" />
+          </div>
+        </Container>
       </ClientOnly>
     );
   }

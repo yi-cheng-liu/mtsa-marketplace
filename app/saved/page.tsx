@@ -1,9 +1,10 @@
 import EmptyState from "@/app/components/EmptyState";
 import ClientOnly from "@/app/components/ClientOnly";
+import Container from "@/app/components/Container";
+import Heading from "../components/Heading";
 
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import getSavedItems from "../actions/getSavedItems";
-import ItemsCard from "../components/items/ItemsCard";
 import SavedItemsClient from "./SavedClient";
 
 const SavedItemPage = async () => {
@@ -12,7 +13,12 @@ const SavedItemPage = async () => {
   if (items.length === 0) { 
     return (
       <ClientOnly>
-        <EmptyState title="No saved items" />
+        <Container>
+          <div className="py-6">
+            <Heading title="SAVED ITEMS" />
+            <EmptyState title="No saved items" />
+          </div>
+        </Container>
       </ClientOnly>
     );
   }
