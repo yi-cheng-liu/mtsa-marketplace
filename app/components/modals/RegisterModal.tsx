@@ -111,7 +111,22 @@ const RegisterModal = () => {
         </div>
       </div>
       <div className="flex justify-center text-sm">
-        <Link href="/about/privacy-policy">View our Privacy Policy</Link>
+        View our
+        <Link
+          href="/about/privacy-policy"
+          className="mx-1 hover:font-bold"
+          onClick={() => registerModal.onClose()}
+        >
+          Privacy Policy
+        </Link>
+        or
+        <Link
+          href="/about/terms-of-use"
+          className="mx-1 hover:font-bold"
+          onClick={() => registerModal.onClose()}
+        >
+          Terms of Use
+        </Link>
       </div>
     </div>
   )
