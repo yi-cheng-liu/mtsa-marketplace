@@ -1,6 +1,5 @@
 'use client'
 
-import axios from 'axios'
 import { signIn } from 'next-auth/react'
 import { AiFillGithub, AiFillFacebook } from 'react-icons/ai'
 import { FcGoogle } from 'react-icons/fc'
@@ -14,7 +13,6 @@ import Heading from '../Heading'
 import Input from '../input/Input'
 import { toast } from 'react-hot-toast'
 import Button from '../Button'
-import { redirect } from 'next/dist/server/api-utils'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 

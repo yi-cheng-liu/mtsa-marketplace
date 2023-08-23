@@ -5,7 +5,7 @@ import { Reservation } from "@prisma/client";
 import { useMemo, useCallback } from "react";
 import { categories } from "@/app/components/navbar/Categories";
 import Container from "@/app/components/Container";
-import Button from '@/app/components/Button'
+import Footer from '@/app/components/Footer'
 import UpdateButton from '@/app/components/UpdateButton'
 import ItemHeading from "@/app/components/items/ItemHeading";
 import ItemInfo from "@/app/components/items/ItemInfo";
@@ -92,15 +92,16 @@ const ItemClient: React.FC<ItemClientProps> = ({
           ) : (
             <></>
           )}
-          {(item.userId == currentUser?.id) ? (
+          {item.userId == currentUser?.id ? (
             <div className="flex justify-center">
               <EditSellModal item={item} />
-              <UpdateButton label="Edit" onClick={onEdit} center/>
+              <UpdateButton label="Edit" onClick={onEdit} center />
             </div>
           ) : (
             <></>
           )}
         </div>
+        <Footer />
       </div>
     </Container>
   )

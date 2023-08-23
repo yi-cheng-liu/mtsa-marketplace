@@ -3,7 +3,6 @@ import getCurrentUser from '@/app/actions/getCurrentUser';
 import ClientOnly from '@/app/components/ClientOnly';
 import EmptyState from '@/app/components/EmptyState';
 import ItemClient from './ItemClient';
-import EditSellModal from '@/app/components/modals/EditSellModal';
 
 interface IParams {
   itemId?: string;

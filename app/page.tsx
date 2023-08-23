@@ -1,7 +1,8 @@
 import getItems, { IItemsParams } from "./actions/getItems";
 import getCurrentUser from "./actions/getCurrentUser";
 import ClientOnly from "./components/ClientOnly";
-import Container from "./components/Container";
+import Container from './components/Container'
+import Footer from './components/Footer'
 import EmptyState from "./components/EmptyState";
 import ItemsCard from "./components/items/ItemsCard";
 import CustomPagination from './components/Pagination'
@@ -47,6 +48,7 @@ export default async function Home({ searchParams }: HomeProps) {
         </div>
         <CustomPagination totalItemsCount={items.length} items={items} />
       </Container>
+      <Footer />
     </ClientOnly>
   )
 }
