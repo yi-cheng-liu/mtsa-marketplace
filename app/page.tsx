@@ -32,7 +32,6 @@ export default async function Home({ searchParams }: HomeProps) {
     return (
       <ClientOnly>
         <EmptyState />
-        <Footer />
       </ClientOnly>
     );
   }

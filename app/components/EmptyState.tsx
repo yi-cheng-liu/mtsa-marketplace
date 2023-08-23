@@ -11,10 +11,11 @@ interface EmptyStateProps {
   title?: string;
   icon?: IconType;
   profile?: boolean;
+  home?: boolean;
 }
 
 const EmptyState: React.FC<EmptyStateProps> = ({
-  title = "No Items of this category", icon, profile
+  title = "No Items of this category", icon, profile, home
 }) => {
   return (
     <>
@@ -23,12 +24,16 @@ const EmptyState: React.FC<EmptyStateProps> = ({
           <Heading center title={title} icon={TbMoodSadDizzy} />
         </div>
       ) : (
-        <div className="h-[60vh] flex flex-col gap-2 justify-center items-center">
+        <div
+          className={`${
+            home ? 'pt-28' : ''
+          } h-[70vh] flex flex-col gap-2 justify-center items-center`}
+        >
           <Heading center title={title} icon={TbMoodSadDizzy} />
         </div>
       )}
     </>
-  );
+  )
 };
 
 export default EmptyState;
