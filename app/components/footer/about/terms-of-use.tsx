@@ -14,7 +14,7 @@ const TermsOfUse: React.FC = () => {
 
       <h2 className="text-xl font-semibold mb-2">1. Acceptance of Terms:</h2>
       <p className="mb-4">
-        By accessing or using this website/platform/app (`&quot;`Service`&quot;`), you agree
+        By accessing or using this website/platform/app (&quot;Service&quot;), you agree
         to be bound by these Terms of Use.
       </p>
 
