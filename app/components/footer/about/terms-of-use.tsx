@@ -14,8 +14,8 @@ const TermsOfUse: React.FC = () => {
 
       <h2 className="text-xl font-semibold mb-2">1. Acceptance of Terms:</h2>
       <p className="mb-4">
-        By accessing or using this website/platform/app ("Service"), you agree
-        to be bound by these Terms of Use.
+        By accessing or using this website/platform/app (&quotService&quot), you
+        agree to be bound by these Terms of Use.
       </p>
 
       <h2 className="text-xl font-semibold mb-2">2. Changes to Terms:</h2>
@@ -51,7 +51,9 @@ const TermsOfUse: React.FC = () => {
         is the responsibility of the person from whom such content originated.
       </p>
 
-      <h2 className="text-xl font-semibold mb-2">6. Limitation of Liability:</h2>
+      <h2 className="text-xl font-semibold mb-2">
+        6. Limitation of Liability:
+      </h2>
       <p className="mb-4">
         In no event shall we be liable for any indirect, incidental, special,
         consequential or punitive damages, or any loss of profits or revenues.
