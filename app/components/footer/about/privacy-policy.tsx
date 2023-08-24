@@ -5,11 +5,11 @@ const PrivacyPolicy: React.FC = () => {
     <div className="px-6 py-4">
       <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
       <p className="mb-2">
-        <strong className="font-semibold">Last updated:</strong> Aug 20, 2023
+        <strong className="font-semibold">Last updated:</strong> Aug 23, 2023
       </p>
       <p className="mb-4">
         This document outlines the privacy practices for mtsa-marketplace,
-        inspired by OfferUp, Inc.
+        inspired by various standard terms.
       </p>
 
       <h2 className="text-xl font-semibold mb-2">Updates:</h2>
@@ -32,14 +32,13 @@ const PrivacyPolicy: React.FC = () => {
       <h2 className="text-xl font-semibold mb-2">2. Usage of Information:</h2>
       <p className="mb-4">
         Purpose includes verification, connection, maintaining a safe
-        environment, service improvement, research, promotions, etc.
+        environment, service improvement, etc.
       </p>
 
       <h2 className="text-xl font-semibold mb-2">3. Data Sharing:</h2>
       <p className="mb-4">
         Data is shared under various circumstances including public posts,
-        third-party service providers, etc. De-identified data may also be
-        shared.
+        third-party service providers (social login).
       </p>
 
       <h2 className="text-xl font-semibold mb-2">4. Data Security:</h2>
@@ -49,21 +48,14 @@ const PrivacyPolicy: React.FC = () => {
       </p>
 
       <h2 className="text-xl font-semibold mb-2">5. Your Choices:</h2>
-      <div className="pl-5 mb-4">
-        <p className="mb-1">
-          <strong className="font-semibold">a.</strong> Account: You can modify
-          your account. Some data may be retained as required.
-        </p>
-        <p className="mb-1">
-          <strong className="font-semibold">b.</strong> Cookies: You can set
-          your browser to refuse cookies, though this may affect some site
-          functionalities.
-        </p>
-      </div>
+      <p className="mb-4">
+        Account: You can modify your account. Some data may be retained as
+        required.
+      </p>
 
       <p className="mb-4">
-        This policy was drafted with reference to OfferUp, Inc. For inquiries,
-        email
+        This policy was drafted with reference to various standard terms. For
+        inquiries, email
         <a
           href="mailto:liuyiche@umich.edu"
           className="text-blue-500 underline ml-1"
