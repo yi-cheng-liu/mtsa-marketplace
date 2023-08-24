@@ -21,13 +21,42 @@ interface ItemInfoProps {
 }
 
 const ItemInfo: React.FC<ItemInfoProps> = ({ user, currentUser, description, category }) => {
+
+const parseDescription = (description: string) => {
+  const urlRegex = /https?:\/\/[^\s]+/g
+  const urls = description.match(urlRegex) || [] // Fallback to an empty array
+  return description
+    .split(urlRegex)
+    .reduce((prev: JSX.Element[], current: string, i: number) => {
+      let url = urls[i - 1]
+      let elements = [<span key={i * 2}>{current}</span>] // Even keys for text
+
+      if (i !== 0) {
+        elements.push(
+          <a
+            href={url}
+            key={i * 2 + 1}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-black"
+          >
+            {url}
+          </a>
+        ) // Odd keys for URLs
+      }
+      return prev.concat(elements)
+    }, [])
+}
+
+
   return (
     <div className="col-span-7 flex flex-col gap-6">
       {/* Owner of the Item */}
       <ItemOwner
         user={user}
         currentUser={currentUser}
-        onUpdateUser={() => { }} />
+        onUpdateUser={() => {}}
+      />
 
       {/* Category */}
       <hr className="border-[1px]" />
@@ -45,19 +74,19 @@ const ItemInfo: React.FC<ItemInfoProps> = ({ user, currentUser, description, cat
       {description ? (
         <>
           <div className="text-lg font-light text-neutral-500 whitespace-normal overflow-wrap break-words">
-            {description.split("\n").map((line, index) => (
+            {description.split('\n').map((line, index) => (
               <span key={index}>
-                {line}
+                {parseDescription(line)}
                 <br />
               </span>
             ))}
           </div>
         </>
       ) : (
-          <div>No Description</div>
+        <div>No Description</div>
       )}
     </div>
-  );
+  )
 };
 
 export default ItemInfo;
