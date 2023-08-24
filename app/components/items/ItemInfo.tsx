@@ -83,7 +83,7 @@ const parseDescription = (description: string) => {
           </div>
         </>
       ) : (
-        <div>No Description</div>
+        <div className="text-neutral-500">No Description</div>
       )}
     </div>
   )

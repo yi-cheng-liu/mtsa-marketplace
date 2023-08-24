@@ -73,13 +73,11 @@ const ItemReservation: React.FC<ItemReservationProps> = ({
         </LocalizationProvider>
       </div>
 
+      <hr className="border-[1px]" />
       {item.user && item.user.pickupAddress && (
-        <div className="text-neutral-500">
-          <hr className="border-[1px]" />
-          <div className="flex flex-col gap-4">
-            <div className="text-lg font-semibold">Pick Up Address</div>
-            <div>{item.user.pickupAddress}</div>
-          </div>
+        <div className="flex flex-col gap-4">
+          <div className="text-lg font-semibold">Pick Up Address</div>
+          <div className="text-neutral-500">{item.user.pickupAddress}</div>
         </div>
       )}
 
