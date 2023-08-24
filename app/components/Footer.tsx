@@ -17,7 +17,7 @@ const Footer = () => {
 
   return (
     <>
-      <div className="lg:py-10">
+      <div className="py-10">
         <hr className="border-[1px]" />
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 py-6 xl:px-20 md:px-10 sm:px-4 px-2">
           {columns.map((column, idx) => (
