@@ -74,7 +74,7 @@ function handleClickOutside(event: MouseEvent) {
 
         <div
           onClick={onSell}
-          className="hidden md:block lg:text-base text-sm font-semibold py-3 px-[14px] rounded-2xl hover:bg-neutral-200 transition cursor-pointer"
+          className="hidden md:block lg:text-base text-sm font-semibold py-3 px-[14px] rounded-2xl hover:bg-[#00274C50] transition cursor-pointer"
         >
           Add an item
         </div>

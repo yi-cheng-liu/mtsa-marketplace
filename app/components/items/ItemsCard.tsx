@@ -49,7 +49,7 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ data, reservation, currentUser, d
 
   return (
     <div className="flex flex-col justify-between h-full">
-      <div className="flex flex-col gap-1 w-full">
+      <div className="flex flex-col gap-2 w-full">
         <a
           href={`/items/${data.id}`}
           className="col-span-1 cursor-pointer group h-full"
@@ -75,7 +75,7 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ data, reservation, currentUser, d
             <div className="flex flex-row items-center justify-between">
               <div className="flex flex-row justify-start gap-1">
                 <div className="flex font-bold text-green-600">$</div>
-                <div className="flex text-neutral-500">
+                <div className="flex">
                   {data.price === 0 ? 'FREE' : data.price}
                 </div>
               </div>
