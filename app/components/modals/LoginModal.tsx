@@ -36,6 +36,20 @@ const LoginModal = () => {
     registerModal.onOpen();
   }, [loginModal, registerModal]);
 
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      // Close the Modal by pressing the ESC key
+      if (event.key === 'Escape') {
+        loginModal.onClose();
+      }
+      // Submit the Modal by pressing the Enter key
+      if (event.key === 'Enter') {
+        handleSubmit(onLogin);
+      }
+    },
+    [loginModal, handleSubmit]
+  )
+
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading
@@ -141,7 +155,7 @@ const LoginModal = () => {
   }
 
   return (
-    <div>
+    <div onKeyDown={handleKeyDown}>
       <Modals
         title="Login"
         body={bodyContent}
@@ -151,9 +165,9 @@ const LoginModal = () => {
         onClose={loginModal.onClose}
         onSubmit={handleSubmit(onLogin)}
         actionLabel="Login"
-         />
+      />
     </div>
-  );
+  )
 }
 
 export default LoginModal

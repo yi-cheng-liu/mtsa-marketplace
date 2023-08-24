@@ -131,6 +131,19 @@ const RegisterModal = () => {
     </div>
   )
 
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      // Close the Modal by pressing the ESC key
+      if (event.key === 'Escape') {
+        registerModal.onClose()
+      }
+      // Submit the Modal by pressing the Enter key
+      if (event.key === 'Enter') {
+        handleSubmit(onRegister)
+      }
+    },
+    [registerModal, handleSubmit]
+  )
   
   const onRegister: SubmitHandler<FieldValues> = (data) => {
     // turn on the loading indicator
@@ -155,7 +168,7 @@ const RegisterModal = () => {
   }
 
   return (
-    <div>
+    <div onKeyDown={handleKeyDown}>
       <Modals
         title="Register"
         body={bodyContent}
