@@ -1,4 +1,5 @@
 import './globals.css'
+import { Analytics } from '@vercel/analytics/react'
 import { Nunito_Sans } from 'next/font/google'
 import ClientOnly from './components/ClientOnly'
 import SellModal from './components/modals/SellModal';
@@ -34,6 +35,7 @@ export default async function RootLayout({children}: {
         <ClientOnly>
           <Footer />
         </ClientOnly>
+        <Analytics />
       </body>
     </html>
   )
