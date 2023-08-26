@@ -15,7 +15,9 @@ interface ItemsCardProps {
   data: SafeItem & {
     user: SafeUser;
   };
-  reservation?: Reservation;
+  reservation?: Reservation & {
+    user: SafeUser;
+  };
   currentUser?: SafeUser | null;
   disabled?: boolean;
   actionLabel?: string;
@@ -102,6 +104,23 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ data, reservation, currentUser, d
               <div>Time: </div>
               <div className="text-red-500 font-semibold">
                 {reservationTime}
+              </div>
+            </div>
+          </div>
+        )}
+        {reservation?.userId && (
+          <div className="flex flex-col justify-start">
+            <div>Buyer Info</div>
+            <div className="flex flex-row justify-between gap-4">
+              <div>Name: </div>
+              <div>
+                {reservation.user.name}
+              </div>
+            </div>
+            <div className="flex flex-row justify-between gap-4">
+              <div>Email: </div>
+              <div>
+                {reservation.user.email}
               </div>
             </div>
           </div>
