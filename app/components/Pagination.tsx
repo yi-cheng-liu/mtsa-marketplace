@@ -9,18 +9,16 @@ import { SafeItem } from '../types'
 export const ITEMS_PER_PAGE = 60
 
 export interface PaginationParams {
-  items: SafeItem[]
   totalItemsCount: number
 }
 
 const CustomPagination: React.FC<PaginationParams> = ({
-  items, 
   totalItemsCount
 }) => {
-  const router = useRouter()
-  const params = useSearchParams()
+  const router = useRouter();
+  const params = useSearchParams();
 
-  const [page, setPage] = useState(Number(params?.get('page') || 1))
+  const [page, setPage] = useState(Number(params?.get('page') || 1));
 
   useEffect(() => {
     // Update the page state when the URL changes
@@ -29,7 +27,7 @@ const CustomPagination: React.FC<PaginationParams> = ({
   }, [params]);
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    setPage(value)
+    setPage(value);
 
     let currentQuery = {}
 

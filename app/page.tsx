@@ -15,13 +15,16 @@ interface HomeProps {
 
 
 export default async function Home({ searchParams }: HomeProps) {
+
+  // Get all the items
   let items = [];
   if (searchParams.category || searchParams.search || searchParams.page) {
     items = (await getItems(searchParams)).items;
   } else {
     items = (await getItems({})).items;
-  }
+  } // items.length -> the number of all items
 
+  // Get the items according to the page
   const data = await getPage(searchParams);
   const allItems = data.items;
   
@@ -46,7 +49,7 @@ export default async function Home({ searchParams }: HomeProps) {
             )
           })}
         </div>
-        <CustomPagination totalItemsCount={items.length} items={items} />
+        <CustomPagination totalItemsCount={items.length} />
       </Container>
     </ClientOnly>
   )

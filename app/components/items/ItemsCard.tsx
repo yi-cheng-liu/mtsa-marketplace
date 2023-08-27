@@ -94,13 +94,13 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ data, reservation, currentUser, d
         {reservationDate && (
           <div className="flex flex-col justify-start">
             <div>Pickup Info</div>
-            <div className="flex flex-row justify-between gap-4">
+            <div className="flex flex-row justify-between">
               <div>Date: </div>
               <div className="text-red-500 font-semibold">
                 {reservationDate}
               </div>
             </div>
-            <div className="flex flex-row justify-between gap-4">
+            <div className="flex flex-row justify-between">
               <div>Time: </div>
               <div className="text-red-500 font-semibold">
                 {reservationTime}
@@ -111,16 +111,10 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ data, reservation, currentUser, d
         {reservation?.userId && (
           <div className="flex flex-col justify-start">
             <div>Buyer Info</div>
-            <div className="flex flex-row justify-between gap-4">
+            <div className="flex flex-row justify-between gap-2">
               <div>Name: </div>
-              <div>
+              <div className="flex text-right">
                 {reservation.user.name}
-              </div>
-            </div>
-            <div className="flex flex-row justify-between gap-4">
-              <div>Email: </div>
-              <div>
-                {reservation.user.email}
               </div>
             </div>
           </div>
