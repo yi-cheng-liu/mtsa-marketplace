@@ -76,19 +76,16 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ data, reservation, currentUser, d
             />
             {isSold && (
               <div className="absolute inset-0 flex items-center justify-center">
-                <Image
-                  fill
-                  alt="sold overlay"
-                  src="/images/sold.png"
-                />
+                <Image fill alt="sold overlay" src="/images/sold.png" />
               </div>
             )}
           </div>
         </WrapperElement>
         <div className="relative">
-          <a
-            href={`/items/${data.id}`}
+          <WrapperElement
+            href={isSold ? undefined : `/items/${data.id}`}
             className="col-span-1 cursor-pointer group h-full"
+            onClick={isSold ? (e) => e.preventDefault() : undefined}
           >
             <div className="flex items-start">
               <div className="w-5/6 font-bold text-lg">{data.title}</div>
@@ -105,7 +102,7 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ data, reservation, currentUser, d
                 <Avatar small src={data.user?.image} />{' '}
               </div>
             </div>
-          </a>
+          </WrapperElement>
           <div className="absolute top-1 right-1">
             <SaveButton small itemId={data.id} currentUser={currentUser} />
           </div>
