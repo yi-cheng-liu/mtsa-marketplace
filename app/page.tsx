@@ -2,11 +2,12 @@ import getItems, { IItemsParams } from "./actions/getItems";
 import getCurrentUser from "./actions/getCurrentUser";
 import ClientOnly from "./components/ClientOnly";
 import Container from './components/Container'
-import Footer from './components/Footer'
 import EmptyState from "./components/EmptyState";
 import ItemsCard from "./components/items/ItemsCard";
 import CustomPagination from './components/Pagination'
 import { getPage } from "./actions/getPage";
+import UpdateButton from "./components/UpdateButton";
+import SoldButton from "./components/sold/SoldButton";
 
 
 interface HomeProps {
@@ -28,7 +29,6 @@ export default async function Home({ searchParams }: HomeProps) {
   const data = await getPage(searchParams);
   const allItems = data.items;
   
-  
   const currentUser = await getCurrentUser();
 
   if (items.length == 0) {
@@ -49,6 +49,7 @@ export default async function Home({ searchParams }: HomeProps) {
             )
           })}
         </div>
+        <SoldButton />
         <CustomPagination totalItemsCount={items.length} />
       </Container>
     </ClientOnly>

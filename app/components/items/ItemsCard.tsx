@@ -1,14 +1,15 @@
 'use client'
 
 import { SafeUser, SafeItem } from "@/app/types";
-import { Item, Reservation } from "@prisma/client";
+import { Reservation } from "@prisma/client";
 import Image from "next/image";
 import SaveButton from "../SaveButton";
-import { useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
 import { format } from "date-fns";
 import Button from "../Button"
 import Avatar from "../Avatar";
+import { CardMode } from "@/app/types/constants";
+
 
 
 interface ItemsCardProps {
@@ -16,6 +17,9 @@ interface ItemsCardProps {
     user: SafeUser;
   };
   reservation?: Reservation & {
+    item: SafeItem & {
+      user: SafeUser
+    };
     user: SafeUser;
   };
   currentUser?: SafeUser | null;
@@ -23,38 +27,45 @@ interface ItemsCardProps {
   actionLabel?: string;
   actionId?: string;
   onAction?: (id: string) => void;
+  mode?: CardMode;
 }
 
 
-const ItemsCard: React.FC<ItemsCardProps> = ({ data, reservation, currentUser, disabled, actionLabel, actionId="", onAction }) => {
+const ItemsCard: React.FC<ItemsCardProps> = ({ data, reservation, currentUser, disabled, actionLabel, actionId="", onAction, mode }) => {
+  const isSold = mode === CardMode.SOLD
+  // Wrapper element for disabling link
+  const WrapperElement = isSold ? 'div' : 'a'
 
-  const handleCancel = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    if (disabled)
-      return;
-    onAction?.(actionId);
-  }, [onAction, actionId, disabled]);
+  const handleCancel = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation()
+      if (disabled) return
+      onAction?.(actionId)
+    },
+    [onAction, actionId, disabled]
+  )
 
   const reservationDate = useMemo(() => {
-    if(!reservation) return null;
-    const pickup = new Date(reservation.pickupDate);
+    if (!reservation) return null
+    const pickup = new Date(reservation.pickupDate)
 
     return `${format(pickup, 'PP')}`
   }, [reservation])
 
   const reservationTime = useMemo(() => {
-    if (!reservation) return null;
-    const pickup = new Date(reservation.pickupDate);
+    if (!reservation) return null
+    const pickup = new Date(reservation.pickupDate)
 
-    return `${format(pickup, "p")}`;
-  }, [reservation]);
+    return `${format(pickup, 'p')}`
+  }, [reservation])
 
   return (
     <div className="flex flex-col justify-between h-full">
       <div className="flex flex-col gap-2 w-full">
-        <a
-          href={`/items/${data.id}`}
+        <WrapperElement
+          href={isSold ? undefined : `/items/${data.id}`}
           className="col-span-1 cursor-pointer group h-full"
+          onClick={isSold ? (e) => e.preventDefault() : undefined}
         >
           <div className="aspect-square w-full relative overflow-hidden rounded-2xl">
             <Image
@@ -63,8 +74,17 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ data, reservation, currentUser, d
               src={data.image}
               className="object-cover h-full w-full group-hover:scale-110 transition"
             />
+            {isSold && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  fill
+                  alt="sold overlay"
+                  src="/images/sold.png"
+                />
+              </div>
+            )}
           </div>
-        </a>
+        </WrapperElement>
         <div className="relative">
           <a
             href={`/items/${data.id}`}
@@ -91,7 +111,8 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ data, reservation, currentUser, d
           </div>
         </div>
 
-        {reservationDate && (
+        {/* Reservation Info */}
+        {(mode == CardMode.ORDER || mode == CardMode.PROFILE_RESERVED_SOLD) && (
           <div className="flex flex-col justify-start">
             <div>Pickup Info</div>
             <div className="flex flex-row justify-between">
@@ -108,27 +129,45 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ data, reservation, currentUser, d
             </div>
           </div>
         )}
-        {reservation?.userId && (
+
+        {/* Buyer Info */}
+        {mode == CardMode.PROFILE_RESERVED_SOLD && reservation?.user && (
           <div className="flex flex-col justify-start">
             <div>Buyer Info</div>
             <div className="flex flex-row justify-between gap-2">
               <div>Name: </div>
+              <div className="flex text-right">{reservation.user.name}</div>
+            </div>
+          </div>
+        )}
+
+        {/* Seller Info */}
+        {mode == CardMode.ORDER && reservation?.item.user && (
+          <div className="flex flex-col justify-start">
+            <div>Seller Info</div>
+            <div className="flex flex-row justify-between gap-2">
+              <div>Name: </div>
               <div className="flex text-right">
-                {reservation.user.name}
+                {reservation.item.user.name}
               </div>
             </div>
           </div>
         )}
       </div>
+
+      {/* Button */}
       <div className="flex mt-auto">
-        {onAction && actionLabel && (
-          <Button
-            disabled={disabled}
-            small
-            label={actionLabel}
-            onClick={handleCancel}
-          />
-        )}
+        {(mode == CardMode.PROFILE_ALL ||
+          mode == CardMode.PROFILE_RESERVED_SOLD) &&
+          onAction &&
+          actionLabel && (
+            <Button
+              disabled={disabled}
+              small
+              label={actionLabel}
+              onClick={handleCancel}
+            />
+          )}
       </div>
     </div>
   )

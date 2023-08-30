@@ -9,6 +9,8 @@ import { SafeReservation, SafeUser } from "@/app/types";
 import Heading from "@/app/components/Heading";
 import Container from "@/app/components/Container";
 import ItemsCard from "@/app/components/items/ItemsCard";
+import { CardMode } from '../types/constants'
+
 
 interface ReservationsClientProps {
   reservations?: SafeReservation[];
@@ -58,6 +60,7 @@ const ReservationsClient: React.FC<ReservationsClientProps> = ({
                 disabled={deletingId === reservation.id}
                 actionLabel="cancel"
                 currentUser={currentUser}
+                mode={CardMode.PROFILE_RESERVED_SOLD}
               />
             ))}
         </div>

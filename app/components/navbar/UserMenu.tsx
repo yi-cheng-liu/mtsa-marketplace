@@ -98,21 +98,27 @@ function handleClickOutside(event: MouseEvent) {
           <div className="flex flex-col cursor-pointer">
             {currentUser ? (
               <>
-                <MenuItem onClick={sellModal.onOpen} label="Add an item" />
                 <MenuItem
-                  onClick={() => router.push('/orders')}
+                  label="Add an item"
+                  onClick={sellModal.onOpen}
+                />
+                <MenuItem
                   label="My orders"
+                  onClick={() => router.push('/orders')}
                 />
-                <MenuItem onClick={() => router.push('/saved')} label="Saved" />
                 <MenuItem
-                  onClick={() => router.push('/profile')}
+                  label="Saved"
+                  onClick={() => router.push('/saved')}
+                />
+                <MenuItem
                   label="Profile"
+                  onClick={() => router.push('/profile')}
                 />
                 <MenuItem
+                  label="Logout"
                   onClick={() =>
                     signOut({ callbackUrl: `${window.location.origin}/` })
                   }
-                  label="Logout"
                 />
               </>
             ) : (

@@ -10,6 +10,8 @@ import Heading from "@/app/components/Heading";
 import Container from "@/app/components/Container";
 import ItemsCard from "@/app/components/items/ItemsCard";
 import EmptyState from '@/app/components/EmptyState'
+import { CardMode } from '../types/constants'
+
 
 
 interface PropertiesClientProps {
@@ -61,6 +63,7 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
                   disabled={deletingId === item.id}
                   actionLabel="delete"
                   currentUser={currentUser}
+                  mode={CardMode.PROFILE_ALL}
                 />
               ))}
           </div>

@@ -8,6 +8,7 @@ import { SafeReservation, SafeUser } from "@/app/types";
 import Heading from "@/app/components/Heading";
 import Container from "@/app/components/Container";
 import ItemsCard from "@/app/components/items/ItemsCard";
+import { CardMode } from "../types/constants";
 
 interface OrdersClientProps {
   reservations: SafeReservation[]
@@ -56,6 +57,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({
               // actionLabel="cancel"
               // onAction={onCancel}
               currentUser={currentUser}
+              mode={CardMode.ORDER}
             />
           ))}
         </div>
