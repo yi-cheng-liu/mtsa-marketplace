@@ -15,6 +15,7 @@ This is a [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com
 - [Motivation](#motivation)
 - [Features](#features)
 - [Installation and Setup](#installation-and-setup)
+- [Demo](#demo)
 - [License](#license)
 - [Contact Information](#contact-information)
 - [Acknowledgments](#acknowledgments)
@@ -83,6 +84,7 @@ MTSA Marketplace is a platform for buying and selling items within the MTSA (Mic
    Open http://localhost:3000 with your browser to see the webstite.
 
 
+## Demo
 ## License
 [MIT](https://github.com/yi-cheng-liu/mtsa-marketplace/blob/main/LICENSE) © Yi-Cheng Liu
 ## Contact Information
