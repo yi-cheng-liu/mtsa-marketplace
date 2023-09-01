@@ -9,7 +9,7 @@ interface ClientOnlyProps {
 const ClientOnly: React.FC<ClientOnlyProps> = ({ children }) => {
   const [hasMounted, setHasMounted] = useState(false)
 
-  // This effect runs only once, thanks to the empty dependency array
+  // This effect runs only once
   useEffect(() => {
     setHasMounted(true)
   }, [])

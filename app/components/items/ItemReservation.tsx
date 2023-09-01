@@ -1,20 +1,18 @@
 'use client'
 
-import { SafeUser, SafeItem } from '@/app/types'
-import {
-  LocalizationProvider,
-  DateTimePicker,
-  StaticDateTimePicker
-} from '@mui/x-date-pickers'
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+// External Libraries
 import dayjs from 'dayjs'
-import Button from '@/app/components/Button'
-
 import { useState, useCallback } from 'react'
-
+import { LocalizationProvider, DateTimePicker } from '@mui/x-date-pickers'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+// Types
+import { SafeUser, SafeItem } from '@/app/types'
+// Components
+import Button from '@/app/components/Button'
+import ReserveModal from '../modals/ReserveModal'
+// Custom Hooks
 import useLoginModal from '@/app/hooks/useLoginModal'
 import useReserveModal from '@/app/hooks/useReserveModal'
-import ReserveModal from '../modals/ReserveModal'
 
 interface ItemReservationProps {
   item: SafeItem & {
@@ -36,8 +34,6 @@ const ItemReservation: React.FC<ItemReservationProps> = ({
     if (!currentUser) {
       return loginModal.onOpen()
     }
-
-    // open the reserve confirm modal
     reserveModal.onOpen()
   }, [currentUser, loginModal, reserveModal])
 
@@ -87,7 +83,7 @@ const ItemReservation: React.FC<ItemReservationProps> = ({
         selectedDate={selectedDate}
       />
       <div className="flex">
-        <Button disabled={false} label="Reserve & Buy" onClick={onReserve} />
+        <Button label="Reserve & Buy" onClick={onReserve} disabled={false} />
       </div>
     </div>
   )

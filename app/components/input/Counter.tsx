@@ -37,42 +37,18 @@ const Counter: React.FC<CounterProps> = ({
       <div className="flex flex-row items-center gap-4">
         <div
           onClick={onReduce}
-          className="
-            w-10
-            h-10
-            flex
-            items-center
-            justify-center
-            text-[#002747]
-            cursor-pointer
-            hover:opacity-60
-            transition
-          "
+          className="w-10 h-10 flex items-center justify-center text-[#002747]
+            cursor-pointer hover:opacity-60 transition"
         >
           <AiOutlineMinus size={30}/>
         </div>
-        <div
-          className="
-            font-light 
-            text-xl 
-            text-neutral-600
-          "
-        >
+        <div className="font-light text-xl text-neutral-600">
           {value}
         </div>
         <div
           onClick={onAdd}
-          className="
-            w-10
-            h-10
-            flex
-            items-center
-            justify-center
-            text-neutral-600
-            cursor-pointer
-            hover:opacity-80
-            transition
-          "
+          className="w-10 h-10 flex items-center justify-center 
+          text-neutral-600 cursor-pointer hover:opacity-80 transition"
         >
           <AiOutlinePlus size={30} />
         </div>

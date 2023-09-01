@@ -1,7 +1,7 @@
 'use client'
 
-import Container from '@/app/components/Container'
 import Link from 'next/link'
+
 import Heading from './Heading'
 
 const Footer = () => {

@@ -8,6 +8,7 @@ import CustomPagination from './components/Pagination'
 import { getPage } from "./actions/getPage";
 import UpdateButton from "./components/UpdateButton";
 import SoldButton from "./components/sold/SoldButton";
+import { EmptyStateMode } from "./types/constants";
 
 
 interface HomeProps {
@@ -34,7 +35,7 @@ export default async function Home({ searchParams }: HomeProps) {
   if (items.length == 0) {
     return (
       <ClientOnly>
-        <EmptyState home />
+        <EmptyState mode={EmptyStateMode.HOME} />
       </ClientOnly>
     );
   }

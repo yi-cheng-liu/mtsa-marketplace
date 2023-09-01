@@ -1,6 +1,6 @@
 'use client'
 
-import { IconType } from "react-icons";
+import { IconType } from "react-icons"
 
 interface HeadingProps {
   title: string;
@@ -9,7 +9,12 @@ interface HeadingProps {
   icon?: IconType; // add a icon to the button
 }
 
-const Heading:React.FC<HeadingProps> = ({title, subtitle, center, icon:Icon}) => {
+const Heading: React.FC<HeadingProps> = ({
+  title,
+  subtitle,
+  center,
+  icon: Icon
+}) => {
   return (
     <div
       className={`${

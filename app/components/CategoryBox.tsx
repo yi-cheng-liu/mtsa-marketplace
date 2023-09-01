@@ -16,28 +16,32 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
   label,
   selected,
 }) => {
-  const router = useRouter();
-  const params = useSearchParams();
+  const router = useRouter()
+  const params = useSearchParams()
 
-  const handleClick = useCallback(() => {
+  // With "useCallback", the function is only re-created if any of its dependencies change
+  const handleSelect = useCallback(() => {
     let currentQuery = {}
 
     if (params) {
       currentQuery = qs.parse(params.toString())
     }
 
+    // Add the 'category' query parameter
     const updatedQuery: any = {
       ...currentQuery,
       category: label
     }
 
     // Remove the 'page' query parameter
-    delete updatedQuery.page;
+    delete updatedQuery.page
 
+    // Deselect a category by clicking it again
     if (params?.get('category') == label) {
       delete updatedQuery.category
     }
 
+    // Generate the new URL with the updated query parameters
     const url = qs.stringifyUrl(
       {
         url: '/',
@@ -47,22 +51,22 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
     )
 
     router.push(url)
-  }, [label, params, router]);
+  }, [label, params, router])
 
   return (
     <div
-      onClick={handleClick}
+      onClick={handleSelect}
       className={`flex flex-col items-center justify-center gap-2 p-2 border-2 rounded-3xl w-24 h-18
       hover:text-[#002747] hover:border-[#002747] transition cursor-pointer
-      ${selected ? "border-[#002747]" : "border-transparent"}
-      ${selected ? "text-[#002747]" : "text-neutral-500"}
-      ${selected ? "bg-[#00274715]" : "bg-transparent"}
+      ${selected ? 'border-[#002747]' : 'border-transparent'}
+      ${selected ? 'text-[#002747]' : 'text-neutral-500'}
+      ${selected ? 'bg-[#00274715]' : 'bg-transparent'}
     `}
     >
       <Icon size={28} />
       <div className="font-medium text-sm">{label}</div>
     </div>
-  );
+  )
 };
 
 export default CategoryBox;

@@ -5,10 +5,10 @@ import { IconType } from 'react-icons';
 interface ButtonProps{
   label: string; // label name of the button
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void; // function to handle the click event
-  disabled?: boolean; // whether the button is disabled
-  outline?: boolean; // is it an outline button
-  small?: boolean;   // is it a small button
-  icon?: IconType;   // add a icon to the button
+  disabled?: boolean;
+  outline?: boolean;
+  small?: boolean;
+  icon?: IconType;
 }
 
 const Button: React.FC<ButtonProps> = ({ label, onClick, disabled, outline, small, icon:Icon }) => {

@@ -1,6 +1,6 @@
-"use client";
+'use client'
 
-import { ProgressBar } from "react-loader-spinner";
+import { ProgressBar } from "react-loader-spinner"
 
 const Loader = () => {
   return (
