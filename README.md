@@ -85,6 +85,25 @@ MTSA Marketplace is a platform for buying and selling items within the MTSA (Mic
 
 
 ## Demo
+#### Home Page
+![home page](/public/images/page_intro/1_home_page.png)
+#### Add an Item
+| Select Category          | Enter Details            | Upload picture            
+:-------------------------:|:------------------------:|:-------------------------:
+![Category](/public/images/page_intro/2_category.png) |  ![Enter details](/public/images/page_intro/2_title.png) | ![Upload Picture](/public/images/page_intro/2_pic.png) 
+
+#### Item Page
+| Item Page                | Confirm reservation      
+:-------------------------:|:------------------------:
+![Item Page  ](/public/images/page_intro/3_item_page.jpg) |  ![Confirm reservation](/public/images/page_intro/3_confirm_reservation.png) 
+#### Order Page & Saved Page
+| Order Page               | Saved Page      
+:-------------------------:|:------------------------:
+![Order Page](/public/images/page_intro/5_order_page.png) |  ![Saved Page ](/public/images/page_intro/4_save_page.png) 
+#### Profile Page
+| Profile Page             | Reserved Items     
+:-------------------------:|:------------------------:
+![Profile Page](/public/images/page_intro/5_profile.png) |  ![Saved Page ](/public/images/page_intro/5_reserved_item.png) 
 ## License
 [MIT](https://github.com/yi-cheng-liu/mtsa-marketplace/blob/main/LICENSE) © Yi-Cheng Liu
 ## Contact Information
