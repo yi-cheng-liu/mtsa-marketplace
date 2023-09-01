@@ -7,6 +7,7 @@ import getCurrentUser from "@/app/actions/getCurrentUser";
 import getReservations from "@/app/actions/getReservations";
 
 import OrdersClient from "./OrdersClient";
+import { EmptyStateMode } from "../types/constants";
 
 const TripsPage = async () => {
   const currentUser = await getCurrentUser();
@@ -14,9 +15,12 @@ const TripsPage = async () => {
   if (!currentUser) {
     return (
       <ClientOnly>
-        <EmptyState title="Unauthorized ! " />
+        <EmptyState
+          title="Unauthorized !! Please login"
+          mode={EmptyStateMode.FULL_PAGE}
+        />
       </ClientOnly>
-    );
+    )
   }
 
   const reservations = await getReservations({ userId: currentUser.id });
@@ -27,7 +31,10 @@ const TripsPage = async () => {
           <Container>
           <div className="py-6">
             <Heading title="MY ORDERS" />
-            <EmptyState title="No orders found" />
+            <EmptyState
+              title="No orders found"
+              mode={EmptyStateMode.FULL_PAGE}
+            />
           </div>
         </Container>
       </ClientOnly>

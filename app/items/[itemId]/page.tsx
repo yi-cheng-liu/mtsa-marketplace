@@ -3,6 +3,7 @@ import getCurrentUser from '@/app/actions/getCurrentUser';
 import ClientOnly from '@/app/components/ClientOnly';
 import EmptyState from '@/app/components/EmptyState';
 import ItemClient from './ItemClient';
+import { EmptyStateMode } from '@/app/types/constants';
 
 interface IParams {
   itemId?: string;
@@ -15,7 +16,9 @@ const ItemPage =  async ({params} : {params : IParams}) => {
   if (!item) {
     return (
       <ClientOnly>
-        <EmptyState />
+        <EmptyState
+          title="Error: Item not found"
+          mode={EmptyStateMode.FULL_PAGE} />
       </ClientOnly>
     )
   }

@@ -6,6 +6,7 @@ import Heading from '../components/Heading'
 import getCurrentUser from '@/app/actions/getCurrentUser'
 import SoldItemsClient from './SoldItemsClient'
 import getReservations from '../actions/getReservations'
+import { EmptyStateMode } from '../types/constants'
 
 const SoldItemPage = async () => {
   const reservations = await getReservations({})
@@ -16,7 +17,10 @@ const SoldItemPage = async () => {
         <Container>
           <div className="py-6">
             <Heading title="SOLD ITEMS" />
-            <EmptyState title="No sold items" />
+            <EmptyState
+              title="No sold items"
+              mode={EmptyStateMode.FULL_PAGE}
+            />
           </div>
         </Container>
       </ClientOnly>

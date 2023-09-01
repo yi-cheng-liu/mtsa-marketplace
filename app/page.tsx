@@ -35,9 +35,12 @@ export default async function Home({ searchParams }: HomeProps) {
   if (items.length == 0) {
     return (
       <ClientOnly>
-        <EmptyState mode={EmptyStateMode.HOME} />
+        <EmptyState
+          title="No Items of this category"
+          mode={EmptyStateMode.HOME}
+        />
       </ClientOnly>
-    );
+    )
   }
 
   return (

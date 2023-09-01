@@ -6,21 +6,23 @@ import Heading from "./Heading"
 import { EmptyStateMode } from "@/app/types/constants"
 
 interface EmptyStateProps {
-  title?: string
+  title: string
   mode: EmptyStateMode
 }
 
 const EmptyState: React.FC<EmptyStateProps> = ({
-  title = 'No Items of this category',
+  title,
   mode
 }) => {
 
   // Determine the mode
   const heightClassMapping = {
-    [EmptyStateMode.PROFILE]: 'h-[20vh]',
     [EmptyStateMode.HOME]: 'pt-28 h-[70vh]',
+    [EmptyStateMode.FULL_PAGE]: 'h-[60vh]',
+    [EmptyStateMode.SECTION]: 'h-[20vh]',
+    [EmptyStateMode.EMPTY]: ''
   }
-  const heightClass = heightClassMapping[mode] || ''
+  const heightClass = heightClassMapping[mode]
 
   return (
     <div

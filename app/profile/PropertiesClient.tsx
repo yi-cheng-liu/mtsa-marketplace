@@ -10,7 +10,7 @@ import Heading from "@/app/components/Heading";
 import Container from "@/app/components/Container";
 import ItemsCard from "@/app/components/items/ItemsCard";
 import EmptyState from '@/app/components/EmptyState'
-import { CardMode } from '../types/constants'
+import { CardMode, EmptyStateMode } from '../types/constants'
 
 
 
@@ -68,7 +68,10 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
               ))}
           </div>
         ) : (
-          <EmptyState profile title="No Items" />
+            <EmptyState
+              title="No Items"
+              mode={EmptyStateMode.FULL_PAGE}
+            />
         )}
       </div>
     </Container>

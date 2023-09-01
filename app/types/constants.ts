@@ -6,6 +6,8 @@ export enum CardMode {
 }
 
 export enum EmptyStateMode {
-  HOME = 'home',
-  PROFILE = 'profile', 
+  HOME = 'home', 
+  FULL_PAGE = 'full_page',
+  SECTION = 'section',
+  EMPTY = 'empty'
 }
