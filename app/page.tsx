@@ -32,6 +32,10 @@ export default async function Home({ searchParams }: HomeProps) {
   
   const currentUser = await getCurrentUser();
 
+  const isHomeUrl =
+    !searchParams.category && !searchParams.search && !searchParams.page
+
+
   if (items.length == 0) {
     return (
       <ClientOnly>
@@ -53,7 +57,7 @@ export default async function Home({ searchParams }: HomeProps) {
             )
           })}
         </div>
-        <SoldButton />
+        {isHomeUrl && <SoldButton />}
         <CustomPagination totalItemsCount={items.length} />
       </Container>
     </ClientOnly>
