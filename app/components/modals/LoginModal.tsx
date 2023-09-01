@@ -14,8 +14,6 @@ import Input from '../input/Input'
 import { toast } from 'react-hot-toast'
 import Button from '../Button'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
-
   
 const LoginModal = () => {
   const router = useRouter();
@@ -35,6 +33,11 @@ const LoginModal = () => {
     loginModal.onClose();
     registerModal.onOpen();
   }, [loginModal, registerModal]);
+
+  const handleNavigation = (path: string) => {
+    router.push(path);
+    loginModal.onClose();
+  }
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -97,21 +100,19 @@ const LoginModal = () => {
       </div>
       <div className="flex justify-center text-sm">
         View our
-        <Link
-          href="/about/privacy-policy"
-          className="mx-1 hover:font-bold"
-          onClick={() => loginModal.onClose()}
+        <span
+          className="mx-1 hover:font-bold cursor-pointer"
+          onClick={() => handleNavigation('/about/privacy-policy')}
         >
           Privacy Policy
-        </Link>
+        </span>
         or
-        <Link
-          href="/about/terms-of-use"
-          className="mx-1 hover:font-bold"
-          onClick={() => loginModal.onClose()}
+        <span
+          className="mx-1 hover:font-bold cursor-pointer"
+          onClick={() => handleNavigation('/about/terms-of-use')}
         >
           Terms of Use
-        </Link>
+        </span>
       </div>
     </div>
   )

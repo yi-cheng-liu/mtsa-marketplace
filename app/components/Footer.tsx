@@ -1,10 +1,11 @@
 'use client'
 
-import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 
 import Heading from './Heading'
 
 const Footer = () => {
+  const router = useRouter()
   const columns = [
     {
       title: 'About',
@@ -24,9 +25,13 @@ const Footer = () => {
             <div key={idx} className="col-span-1 flex flex-col">
               <Heading title={column.title} />
               {column.links.map((link, linkIdx) => (
-                <Link key={linkIdx} href={link.path}>
+                <div
+                  key={linkIdx}
+                  onClick={() => router.push(link.path)}
+                  className='cursor-pointer'
+                >
                   {link.label}
-                </Link>
+                </div>
               ))}
             </div>
           ))}

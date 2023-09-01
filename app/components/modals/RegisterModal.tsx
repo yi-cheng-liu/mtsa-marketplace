@@ -13,11 +13,12 @@ import Heading from '../Heading'
 import Input from '../input/Input'
 import { toast } from 'react-hot-toast'
 import Button from '../Button'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 import { signIn } from 'next-auth/react'
   
 const RegisterModal = () => {
+  const router = useRouter()
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
@@ -35,6 +36,11 @@ const RegisterModal = () => {
     loginModal.onOpen();
     registerModal.onClose();
   }, [loginModal, registerModal]);
+
+  const handleNavigation = (path: string) => {
+    router.push(path)
+    registerModal.onClose()
+  }
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -112,21 +118,19 @@ const RegisterModal = () => {
       </div>
       <div className="flex justify-center text-sm">
         View our
-        <Link
-          href="/about/privacy-policy"
-          className="mx-1 hover:font-bold"
-          onClick={() => registerModal.onClose()}
+        <span
+          className="mx-1 hover:font-bold cursor-pointer"
+          onClick={() => handleNavigation('/about/privacy-policy')}
         >
           Privacy Policy
-        </Link>
+        </span>
         or
-        <Link
-          href="/about/terms-of-use"
-          className="mx-1 hover:font-bold"
-          onClick={() => registerModal.onClose()}
+        <span
+          className="mx-1 hover:font-bold cursor-pointer"
+          onClick={() => handleNavigation('/about/terms-of-use')}
         >
           Terms of Use
-        </Link>
+        </span>
       </div>
     </div>
   )
