@@ -107,7 +107,7 @@ MTSA Marketplace is a platform for buying and selling items within the MTSA (Mic
 ## License
 [MIT](https://github.com/yi-cheng-liu/mtsa-marketplace/blob/main/LICENSE) © Yi-Cheng Liu
 ## Contact Information
-For more information or for contributions, you can reach us at:
+For more information or contributions, you can reach us at:
 Yi-Cheng Liu, Email: whsjerryliu@gmail.com or liuyiche@umich.edu
 ## Acknowledgments
 This project has been an incredible learning journey in React and great code organization. Huge thanks to Antonio who is the creator of the [Airbnb clone](https://www.youtube.com/watch?v=c_-b_isI4vg&ab_channel=CodeWithAntonio) on Youtube. The insights and skills I gained from his course served as the foundation for this project. Also, thanks to the MTSA community for providing me the opportunity to build this project.
