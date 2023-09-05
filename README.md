@@ -1,7 +1,12 @@
 ![mtsa-marketplace-nextjs-banner](/public/images/website-card.jpg)
 
 # MTSA Marketplace
-![Primary language](https://img.shields.io/github/languages/top/yi-cheng-liu/mtsa-marketplace)
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
+
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/yi-cheng-liu/mtsa-marketplace)
 
 This is a [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/) website aimed at enhancing the user experience for MTSA's second-hand marketplace on Facebook. Since every seller have to post a PowerPoint for selling the items. Here are some of the issues I focused on improving:
