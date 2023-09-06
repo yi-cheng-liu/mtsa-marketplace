@@ -129,7 +129,7 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({
 
             {/* Pickup Address */}
             {(user.pickupAddress || profile) && (
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="flex items-center gap-2">
                 <MdOutlineHouse size={26} />
                 {profile ? (
                   <div>
@@ -141,7 +141,7 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({
                     />
                   </div>
                 ) : (
-                  <div className="flex flex-wrap sm:w-[400px] w-[300px]">
+                  <div className="flex sm:w-[400px] w-[300px]">
                     {pickupAddress}
                   </div>
                 )}
@@ -174,7 +174,7 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({
 
             {/* Facebook Profile Link */}
             {profile ? (
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="flex items-center gap-2">
                 <MdOutlineFacebook size={26} />
                 {profile ? (
                   <div>
@@ -186,7 +186,7 @@ const ItemOwner: React.FC<ItemOwnerProps> = ({
                     />
                   </div>
                 ) : (
-                  <div className="flex flex-wrap sm:w-[400px] w-[300px]">
+                  <div className="flex sm:w-[400px] w-[300px]">
                     {facebookProfileLink}
                   </div>
                 )}
