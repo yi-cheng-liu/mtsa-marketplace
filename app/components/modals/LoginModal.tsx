@@ -42,7 +42,7 @@ const LoginModal = () => {
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading
-        title="Welcome back to MTSA marketplace"
+        title="Welcome back to marketplace"
         subtitle="Please login to continue"
         icon={FaRegLaughSquint}
         center

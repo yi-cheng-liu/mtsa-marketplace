@@ -8,7 +8,7 @@ const TermsOfUse: React.FC = () => {
         <strong className="font-semibold">Last updated:</strong> Aug 23, 2023
       </p>
       <p className="mb-4">
-        This document outlines the terms of use for mtsa-marketplace, inspired
+        This document outlines the terms of use for marketplace, inspired
         by various standard terms.
       </p>
 

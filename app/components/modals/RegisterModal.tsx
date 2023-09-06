@@ -45,7 +45,7 @@ const RegisterModal = () => {
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading
-        title="Welcome to MTSA marketplace"
+        title="Welcome to marketplace"
         subtitle="Please register to continue"
         icon={PiHandWavingBold}
         center
