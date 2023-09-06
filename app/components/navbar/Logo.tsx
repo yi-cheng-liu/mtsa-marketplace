@@ -25,8 +25,8 @@ const Logo = () => {
           alt='logo'
           src= '/images/marketplace-color-logo.png'
           className='block cursor-pointer pl-2'
-          height='60'
-          width='280'
+          height='65'
+          width='260'
         />
     </a>
   )
