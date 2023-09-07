@@ -72,7 +72,10 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ data, reservation, currentUser, d
               fill
               alt="item image"
               src={data.image}
+              style={{objectFit:"cover"}}
+              sizes="(max-width: 640px) 100vw, 640px"
               className="object-cover h-full w-full group-hover:scale-110 transition"
+              priority
             />
             {isSold && (
               <div className="absolute inset-0 flex items-center justify-center">

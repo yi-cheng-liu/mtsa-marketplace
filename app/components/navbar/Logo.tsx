@@ -27,6 +27,7 @@ const Logo = () => {
           className='block cursor-pointer pl-2'
           height='65'
           width='260'
+          priority
         />
     </a>
   )
