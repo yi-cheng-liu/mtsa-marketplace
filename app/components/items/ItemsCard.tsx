@@ -69,10 +69,11 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ data, reservation, currentUser, d
         >
           <div className="aspect-square w-full relative overflow-hidden rounded-2xl">
             <Image
-              fill
               alt="item image"
               src={data.image}
               style={{objectFit:"cover"}}
+              width={640}  // maximum image width
+              height={480} // maximum image height
               sizes="(max-width: 640px) 100vw, 640px"
               className="object-cover h-full w-full group-hover:scale-110 transition"
               priority
