@@ -18,71 +18,89 @@ export const authOptions: AuthOptions = {
     // Adding GitHub as a provider for OAuth authentication
     GithubProvider({
       clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET as string,
+      clientSecret: process.env.GITHUB_SECRET as string
     }),
     // Adding Facebook as a provider for OAuth authentication
     FacebookProvider({
       clientId: process.env.FACEBOOK_CLIENT_ID as string,
-      clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string
     }),
     // Adding Google as a provider for OAuth authentication
     GoogleProvider({
       clientId: process.env.GOOGLE_ID as string,
-      clientSecret: process.env.GOOGLE_SECRET as string,
+      clientSecret: process.env.GOOGLE_SECRET as string
     }),
     // Adding Credentials Provider for authentication using email and password
     CredentialsProvider({
-      name: "credentials",
+      name: 'credentials',
       credentials: {
-        email: { label: "email", type: "text" },
-        password: { label: "password", type: "password" },
+        email: { label: 'email', type: 'text' },
+        password: { label: 'password', type: 'password' }
       },
       async authorize(credentials) {
+        // Check if the email ends with @umich.edu
+        if (!credentials?.email?.endsWith('@umich.edu')) {
+          throw new Error('Email must end with @umich.edu')
+        }
         // Checking if credentials (email and password) exist
         if (!credentials?.email) {
-          throw new Error("Invalid email");
+          throw new Error('Invalid email')
         }
         if (!credentials?.password) {
-          throw new Error("Invalid password");
+          throw new Error('Invalid password')
         }
 
         // Finding a user in the database with the same email as the entered credentials
         const user = await prisma.user.findUnique({
           where: {
-            email: credentials.email,
-          },
-        });
+            email: credentials.email
+          }
+        })
 
         // If no user is found or the user doesn't have a hashed password, throw an error
         if (!user || !user?.hashedPassword) {
-          throw new Error("Invalid email");
+          throw new Error('Invalid email')
         }
 
         // Checking if the entered password is correct by comparing it with the hashed password
         const isCorrectPassword = await bcrypt.compare(
           credentials.password,
           user.hashedPassword
-        );
+        )
 
         // If the password is incorrect, throw an error
         if (!isCorrectPassword) {
-          throw new Error("Invalid password");
+          throw new Error('Invalid password')
         }
 
         // If the credentials are valid, return the user
-        return user;
-      },
-    }),
+        return user
+      }
+    })
   ],
+  callbacks: {
+    async signIn({ user, account }) {
+      // If the provider is Google, check the email domain
+      if (
+        account &&
+        (account.provider === 'google' || account.provider === 'github') &&
+        user.email &&
+        !user.email.endsWith('@umich.edu')
+      ) {
+        return false
+      }
+      return true
+    }
+  },
   pages: {
-    signIn: "/",
+    signIn: '/'
   },
   // debug: process.env.NODE_ENV === "development",
-  debug: false, 
+  debug: false,
   session: {
-    strategy: "jwt",
+    strategy: 'jwt'
   },
-  secret: process.env.NEXTAUTH_SECRET,
-};
+  secret: process.env.NEXTAUTH_SECRET
+}
 
 export default NextAuth(authOptions);
