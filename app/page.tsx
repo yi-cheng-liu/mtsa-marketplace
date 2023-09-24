@@ -5,9 +5,6 @@ import Container from './components/Container'
 import EmptyState from "./components/EmptyState";
 import ItemsCard from "./components/items/ItemsCard";
 import CustomPagination from './components/Pagination'
-import { getPage } from "./actions/getPage";
-import UpdateButton from "./components/UpdateButton";
-import SoldButton from "./components/sold/SoldButton";
 import { EmptyStateMode } from "./types/constants";
 
 
@@ -19,22 +16,20 @@ interface HomeProps {
 export default async function Home({ searchParams }: HomeProps) {
 
   // Get all the items
+  let result;
   let items = [];
   if (searchParams.category || searchParams.search || searchParams.page) {
-    items = (await getItems(searchParams)).items;
+    result = await getItems(searchParams)
+    items = result.items
   } else {
-    items = (await getItems({})).items;
-  } // items.length -> the number of all items
-
-  // Get the items according to the page
-  const data = await getPage(searchParams);
-  const allItems = data.items;
+    result = await getItems({})
+    items = result.items
+  }
   
   const currentUser = await getCurrentUser();
 
   const isHomeUrl =
-    !searchParams.category && !searchParams.search && !searchParams.page
-
+    !searchParams.category && !searchParams.search
 
   if (items.length == 0) {
     return (
@@ -51,14 +46,16 @@ export default async function Home({ searchParams }: HomeProps) {
     <ClientOnly>
       <Container>
         <div className="pt-28 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 md:gap-4 xl:gap-6">
-          {allItems.map((item) => {
+          {items.map((item) => {
             return (
               <ItemsCard key={item.id} data={item} currentUser={currentUser} />
             )
           })}
         </div>
-        {isHomeUrl && <SoldButton />}
-        <CustomPagination totalItemsCount={items.length} />
+        <CustomPagination
+          totalItemsCount={result.totalItemsCount}
+          isHomeUrl={isHomeUrl}
+        />
       </Container>
     </ClientOnly>
   )

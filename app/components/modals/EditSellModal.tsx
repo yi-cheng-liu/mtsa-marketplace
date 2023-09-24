@@ -93,8 +93,6 @@ const EditSellModal: React.FC<EditSellModalProps> = ({ item }) => {
   }
 
   const onEdit: SubmitHandler<FieldValues> = async (data) => {
-    console.log('Data sent for update:', data)
-
     if (step == EDITSELLMODALSTEPS.IMAGES && !image) {
       toast.error('Please upload at least one image')
       return

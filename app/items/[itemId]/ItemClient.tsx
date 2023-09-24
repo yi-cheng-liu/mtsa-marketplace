@@ -33,13 +33,9 @@ const ItemClient: React.FC<ItemClientProps> = ({
 }) => {
 
   const loginModal = useLoginModal();
-  const sellModal = useSellModal();
   const editSellModal = useEditSellModal();
-  const reserveModal = useReserveModal();
 
   const onEdit = useCallback(() => {
-    console.log('onEdit is called') // Add this
-
     if (!currentUser) {
       return loginModal.onOpen()
     }

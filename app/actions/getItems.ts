@@ -10,7 +10,7 @@ export interface IItemsParams {
 
 export default async function getItems(params: IItemsParams) {
   try {
-    const { userId, category, search = "" } = params;
+    const { userId, category, search = '', page = 1, pageSize = 60 } = params
 
     let query: any = {};
 
@@ -40,14 +40,16 @@ export default async function getItems(params: IItemsParams) {
     })
 
     const items = await prisma.item.findMany({
+      skip: page ? (page - 1) * pageSize : 0,
+      take: pageSize,
       where: query,
       orderBy: {
-        createdAt: "desc",
+        createdAt: 'desc'
       },
       include: {
-        user: true,
-      },
-    });
+        user: true
+      }
+    })
 
     const safeItems = items.map((item) => ({
       ...item,

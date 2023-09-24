@@ -24,7 +24,7 @@ const Logo = () => {
       <Image
           alt='logo'
           src= '/images/marketplace-color-logo.png'
-          className='block cursor-pointer pl-2'
+          className='block cursor-pointer p-3'
           height='65'
           width='260'
         />

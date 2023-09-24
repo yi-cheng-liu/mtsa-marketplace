@@ -4,30 +4,32 @@ import Pagination from '@mui/material/Pagination'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import qs from 'query-string'
-import { SafeItem } from '../types'
+import SoldButton from './sold/SoldButton'
 
 export const ITEMS_PER_PAGE = 60
 
 export interface PaginationParams {
   totalItemsCount: number
+  isHomeUrl: boolean
 }
 
 const CustomPagination: React.FC<PaginationParams> = ({
-  totalItemsCount
+  totalItemsCount,
+  isHomeUrl
 }) => {
-  const router = useRouter();
-  const params = useSearchParams();
+  const router = useRouter()
+  const params = useSearchParams()
 
-  const [page, setPage] = useState(Number(params?.get('page') || 1));
+  const [page, setPage] = useState(Number(params?.get('page') || 1))
 
   useEffect(() => {
     // Update the page state when the URL changes
-    const updatedPage = Number(params?.get('page') || 1);
-    setPage(updatedPage);
-  }, [params]);
+    const updatedPage = Number(params?.get('page') || 1)
+    setPage(updatedPage)
+  }, [params])
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    setPage(value);
+    setPage(value)
 
     let currentQuery = {}
 
@@ -54,15 +56,20 @@ const CustomPagination: React.FC<PaginationParams> = ({
   let maxPage = Math.ceil(totalItemsCount / ITEMS_PER_PAGE)
 
   return (
-    <div className="flex items-center justify-center p-6">
-      {maxPage != 1 &&
-        <Pagination
-        count={maxPage}
-        boundaryCount={3}
-        page={page}
-        onChange={handleChange}
-      />}
-      
+    <div>
+      <div className="flex items-center justify-center p-6">
+        {maxPage != 1 && (
+          <Pagination
+            count={maxPage}
+            boundaryCount={3}
+            page={page}
+            onChange={handleChange}
+            color="primary"
+            size="large"
+          />
+        )}
+      </div>
+      {isHomeUrl && page === maxPage && <SoldButton />}
     </div>
   )
 }

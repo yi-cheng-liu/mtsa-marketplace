@@ -89,8 +89,9 @@ const SellModal = () => {
     setIsLoading(true);
 
     axios.post('/api/items', data)
-      .then(() => {
+      .then((res) => {
         toast.success('Item created successfully!', { icon: "🎉" });
+        // window.location.reload();
         router.refresh();
         reset();
         setStep(SELLMODALSTEPS.CATEGORY);

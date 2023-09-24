@@ -40,15 +40,15 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   }, [currentUser, loginModal, sellModal]);
 
   useEffect(() => {
-function handleClickOutside(event: MouseEvent) {
-    if (
+    function handleClickOutside(event: MouseEvent) {
+      if (
         menuRef.current && 
         !menuRef.current.contains(event.target as Node) &&
         (!toggleButtonRef.current || !toggleButtonRef.current.contains(event.target as Node))
-    ) {
+      ) {
         setIsOpen(false);
+      }
     }
-  }
 
 
     document.addEventListener('mousedown', handleClickOutside)
@@ -74,7 +74,7 @@ function handleClickOutside(event: MouseEvent) {
 
         <div
           onClick={onSell}
-          className="hidden md:block lg:text-base text-sm font-semibold py-3 px-[14px] rounded-2xl hover:bg-[#00274C50] transition cursor-pointer"
+          className="hidden md:block lg:text-base text-sm font-semibold py-3 px-[14px] rounded-2xl hover:bg-[#00274CE6] hover:text-white transition cursor-pointer"
         >
           Add an item
         </div>

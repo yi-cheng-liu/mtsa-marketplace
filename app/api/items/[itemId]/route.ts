@@ -70,13 +70,10 @@ export async function PUT(
   const floatPrice = parseFloat(price)
 
   try {
-    console.log('Attempting to update item with ID:', itemId)
-    console.log('Data for update:', title, description, image, image2, image3, image4, image5, category, itemCount, price)
     const updatedItem = await prisma.item.update({
       where: { id: itemId },
       data: { title, description, image, image2, image3, image4, image5, category, itemCount: intItemCount, price: floatPrice }
     })
-    console.log('Updated item:', updatedItem)
     return NextResponse.json(updatedItem)
   } catch (error) {
     // Handle any errors that occurred during the update

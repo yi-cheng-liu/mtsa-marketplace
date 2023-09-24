@@ -70,7 +70,7 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ data, reservation, currentUser, d
           <div className="aspect-square w-full relative overflow-hidden rounded-2xl">
             <Image
               fill
-              alt="item image"
+              alt={data.title}
               src={data.image}
               className="object-cover h-full w-full group-hover:scale-110 transition"
             />
