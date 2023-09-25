@@ -38,9 +38,9 @@ export const authOptions: AuthOptions = {
         password: { label: 'password', type: 'password' }
       },
       async authorize(credentials) {
-        // Check if the email ends with @umich.edu
-        if (!credentials?.email?.endsWith('@umich.edu')) {
-          throw new Error('Email must end with @umich.edu')
+        // Check if the email ends with umich.edu
+        if (!credentials?.email?.endsWith('umich.edu')) {
+          throw new Error('Email must end with umich.edu')
         }
         // Checking if credentials (email and password) exist
         if (!credentials?.email) {
@@ -85,7 +85,7 @@ export const authOptions: AuthOptions = {
         account &&
         (account.provider === 'google' || account.provider === 'github') &&
         user.email &&
-        !user.email.endsWith('@umich.edu')
+        !user.email.endsWith('umich.edu')
       ) {
         return false
       }

@@ -33,7 +33,7 @@ const LoginModal = () => {
     <div className="flex flex-col gap-4">
       <Heading
         title="Welcome back to marketplace"
-        subtitle="Please login to continue"
+        subtitle="Please login with umich.edu to continue"
         icon={FaRegLaughSquint}
         center
       />
@@ -49,7 +49,7 @@ const LoginModal = () => {
         icon={AiFillGithub}
         onClick={() => signIn('github')}
       />
-      <div className="flex flex-row justify-center items-center gap-2">
+      <div className="flex flex-row justify-center items-center gap-2 mt-4">
         <div className="flex text-[#00274C]">Don&apos;t have an account?</div>
         <div
           onClick={toggle}
@@ -61,14 +61,14 @@ const LoginModal = () => {
       <div className="flex justify-center text-sm">
         View our
         <span
-          className="mx-1 hover:font-bold cursor-pointer"
+          className="mx-1 hover:underline hover:underline-offset-4 cursor-pointer"
           onClick={() => handleNavigation('/about/privacy-policy')}
         >
           Privacy Policy
         </span>
         or
         <span
-          className="mx-1 hover:font-bold cursor-pointer"
+          className="mx-1 hover:underline hover:underline-offset-4 cursor-pointer"
           onClick={() => handleNavigation('/about/terms-of-use')}
         >
           Terms of Use
